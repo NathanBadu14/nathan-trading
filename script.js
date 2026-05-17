@@ -1,8 +1,4 @@
-  // Import the functions you need from the SDKs you need
-  import { initializeApp } from "https://www.gstatic.com/firebasejs/12.13.0/firebase-app.js";
-  // TODO: Add SDKs for Firebase products that you want to use
-  // https://firebase.google.com/docs/web/setup#available-libraries
-
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
   // Your web app's Firebase configuration
   const firebaseConfig = {
     apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
@@ -15,6 +11,7 @@
 
   // Initialize Firebase
   const app = initializeApp(firebaseConfig);
-</script>
+
+
 
 console.log("Nathan Trading Premium Website Loaded");
