@@ -253,47 +253,56 @@ Accès au groupe privé Nathan Trading.
 <!-- CONNEXION -->
 
 <section class="section" id="connexion">
-
-<h2>
-Connexion
-</h2>
-
-<div class="login-container">
-
-<input type="email" placeholder="Adresse email">
-
-<input type="password" placeholder="Mot de passe">
-
-<button class="primary-btn full-btn">
-Se connecter
-</button>
-
-</div>
-
+    <h2>Connexion</h2>
+    <form id="login-form" class="login-container">
+        <input 
+            type="email" 
+            id="login-email" 
+            placeholder="Adresse email" 
+            class="login-email" 
+            required
+        >
+        <input 
+            type="password" 
+            id="login-password" 
+            placeholder="Mot de passe" 
+            class="login-password" 
+            required
+        >
+        <button type="submit" class="primary-btn full-btn">
+            Se connecter
+        </button>
+    </form>
 </section>
 
-<!-- INSCRIPTION -->
-
 <section class="section dark-section" id="inscription">
-
-<h2>
-Inscription
-</h2>
-
-<div class="login-container">
-
-<input type="text" placeholder="Nom complet">
-
-<input type="email" placeholder="Adresse email">
-
-<input type="password" placeholder="Créer un mot de passe">
-
-<button class="primary-btn full-btn">
-Créer un compte
-</button>
-
-</div>
-
+    <h2>Inscription</h2>
+    <form id="register-form" class="login-container">
+        <input 
+            type="text" 
+            id="register-name" 
+            placeholder="Nom complet" 
+            class="register-name" 
+            required
+        >
+        <input 
+            type="email" 
+            id="register-email" 
+            placeholder="Adresse email" 
+            class="register-email" 
+            required
+        >
+        <input 
+            type="password" 
+            id="register-password" 
+            placeholder="Créer un mot de passe" 
+            class="register-password" 
+            required
+        >
+        <button type="submit" class="primary-btn full-btn">
+            Créer un compte
+        </button>
+    </form>
 </section>
 
 <!-- CONTACT -->
