@@ -1,82 +1,190 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-console.log("🚀 Script chargé avec succès par le navigateur !");
-
-const firebaseConfig = {
-  apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
-  authDomain: "nathan-trading.firebaseapp.com",
-  projectId: "nathan-trading",
-  storageBucket: "nathan-trading.firebasestorage.app",
-  messagingSenderId: "90808409872",
-  appId: "1:90808409872:web:c99392d2e52a10f1e7ed41"
-};
-
-// Initialisation Firebase
-const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
-
-console.log("🔥 Nathan Trading - Firebase est connecté et prêt !");
-
-// --- GESTION DE L'INSCRIPTION ---
-const registerForm = document.getElementById('register-form');
-
-if (registerForm) {
-    console.log("✅ Formulaire d'inscription détecté.");
-    
-    registerForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Bloque le rechargement de la page
-        
-        const email = document.getElementById('register-email').value;
-        const password = document.getElementById('register-password').value;
-
-        console.log("Formulaire d'inscription soumis pour :", email);
-
-        createUserWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                console.log("Utilisateur créé :", userCredential.user);
-                alert("Félicitations ! Inscription réussie sur Nathan Trading.");
-                registerForm.reset();
-            })
-            .catch((error) => {
-                console.error("Erreur Firebase Inscription :", error.code, error.message);
-                if (error.code === 'auth/email-already-in-use') {
-                    alert("Cet e-mail est déjà utilisé pour un autre compte.");
-                } else if (error.code === 'auth/weak-password') {
-                    alert("Le mot de passe doit contenir au moins 6 caractères.");
-                } else {
-                    alert("Erreur : " + error.message);
-                }
-            });
-    });
-} else {
-    console.error("❌ Impossible de trouver l'élément HTML avec l'ID 'register-form'");
+import {
+getAuth,
+createUserWithEmailAndPassword,
+signInWithEmailAndPassword,
+onAuthStateChanged
 }
 
-// --- GESTION DE LA CONNEXION ---
-const loginForm = document.getElementById('login-form');
+from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-if (loginForm) {
-    console.log("✅ Formulaire de connexion détecté.");
-    
-    loginForm.addEventListener('submit', (e) => {
-        e.preventDefault(); // Bloque le rechargement de la page
-        
-        const email = document.getElementById('login-email').value;
-        const password = document.getElementById('login-password').value;
+console.log("🚀 Script chargé avec succès !");
 
-        console.log("Formulaire de connexion soumis pour :", email);
+/* =========================
+   CONFIG FIREBASE
+========================= */
 
-        signInWithEmailAndPassword(auth, email, password)
-            .then((userCredential) => {
-                console.log("Connexion réussie :", userCredential.user);
-                alert("Bienvenue sur votre Dashboard Premium !");
-            })
-            .catch((error) => {
-                console.error("Erreur Firebase Connexion :", error.code, error.message);
-                alert("Identifiants incorrects ou compte introuvable.");
-            });
-    });
-} else {
-    console.error("❌ Impossible de trouver l'élément HTML avec l'ID 'login-form'");
+const firebaseConfig = {
+
+apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
+
+authDomain: "nathan-trading.firebaseapp.com",
+
+projectId: "nathan-trading",
+
+storageBucket: "nathan-trading.firebasestorage.app",
+
+messagingSenderId: "908084098772",
+
+appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
+
+};
+
+/* =========================
+   INITIALISATION
+========================= */
+
+const app = initializeApp(firebaseConfig);
+
+const auth = getAuth(app);
+
+console.log("🔥 Firebase connecté avec succès");
+
+/* =========================
+   SESSION UTILISATEUR
+========================= */
+
+onAuthStateChanged(auth, (user) => {
+
+if(user){
+
+console.log("✅ Utilisateur connecté :", user.email);
+
+}else{
+
+console.log("❌ Aucun utilisateur connecté");
+
+}
+
+});
+
+/* =========================
+   INSCRIPTION
+========================= */
+
+const registerForm =
+document.getElementById("register-form");
+
+if(registerForm){
+
+console.log("✅ Formulaire inscription détecté");
+
+registerForm.addEventListener("submit", async (e)=>{
+
+e.preventDefault();
+
+const email =
+document.getElementById("register-email").value;
+
+const password =
+document.getElementById("register-password").value;
+
+try{
+
+const userCredential =
+await createUserWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+console.log("🔥 Compte créé :", userCredential.user);
+
+alert("Compte créé avec succès 🔥");
+
+/* REDIRECTION */
+
+window.location.href = "dashboard.html";
+
+}catch(error){
+
+console.error(error);
+
+if(error.code === "auth/email-already-in-use"){
+
+alert("Cet email est déjà utilisé.");
+
+}else if(error.code === "auth/weak-password"){
+
+alert("Le mot de passe doit contenir au moins 6 caractères.");
+
+}else{
+
+alert(error.message);
+
+}
+
+}
+
+});
+
+}else{
+
+console.error("❌ Formulaire inscription introuvable");
+
+}
+
+/* =========================
+   CONNEXION
+========================= */
+
+const loginForm =
+document.getElementById("login-form");
+
+if(loginForm){
+
+console.log("✅ Formulaire connexion détecté");
+
+loginForm.addEventListener("submit", async (e)=>{
+
+e.preventDefault();
+
+const email =
+document.getElementById("login-email").value;
+
+const password =
+document.getElementById("login-password").value;
+
+try{
+
+const userCredential =
+await signInWithEmailAndPassword(
+auth,
+email,
+password
+);
+
+console.log("✅ Connexion réussie :", userCredential.user);
+
+alert("Bienvenue sur Nathan Trading 🔥");
+
+/* REDIRECTION */
+
+window.location.href = "dashboard.html";
+
+}catch(error){
+
+console.error(error);
+
+if(
+error.code === "auth/invalid-credential"
+){
+
+alert("Email ou mot de passe incorrect.");
+
+}else{
+
+alert(error.message);
+
+}
+
+}
+
+});
+
+}else{
+
+console.error("❌ Formulaire connexion introuvable");
+
 }
