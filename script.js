@@ -1,13 +1,25 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 
 import {
+
 getAuth,
 createUserWithEmailAndPassword,
 signInWithEmailAndPassword,
 onAuthStateChanged
+
 }
 
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+import {
+
+getFirestore,
+doc,
+setDoc
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 console.log("🚀 Script chargé avec succès !");
 
@@ -38,6 +50,8 @@ appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+
+const db = getFirestore(app);
 
 console.log("🔥 Firebase connecté avec succès");
 
@@ -89,7 +103,31 @@ email,
 password
 );
 
-console.log("🔥 Compte créé :", userCredential.user);
+const user = userCredential.user;
+
+console.log("🔥 Compte créé :", user);
+
+/* =========================
+   SAUVEGARDE FIRESTORE
+========================= */
+
+await setDoc(doc(db, "users", user.uid), {
+
+email: user.email,
+
+uid: user.uid,
+
+premium: true,
+
+progression: 0,
+
+completedModules: [],
+
+createdAt: new Date()
+
+});
+
+console.log("✅ Utilisateur enregistré dans Firestore");
 
 alert("Compte créé avec succès 🔥");
 

@@ -10,6 +10,16 @@ signOut
 
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
+import {
+
+getFirestore,
+doc,
+getDoc
+
+}
+
+from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+
 /* =========================
    CONFIG FIREBASE
 ========================= */
@@ -38,19 +48,29 @@ const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-console.log(" Dashboard connecté");
+const db = getFirestore(app);
+
+console.log("🔥 Dashboard connecté");
 
 /* =========================
-   PROTECTION PAGE
+   PROTECTION + PROFIL
 ========================= */
 
-onAuthStateChanged(auth, (user)=>{
+onAuthStateChanged(auth, async (user)=>{
 
 if(user){
 
 console.log("✅ Utilisateur connecté :", user.email);
 
-/* PERSONNALISATION */
+/* RECUPERATION FIRESTORE */
+
+const userRef =
+doc(db, "users", user.uid);
+
+const userSnap =
+await getDoc(userRef);
+
+/* ELEMENTS HTML */
 
 const welcomeMessage =
 document.getElementById("welcome-message");
@@ -58,11 +78,48 @@ document.getElementById("welcome-message");
 const studentEmail =
 document.getElementById("student-email");
 
+/* SI UTILISATEUR EXISTE */
+
+if(userSnap.exists()){
+
+const userData =
+userSnap.data();
+
+console.log("🔥 Données utilisateur :", userData);
+
+/* AFFICHAGE */
+
 welcomeMessage.innerHTML =
-`Bienvenue ${user.email} `;
+`Bienvenue ${userData.email} 🔥`;
 
 studentEmail.innerHTML =
-`Compte connecté : ${user.email}`;
+`Statut : Premium Student`;
+
+const progressBar =
+document.getElementById("progress-bar");
+
+const progressText =
+document.getElementById("progress-text");
+
+/* ANIMATION */
+
+progressBar.style.width =
+`${userData.progression}%`;
+
+progressText.innerHTML =
+`${userData.progression}% complété`;
+
+}else{
+
+/* SECURITE SI AUCUNE DONNEE */
+
+welcomeMessage.innerHTML =
+`Bienvenue ${user.email} 🔥`;
+
+studentEmail.innerHTML =
+`Compte Premium`;
+
+}
 
 }else{
 

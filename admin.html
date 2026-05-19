@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+<title>Admin Panel | Nathan Trading</title>
+
+<link rel="stylesheet" href="style.css">
+
+<link rel="icon" type="image/png" href="assets/image2.png">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+
+<link
+rel="stylesheet"
+href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
+/>
+
+</head>
+
+<body class="dashboard-body">
+
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<img
+src="assets/image2.png"
+class="sidebar-logo"
+>
+
+<h2>
+Nathan Trading
+</h2>
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Dashboard
+
+</a>
+
+<a href="videos.html">
+
+<i class="fa-solid fa-play"></i>
+
+Cours Vidéos
+
+</a>
+
+<a href="admin.html" class="active-link">
+
+<i class="fa-solid fa-user-shield"></i>
+
+Admin Panel
+
+</a>
+
+</div>
+
+<!-- CONTENU -->
+
+<div class="dashboard-content-main">
+
+<h1>
+👑 Nathan Trading Admin Panel
+</h1>
+
+<p class="admin-subtitle">
+Gestion complète des élèves et statistiques.
+</p>
+
+<!-- STATS -->
+
+<div class="admin-stats">
+
+<div class="admin-stat-card">
+
+<h2 id="total-users">
+0
+</h2>
+
+<p>
+Élèves
+</p>
+
+</div>
+
+<div class="admin-stat-card">
+
+<h2 id="premium-users">
+0
+</h2>
+
+<p>
+Premium
+</p>
+
+</div>
+
+<div class="admin-stat-card">
+
+<h2 id="average-progress">
+0%
+</h2>
+
+<p>
+Progression Moyenne
+</p>
+
+</div>
+
+</div>
+
+<!-- USERS -->
+
+<div
+class="admin-users"
+id="admin-users"
+>
+
+<p>
+Chargement des utilisateurs...
+</p>
+
+</div>
+
+</div>
+
+<script type="module" src="admin.js"></script>
+
+</body>
+
+</html>
