@@ -10,9 +10,7 @@ signOut
 
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
-/* =========================
-   CONFIG FIREBASE
-========================= */
+/* FIREBASE */
 
 const firebaseConfig = {
 
@@ -30,43 +28,19 @@ appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 
 };
 
-/* =========================
-   INITIALISATION
-========================= */
-
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
-console.log(" Dashboard connecté");
-
-/* =========================
-   PROTECTION PAGE
-========================= */
+/* PROTECTION PAGE */
 
 onAuthStateChanged(auth, (user)=>{
 
 if(user){
 
-console.log("✅ Utilisateur connecté :", user.email);
-
-/* PERSONNALISATION */
-
-const welcomeMessage =
-document.getElementById("welcome-message");
-
-const studentEmail =
-document.getElementById("student-email");
-
-welcomeMessage.innerHTML =
-`Bienvenue ${user.email} `;
-
-studentEmail.innerHTML =
-`Compte connecté : ${user.email}`;
+console.log("✅ Utilisateur connecté");
 
 }else{
-
-console.log("❌ Aucun utilisateur connecté");
 
 window.location.href = "index.html";
 
@@ -74,9 +48,7 @@ window.location.href = "index.html";
 
 });
 
-/* =========================
-   DECONNEXION
-========================= */
+/* DECONNEXION */
 
 const logoutBtn =
 document.querySelector(".logout-btn");
@@ -85,17 +57,9 @@ if(logoutBtn){
 
 logoutBtn.addEventListener("click", async ()=>{
 
-try{
-
 await signOut(auth);
 
 window.location.href = "index.html";
-
-}catch(error){
-
-console.error(error);
-
-}
 
 });
 
