@@ -11,12 +11,14 @@ from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 import {
 
-getFirestore,
 collection,
 getDocs,
 deleteDoc,
-doc
-
+doc,
+updateDoc,
+setDoc,
+query,
+orderBy
 }
 
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
@@ -72,6 +74,65 @@ window.location.href =
 "dashboard.html";
 
 return;
+
+}
+
+/* =========================
+   PUBLICATION ANNONCE
+========================= */
+
+const publishBtn =
+document.getElementById(
+"publish-announcement"
+);
+
+if(publishBtn){
+
+publishBtn.addEventListener(
+"click",
+async ()=>{
+
+const announcement =
+document.getElementById(
+"announcement-input"
+).value;
+
+if(announcement.trim() === ""){
+
+alert("Écris une annonce");
+
+return;
+
+}
+
+try{
+
+await setDoc(
+doc(db, "announcements", "latest"),
+{
+
+message: announcement,
+
+createdAt: new Date()
+
+}
+);
+
+alert("Annonce publiée ");
+
+document.getElementById(
+"announcement-input"
+).value = "";
+
+}catch(error){
+
+console.error(error);
+
+alert("Erreur publication");
+
+}
+
+});
 
 }
 
@@ -138,9 +199,28 @@ usersContainer.innerHTML += `
 👑 Premium : ${data.premium ? "Oui" : "Non"}
 </p>
 
+<button
+class="premium-btn"
+data-id="${document.id}"
+>
+
+${data.premium ? "Retirer Premium" : "Activer Premium"}
+
+</button>
+
 <p>
 🆔 UID : ${data.uid}
 </p>
+
+<button
+class="premium-btn"
+data-id="${document.id}"
+data-premium="${data.premium}"
+>
+
+${data.premium ? "Retirer Premium" : "Activer Premium"}
+
+</button>
 
 <button
 class="delete-user-btn"
@@ -181,6 +261,90 @@ document.getElementById(
 document.getElementById(
 "average-progress"
 ).innerHTML = `${average}%`;
+
+/* =========================
+   SUPPORT MESSAGES
+========================= */
+
+const supportContainer =
+document.getElementById(
+"support-messages"
+);
+
+const supportQuery =
+query(
+collection(db, "supports"),
+orderBy("createdAt", "desc")
+);
+
+const supportSnapshot =
+await getDocs(supportQuery);
+
+supportContainer.innerHTML = "";
+
+supportSnapshot.forEach((document)=>{
+
+const data = document.data();
+
+supportContainer.innerHTML += `
+
+<div class="admin-card">
+
+<h3>${data.email}</h3>
+
+<p>
+${data.message}
+</p>
+
+</div>
+
+`;
+
+});
+
+/* =========================
+   GESTION PREMIUM
+========================= */
+
+const premiumButtons =
+document.querySelectorAll(".premium-btn");
+
+premiumButtons.forEach((button)=>{
+
+button.addEventListener("click", async ()=>{
+
+const userId =
+button.dataset.id;
+
+const currentPremium =
+button.dataset.premium === "true";
+
+try{
+
+await updateDoc(
+doc(db, "users", userId),
+{
+
+premium: !currentPremium
+
+}
+);
+
+alert("Statut Premium mis à jour 🔥");
+
+window.location.reload();
+
+}catch(error){
+
+console.error(error);
+
+alert("Erreur mise à jour premium");
+
+}
+
+});
+
+});
 
 /* =========================
    SUPPRESSION USER
@@ -231,6 +395,56 @@ alert("Erreur suppression");
 
 window.location.href =
 "index.html";
+
+}
+
+});
+
+/* =========================
+   PREMIUM BUTTONS
+========================= */
+
+document.addEventListener(
+"click",
+async(e)=>{
+
+if(
+e.target.classList.contains(
+"premium-btn"
+)
+){
+
+const userId =
+e.target.dataset.id;
+
+const button =
+e.target;
+
+const isPremium =
+button.innerHTML.includes(
+"Retirer"
+);
+
+try{
+
+await updateDoc(
+doc(db, "users", userId),
+{
+
+premium: !isPremium
+
+}
+);
+
+alert("Statut Premium mis à jour 🔥");
+
+location.reload();
+
+}catch(error){
+
+console.error(error);
+
+}
 
 }
 

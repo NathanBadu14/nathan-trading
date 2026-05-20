@@ -8,14 +8,19 @@ signOut
 
 }
 
-from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
+from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 import {
 
 getFirestore,
 doc,
 getDoc,
-updateDoc
+collection,
+addDoc,
+getDocs,
+query,
+orderBy
 
 }
 
@@ -44,10 +49,13 @@ appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 /* =========================
    INITIALISATION
 ========================= */
-
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
+
+const db = getFirestore(app);
+
+const db = getFirestore(app);
 
 const db = getFirestore(app);
 
@@ -60,6 +68,54 @@ console.log("🔥 Videos page connectée");
 onAuthStateChanged(auth, async (user)=>{
 
 if(user){
+
+const userRef =
+doc(db, "users", user.uid);
+
+const userSnap =
+await getDoc(userRef);
+
+const userData =
+userSnap.data();
+
+/* PREMIUM LOCK */
+
+if(!userData.premium){
+
+alert(
+"Accès réservé aux élèves Premium."
+);
+
+window.location.href =
+"payment.html";
+
+return;
+
+}
+
+   const userRef =
+doc(db, "users", user.uid);
+
+const userSnap =
+await getDoc(userRef);
+
+const userData =
+userSnap.data();
+
+/* VERIFICATION PREMIUM */
+
+if(!userData.premium){
+
+alert(
+"Accès Premium requis"
+);
+
+window.location.href =
+"dashboard.html";
+
+return;
+
+}
 
 console.log("✅ Utilisateur connecté");
 
@@ -197,3 +253,120 @@ window.location.href = "index.html";
 });
 
 }
+
+/* =========================
+   COMMENTAIRES
+========================= */
+
+const commentForms =
+document.querySelectorAll(
+".comment-form"
+);
+
+commentForms.forEach((form,index)=>{
+
+form.addEventListener(
+"submit",
+async(e)=>{
+
+e.preventDefault();
+
+const input =
+form.querySelector(
+".comment-input"
+);
+
+const message =
+input.value;
+
+const user =
+auth.currentUser;
+
+try{
+
+await addDoc(
+collection(db, "comments"),
+{
+
+videoId: index,
+
+email: user.email,
+
+message: message,
+
+createdAt: new Date()
+
+}
+);
+
+alert("Commentaire envoyé 🔥");
+
+input.value = "";
+
+loadComments();
+
+}catch(error){
+
+console.error(error);
+
+}
+
+});
+
+});
+
+/* =========================
+   LOAD COMMENTS
+========================= */
+
+async function loadComments(){
+
+const containers =
+document.querySelectorAll(
+".comments-container"
+);
+
+containers.forEach(container=>{
+
+container.innerHTML = "";
+
+});
+
+const commentsQuery =
+query(
+collection(db,"comments"),
+orderBy("createdAt","desc")
+);
+
+const snapshot =
+await getDocs(commentsQuery);
+
+snapshot.forEach((document)=>{
+
+const data =
+document.data();
+
+const container =
+containers[data.videoId];
+
+if(container){
+
+container.innerHTML += `
+
+<div class="comment-card">
+
+<h4>${data.email}</h4>
+
+<p>${data.message}</p>
+
+</div>
+
+`;
+
+}
+
+});
+
+}
+
+loadComments();

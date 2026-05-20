@@ -117,7 +117,7 @@ email: user.email,
 
 uid: user.uid,
 
-premium: true,
+premium: false,
 
 progression: 0,
 

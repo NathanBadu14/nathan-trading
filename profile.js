@@ -20,9 +20,7 @@ getDoc
 
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-/* =========================
-   FIREBASE CONFIG
-========================= */
+/* FIREBASE */
 
 const firebaseConfig = {
 
@@ -40,49 +38,31 @@ appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 
 };
 
-/* =========================
-   INITIALISATION
-========================= */
-
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-console.log("🔥 Dashboard Nathan Trading chargé");
-
-/* =========================
-   PROTECTION PAGE
-========================= */
+/* USER */
 
 onAuthStateChanged(auth, async(user)=>{
 
 if(user){
 
-console.log("✅ Utilisateur connecté :", user.email);
-
-/* =========================
-   AFFICHAGE USER
-========================= */
-
-const welcomeMessage =
 document.getElementById(
-"welcome-message"
-);
+"profile-name"
+).innerHTML = user.email;
 
-if(welcomeMessage){
+document.getElementById(
+"profile-email"
+).innerHTML = user.email;
 
-welcomeMessage.innerHTML =
-`Bienvenue ${user.email} 🔥`;
+document.getElementById(
+"profile-uid"
+).innerHTML = user.uid;
 
-}
-
-/* =========================
-   FIRESTORE USER
-========================= */
-
-try{
+/* FIRESTORE */
 
 const userRef =
 doc(db,"users",user.uid);
@@ -95,22 +75,29 @@ if(userSnap.exists()){
 const data =
 userSnap.data();
 
+/* PREMIUM */
+
+document.getElementById(
+"profile-premium"
+).innerHTML =
+data.premium
+? "Premium Actif 👑"
+: "Compte Standard";
+
 /* PROGRESSION */
 
 const progress =
 data.progression || 0;
 
+document.getElementById(
+"profile-progress"
+).innerHTML =
+`${progress}%`;
+
 const progressFill =
 document.getElementById(
-"progress-fill"
+"profile-progress-fill"
 );
-
-const progressText =
-document.getElementById(
-"progress-text"
-);
-
-if(progressFill){
 
 progressFill.style.width =
 `${progress}%`;
@@ -118,23 +105,21 @@ progressFill.style.width =
 progressFill.innerHTML =
 `${progress}%`;
 
-}
+/* DATE */
 
-if(progressText){
+if(data.createdAt){
 
-progressText.innerHTML =
-`${progress}% terminé`;
+const date =
+data.createdAt.toDate();
 
-}
-
-}
-
-}catch(error){
-
-console.error(
-"Erreur Firestore :",
-error
+document.getElementById(
+"profile-created"
+).innerHTML =
+date.toLocaleDateString(
+"fr-FR"
 );
+
+}
 
 }
 
@@ -147,9 +132,7 @@ window.location.href =
 
 });
 
-/* =========================
-   DECONNEXION
-========================= */
+/* LOGOUT */
 
 const logoutBtn =
 document.querySelector(
@@ -160,34 +143,13 @@ if(logoutBtn){
 
 logoutBtn.addEventListener(
 "click",
-async ()=>{
-
-try{
+async()=>{
 
 await signOut(auth);
-
-alert(
-"Déconnexion réussie 🔥"
-);
 
 window.location.href =
 "index.html";
 
-}catch(error){
-
-console.error(
-"Erreur déconnexion :",
-error
-);
-
-}
-
 });
-
-}else{
-
-console.error(
-"❌ Bouton logout introuvable"
-);
 
 }
