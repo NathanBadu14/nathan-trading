@@ -1,61 +1,50 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 
 import {
-
-getAuth,
-onAuthStateChanged,
-signOut
-
-}
-
-
-from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  getAuth,
+  onAuthStateChanged,
+  signOut
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
 
 import {
-
-getFirestore,
-doc,
-getDoc,
-collection,
-addDoc,
-getDocs,
-query,
-orderBy
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+  getFirestore,
+  doc,
+  getDoc,
+  updateDoc,
+  collection,
+  addDoc,
+  getDocs,
+  query,
+  orderBy
+} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 /* =========================
-   CONFIG FIREBASE
+   FIREBASE CONFIG
 ========================= */
 
 const firebaseConfig = {
 
-apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
+  apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
 
-authDomain: "nathan-trading.firebaseapp.com",
+  authDomain: "nathan-trading.firebaseapp.com",
 
-projectId: "nathan-trading",
+  projectId: "nathan-trading",
 
-storageBucket: "nathan-trading.firebasestorage.app",
+  storageBucket: "nathan-trading.firebasestorage.app",
 
-messagingSenderId: "908084098772",
+  messagingSenderId: "908084098772",
 
-appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
+  appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 
 };
 
 /* =========================
    INITIALISATION
 ========================= */
+
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
-
-const db = getFirestore(app);
-
-const db = getFirestore(app);
 
 const db = getFirestore(app);
 
@@ -65,173 +54,313 @@ console.log("🔥 Videos page connectée");
    PROTECTION PAGE
 ========================= */
 
-onAuthStateChanged(auth, async (user)=>{
+onAuthStateChanged(auth, async (user) => {
 
-if(user){
+  if (!user) {
 
-const userRef =
-doc(db, "users", user.uid);
+    window.location.href = "index.html";
+    return;
 
-const userSnap =
-await getDoc(userRef);
+  }
 
-const userData =
-userSnap.data();
+  try {
 
-/* PREMIUM LOCK */
+    /* =========================
+       RECUPERATION USER
+    ========================= */
 
-if(!userData.premium){
+    const userRef = doc(db, "users", user.uid);
 
-alert(
-"Accès réservé aux élèves Premium."
-);
+    const userSnap = await getDoc(userRef);
 
-window.location.href =
-"payment.html";
+    if (!userSnap.exists()) {
 
-return;
+      alert("Utilisateur introuvable");
+      window.location.href = "index.html";
+      return;
 
-}
+    }
 
-   const userRef =
-doc(db, "users", user.uid);
+    const userData = userSnap.data();
 
-const userSnap =
-await getDoc(userRef);
+    /* =========================
+       AFFICHAGE PRENOM
+    ========================= */
 
-const userData =
-userSnap.data();
+    const studentEmail =
+      document.querySelector(".student-email");
 
-/* VERIFICATION PREMIUM */
+    if (studentEmail) {
 
-if(!userData.premium){
+      studentEmail.innerHTML =
+        `Bienvenue ${userData.name || "Trader"} 🔥`;
 
-alert(
-"Accès Premium requis"
-);
+    }
 
-window.location.href =
-"dashboard.html";
+    /* =========================
+       ADMIN BUTTON
+    ========================= */
 
-return;
+    const adminLink =
+      document.getElementById("admin-link");
 
-}
+    const ADMIN_EMAIL =
+      "badumisanathan807@gmail.com";
 
-console.log("✅ Utilisateur connecté");
+    if (adminLink) {
 
-/* =========================
-   RECUPERATION USER
-========================= */
+      if (user.email === ADMIN_EMAIL) {
 
-const userRef =
-doc(db, "users", user.uid);
+        adminLink.style.display = "flex";
 
-const userSnap =
-await getDoc(userRef);
+      } else {
 
-if(userSnap.exists()){
+        adminLink.style.display = "none";
 
-const userData =
-userSnap.data();
+      }
 
-let progression =
-userData.progression || 0;
+    }
 
-console.log("🔥 Progression :", progression);
+    /* =========================
+       VERIFICATION PREMIUM
+    ========================= */
 
-/* =========================
-   DEBLOCAGE MODULES
-========================= */
+    if (!userData.premium) {
 
-const lockedModules =
-document.querySelectorAll(".locked");
+      alert("Accès réservé aux élèves Premium.");
 
-/* NOMBRE MODULES DEBLOQUES */
+      window.location.href = "payment.html";
 
-const unlockedCount =
-Math.floor(progression / 5);
+      return;
 
-for(let i = 0; i < unlockedCount; i++){
+    }
 
-if(lockedModules[i]){
+    console.log("✅ Utilisateur premium connecté");
 
-lockedModules[i].classList.remove("locked");
+    /* =========================
+       PROGRESSION
+    ========================= */
 
-lockedModules[i].classList.add("unlocked");
+    let progression =
+      userData.progression || 0;
 
-}
+    console.log("🔥 Progression :", progression);
 
-}
+    /* =========================
+       DEBLOCAGE MODULES
+    ========================= */
 
-/* =========================
-   BOUTONS TERMINER
-========================= */
+    const lockedModules =
+      document.querySelectorAll(".locked");
 
-const completeButtons =
-document.querySelectorAll(".complete-btn");
+    const unlockedCount =
+      Math.floor(progression / 5);
 
-completeButtons.forEach((button)=>{
+    for (let i = 0; i < unlockedCount; i++) {
 
-button.addEventListener("click", async ()=>{
+      if (lockedModules[i]) {
 
-/* AJOUT PROGRESSION */
+        lockedModules[i].classList.remove("locked");
 
-progression += 5;
+        lockedModules[i].classList.add("unlocked");
 
-/* MAXIMUM */
+      }
 
-if(progression > 100){
+    }
 
-progression = 100;
+    /* =========================
+       BOUTONS TERMINER
+    ========================= */
 
-}
+    const completeButtons =
+      document.querySelectorAll(".complete-btn");
 
-/* SAUVEGARDE */
+    completeButtons.forEach((button) => {
 
-await updateDoc(userRef, {
+      button.addEventListener("click", async () => {
 
-progression: progression
+        progression += 5;
 
-});
+        if (progression > 100) {
 
-alert(
-`Progression mise à jour : ${progression}% 🔥`
-);
+          progression = 100;
 
-/* DEBLOCAGE SUIVANT */
+        }
 
-const nextLocked =
-document.querySelector(".locked");
+        try {
 
-if(nextLocked){
+          await updateDoc(userRef, {
 
-nextLocked.classList.remove("locked");
+            progression: progression
 
-nextLocked.classList.add("unlocked");
+          });
 
-}
+          alert(
+            `Progression mise à jour : ${progression}% 🔥`
+          );
 
-/* DESACTIVE BOUTON */
+          const nextLocked =
+            document.querySelector(".locked");
 
-button.innerHTML =
-"✅ Module Terminé";
+          if (nextLocked) {
 
-button.style.background =
-"#00ffae";
+            nextLocked.classList.remove("locked");
 
-button.style.color =
-"black";
-});
+            nextLocked.classList.add("unlocked");
 
-});
+          }
 
-}
+          button.innerHTML =
+            "✅ Module Terminé";
 
-}else{
+          button.disabled = true;
 
-window.location.href = "index.html";
+          button.style.background =
+            "#00ffae";
 
-}
+          button.style.color =
+            "#000";
+
+        } catch (error) {
+
+          console.error(error);
+
+          alert("Erreur mise à jour progression");
+
+        }
+
+      });
+
+    });
+
+    /* =========================
+       COMMENTAIRES
+    ========================= */
+
+    const commentForms =
+      document.querySelectorAll(".comment-form");
+
+    commentForms.forEach((form, index) => {
+
+      form.addEventListener(
+        "submit",
+        async (e) => {
+
+          e.preventDefault();
+
+          const input =
+            form.querySelector(".comment-input");
+
+          const message =
+            input.value.trim();
+
+          if (message === "") {
+
+            return;
+
+          }
+
+          try {
+
+            await addDoc(
+              collection(db, "comments"),
+              {
+
+                videoId: index,
+
+                email: user.email,
+
+                name: userData.name || "Trader",
+
+                message: message,
+
+                createdAt: new Date()
+
+              }
+            );
+
+            alert("Commentaire envoyé 🔥");
+
+            input.value = "";
+
+            loadComments();
+
+          } catch (error) {
+
+            console.error(error);
+
+            alert("Erreur commentaire");
+
+          }
+
+        }
+      );
+
+    });
+
+    /* =========================
+       LOAD COMMENTS
+    ========================= */
+
+    async function loadComments() {
+
+      const containers =
+        document.querySelectorAll(
+          ".comments-container"
+        );
+
+      containers.forEach((container) => {
+
+        container.innerHTML = "";
+
+      });
+
+      const commentsQuery =
+        query(
+          collection(db, "comments"),
+          orderBy("createdAt", "desc")
+        );
+
+      const snapshot =
+        await getDocs(commentsQuery);
+
+      snapshot.forEach((document) => {
+
+        const data =
+          document.data();
+
+        const container =
+          containers[data.videoId];
+
+        if (container) {
+
+          container.innerHTML += `
+
+          <div class="comment-card">
+
+            <h4>${data.name || data.email}</h4>
+
+            <p>${data.message}</p>
+
+          </div>
+
+          `;
+
+        }
+
+      });
+
+    }
+
+    loadComments();
+
+  } catch (error) {
+
+    console.error(error);
+
+    alert("Erreur chargement vidéos");
+
+  }
 
 });
 
@@ -240,133 +369,28 @@ window.location.href = "index.html";
 ========================= */
 
 const logoutBtn =
-document.querySelector(".logout-btn");
+  document.querySelector(".logout-btn");
 
-if(logoutBtn){
+if (logoutBtn) {
 
-logoutBtn.addEventListener("click", async ()=>{
+  logoutBtn.addEventListener(
+    "click",
+    async () => {
 
-await signOut(auth);
+      try {
 
-window.location.href = "index.html";
+        await signOut(auth);
 
-});
+        window.location.href =
+          "index.html";
 
-}
+      } catch (error) {
 
-/* =========================
-   COMMENTAIRES
-========================= */
+        console.error(error);
 
-const commentForms =
-document.querySelectorAll(
-".comment-form"
-);
+      }
 
-commentForms.forEach((form,index)=>{
-
-form.addEventListener(
-"submit",
-async(e)=>{
-
-e.preventDefault();
-
-const input =
-form.querySelector(
-".comment-input"
-);
-
-const message =
-input.value;
-
-const user =
-auth.currentUser;
-
-try{
-
-await addDoc(
-collection(db, "comments"),
-{
-
-videoId: index,
-
-email: user.email,
-
-message: message,
-
-createdAt: new Date()
+    }
+  );
 
 }
-);
-
-alert("Commentaire envoyé 🔥");
-
-input.value = "";
-
-loadComments();
-
-}catch(error){
-
-console.error(error);
-
-}
-
-});
-
-});
-
-/* =========================
-   LOAD COMMENTS
-========================= */
-
-async function loadComments(){
-
-const containers =
-document.querySelectorAll(
-".comments-container"
-);
-
-containers.forEach(container=>{
-
-container.innerHTML = "";
-
-});
-
-const commentsQuery =
-query(
-collection(db,"comments"),
-orderBy("createdAt","desc")
-);
-
-const snapshot =
-await getDocs(commentsQuery);
-
-snapshot.forEach((document)=>{
-
-const data =
-document.data();
-
-const container =
-containers[data.videoId];
-
-if(container){
-
-container.innerHTML += `
-
-<div class="comment-card">
-
-<h4>${data.email}</h4>
-
-<p>${data.message}</p>
-
-</div>
-
-`;
-
-}
-
-});
-
-}
-
-loadComments();

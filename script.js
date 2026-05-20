@@ -63,11 +63,16 @@ onAuthStateChanged(auth, (user) => {
 
 if(user){
 
-console.log("✅ Utilisateur connecté :", user.email);
+console.log(
+"✅ Utilisateur connecté :",
+user.email
+);
 
 }else{
 
-console.log("❌ Aucun utilisateur connecté");
+console.log(
+"❌ Aucun utilisateur connecté"
+);
 
 }
 
@@ -78,74 +83,120 @@ console.log("❌ Aucun utilisateur connecté");
 ========================= */
 
 const registerForm =
-document.getElementById("register-form");
+document.getElementById(
+"register-form"
+);
 
 if(registerForm){
 
-console.log("✅ Formulaire inscription détecté");
+console.log(
+"✅ Formulaire inscription détecté"
+);
 
-registerForm.addEventListener("submit", async (e)=>{
+registerForm.addEventListener(
+"submit",
+async (e)=>{
 
 e.preventDefault();
 
+/* INPUTS */
+
+const name =
+document.getElementById(
+"register-name"
+).value;
+
 const email =
-document.getElementById("register-email").value;
+document.getElementById(
+"register-email"
+).value;
 
 const password =
-document.getElementById("register-password").value;
+document.getElementById(
+"register-password"
+).value;
 
 try{
 
+/* CREATION COMPTE */
+
 const userCredential =
 await createUserWithEmailAndPassword(
+
 auth,
 email,
 password
+
 );
 
-const user = userCredential.user;
+const user =
+userCredential.user;
 
-console.log("🔥 Compte créé :", user);
+console.log(
+"🔥 Compte créé :",
+user
+);
 
 /* =========================
    SAUVEGARDE FIRESTORE
 ========================= */
 
-await setDoc(doc(db, "users", user.uid), {
+await setDoc(
+doc(db, "users", user.uid),
+{
 
-email: user.email,
+name:name,
 
-uid: user.uid,
+email:user.email,
 
-premium: false,
+uid:user.uid,
 
-progression: 0,
+premium:false,
 
-completedModules: [],
+progression:0,
 
-createdAt: new Date()
+completedModules:[],
 
-});
+createdAt:new Date()
 
-console.log("✅ Utilisateur enregistré dans Firestore");
+}
 
-alert("Compte créé avec succès 🔥");
+);
+
+console.log(
+"✅ Utilisateur enregistré dans Firestore"
+);
+
+alert(
+"Compte créé avec succès 🔥"
+);
 
 /* REDIRECTION */
 
-window.location.href = "dashboard.html";
+window.location.href =
+"dashboard.html";
 
 }catch(error){
 
 console.error(error);
 
-if(error.code === "auth/email-already-in-use"){
+if(
+error.code ===
+"auth/email-already-in-use"
+){
 
-alert("Cet email est déjà utilisé.");
+alert(
+"Cet email est déjà utilisé."
+);
 
-}else if(error.code === "auth/weak-password"){
+}else if(
+error.code ===
+"auth/weak-password"
+){
 
-alert("Le mot de passe doit contenir au moins 6 caractères.");
+alert(
+"Le mot de passe doit contenir au moins 6 caractères."
+);
 
 }else{
 
@@ -159,7 +210,9 @@ alert(error.message);
 
 }else{
 
-console.error("❌ Formulaire inscription introuvable");
+console.error(
+"❌ Formulaire inscription introuvable"
+);
 
 }
 
@@ -168,48 +221,69 @@ console.error("❌ Formulaire inscription introuvable");
 ========================= */
 
 const loginForm =
-document.getElementById("login-form");
+document.getElementById(
+"login-form"
+);
 
 if(loginForm){
 
-console.log("✅ Formulaire connexion détecté");
+console.log(
+"✅ Formulaire connexion détecté"
+);
 
-loginForm.addEventListener("submit", async (e)=>{
+loginForm.addEventListener(
+"submit",
+async (e)=>{
 
 e.preventDefault();
 
 const email =
-document.getElementById("login-email").value;
+document.getElementById(
+"login-email"
+).value;
 
 const password =
-document.getElementById("login-password").value;
+document.getElementById(
+"login-password"
+).value;
 
 try{
 
 const userCredential =
 await signInWithEmailAndPassword(
+
 auth,
 email,
 password
+
 );
 
-console.log("✅ Connexion réussie :", userCredential.user);
+console.log(
+"✅ Connexion réussie :",
+userCredential.user
+);
 
-alert("Bienvenue sur Nathan Trading 🔥");
+alert(
+"Bienvenue sur Nathan Trading 🔥"
+);
 
 /* REDIRECTION */
 
-window.location.href = "dashboard.html";
+window.location.href =
+"dashboard.html";
 
 }catch(error){
 
 console.error(error);
 
 if(
-error.code === "auth/invalid-credential"
+error.code ===
+"auth/invalid-credential"
 ){
 
-alert("Email ou mot de passe incorrect.");
+alert(
+"Email ou mot de passe incorrect."
+);
 
 }else{
 
@@ -223,6 +297,36 @@ alert(error.message);
 
 }else{
 
-console.error("❌ Formulaire connexion introuvable");
+console.error(
+"❌ Formulaire connexion introuvable"
+);
 
 }
+
+/* =========================
+   FAQ
+========================= */
+
+const faqItems =
+document.querySelectorAll(
+".faq-item"
+);
+
+faqItems.forEach((item)=>{
+
+const question =
+item.querySelector(
+".faq-question"
+);
+
+question.addEventListener(
+"click",
+()=>{
+
+item.classList.toggle(
+"active"
+);
+
+});
+
+});

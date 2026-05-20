@@ -5,17 +5,32 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta
+name="viewport"
+content="width=device-width, initial-scale=1.0"
+>
 
-<title>Admin Panel | Nathan Trading</title>
+<title>
+Admin Panel | Nathan Trading
+</title>
 
-<link rel="stylesheet" href="style.css">
+<link
+rel="stylesheet"
+href="style.css"
+>
 
-<link rel="icon" type="image/png" href="assets/image2.png">
+<link
+rel="icon"
+type="image/png"
+href="assets/image2.png"
+>
 
 <link rel="preconnect" href="https://fonts.googleapis.com">
 
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+<link
+href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
+rel="stylesheet"
+>
 
 <link
 rel="stylesheet"
@@ -55,7 +70,12 @@ Cours Vidéos
 
 </a>
 
-<a href="admin.html" class="active-link">
+<a
+href="admin.html"
+id="admin-link"
+class="active-link"
+style="display:none;"
+>
 
 <i class="fa-solid fa-user-shield"></i>
 
@@ -63,25 +83,58 @@ Admin Panel
 
 </a>
 
+<button class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Déconnexion
+
+</button>
+
 </div>
 
 <!-- CONTENU -->
 
 <div class="dashboard-content-main">
 
+<!-- HEADER -->
+
+<div class="admin-header">
+
+<div>
+
 <h1>
 👑 Nathan Trading Admin Panel
 </h1>
 
 <p class="admin-subtitle">
-Gestion complète des élèves et statistiques.
+
+Gestion complète des élèves,
+des accès premium et du support.
+
 </p>
+
+</div>
+
+<div class="premium-badge">
+
+<i class="fa-solid fa-crown"></i>
+
+<span>
+Administrateur
+</span>
+
+</div>
+
+</div>
 
 <!-- STATS -->
 
 <div class="admin-stats">
 
 <div class="admin-stat-card">
+
+<i class="fa-solid fa-users"></i>
 
 <h2 id="total-users">
 0
@@ -95,6 +148,8 @@ Gestion complète des élèves et statistiques.
 
 <div class="admin-stat-card">
 
+<i class="fa-solid fa-crown"></i>
+
 <h2 id="premium-users">
 0
 </h2>
@@ -106,6 +161,8 @@ Premium
 </div>
 
 <div class="admin-stat-card">
+
+<i class="fa-solid fa-chart-line"></i>
 
 <h2 id="average-progress">
 0%
@@ -119,7 +176,21 @@ Progression Moyenne
 
 </div>
 
-<!-- USERS -->
+<!-- RECHERCHE -->
+
+<div class="search-box">
+
+<i class="fa-solid fa-magnifying-glass"></i>
+
+<input
+type="text"
+id="search-user"
+placeholder="Rechercher un élève..."
+>
+
+</div>
+
+<!-- ANNONCE -->
 
 <div class="announcement-box">
 
@@ -129,10 +200,13 @@ Progression Moyenne
 
 <textarea
 id="announcement-input"
-placeholder="Écrire une annonce..."
+placeholder="Écrire une annonce pour tous les élèves..."
 ></textarea>
 
-<button id="publish-announcement">
+<button
+id="publish-announcement"
+class="primary-btn"
+>
 
 Publier l'annonce
 
@@ -140,13 +214,14 @@ Publier l'annonce
 
 </div>
 
-<div
-class="admin-users"
-id="admin-users"
->
+<!-- SUPPORT -->
+
+<div class="support-section">
 
 <h2 class="support-title">
+
 📩 Messages Support
+
 </h2>
 
 <div
@@ -154,9 +229,28 @@ class="support-messages"
 id="support-messages"
 >
 
-Chargement...
+<p>
+Chargement des messages...
+</p>
 
 </div>
+
+</div>
+
+<!-- USERS -->
+
+<div class="admin-users-section">
+
+<h2 class="support-title">
+
+👨‍🎓 Gestion des Élèves
+
+</h2>
+
+<div
+class="admin-users"
+id="admin-users"
+>
 
 <p>
 Chargement des utilisateurs...
@@ -166,7 +260,12 @@ Chargement des utilisateurs...
 
 </div>
 
-<script type="module" src="admin.js"></script>
+</div>
+
+<script
+type="module"
+src="admin.js"
+></script>
 
 </body>
 

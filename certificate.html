@@ -26,7 +26,86 @@ href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
 
 <body class="dashboard-body">
 
+<!-- SIDEBAR -->
+
+<div class="sidebar">
+
+<img
+src="assets/image2.png"
+class="sidebar-logo"
+>
+
+<h2>
+Nathan Trading
+</h2>
+
+<a href="dashboard.html">
+
+<i class="fa-solid fa-chart-line"></i>
+
+Dashboard
+
+</a>
+
+<a href="videos.html">
+
+<i class="fa-solid fa-play"></i>
+
+Cours Vidéos
+
+</a>
+
+<a href="profile.html">
+
+<i class="fa-solid fa-user"></i>
+
+Mon Profil
+
+</a>
+
+<a href="certificate.html" class="active-link">
+
+<i class="fa-solid fa-award"></i>
+
+Certificat
+
+</a>
+
+<a href="support.html">
+
+<i class="fa-solid fa-headset"></i>
+
+Support
+
+</a>
+
+<a
+href="admin.html"
+id="admin-link"
+style="display:none;"
+>
+
+<i class="fa-solid fa-lock"></i>
+
+Admin
+
+</a>
+
+<button class="logout-btn">
+
+<i class="fa-solid fa-right-from-bracket"></i>
+
+Déconnexion
+
+</button>
+
+</div>
+
+<!-- CONTENU -->
+
 <div class="dashboard-content-main">
+
+<div class="certificate-wrapper">
 
 <div class="certificate-card">
 
@@ -35,32 +114,72 @@ src="assets/image2.png"
 class="certificate-logo"
 >
 
+<p class="certificate-top">
+NATHAN TRADING ACADEMY
+</p>
+
 <h1>
-🏆 Certificat Nathan Trading
+🏆 Certificat de Réussite
 </h1>
 
-<p>
-Ce certificat est décerné à
+<p class="certificate-text">
+Ce certificat est officiellement décerné à
 </p>
 
 <h2 id="student-name">
 Chargement...
 </h2>
 
-<p>
+<p class="certificate-description">
 Pour avoir terminé avec succès
-la formation Nathan Trading.
+la formation Nathan Trading Academy
+et démontré une compréhension
+des bases du trading,
+de l’analyse technique,
+de la gestion du risque
+et de la discipline du trader.
 </p>
+
+<div class="certificate-divider"></div>
 
 <div class="certificate-info">
 
+<div>
+
+<h3>
+📅 Date
+</h3>
+
 <p id="certificate-date">
-Date :
+Chargement...
 </p>
 
+</div>
+
+<div>
+
+<h3>
+✍️ Signature
+</h3>
+
 <p>
-Signature :
 Nathan Trading
+</p>
+
+</div>
+
+</div>
+
+<div class="certificate-warning">
+
+<i class="fa-solid fa-triangle-exclamation"></i>
+
+<p>
+Ce certificat atteste uniquement
+de la participation et de la réussite
+à un programme éducatif.
+Il ne constitue pas un conseil financier
+ni une garantie de résultats en trading.
 </p>
 
 </div>
@@ -73,6 +192,8 @@ class="primary-btn"
 Télécharger le certificat
 
 </button>
+
+</div>
 
 </div>
 

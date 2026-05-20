@@ -1,3 +1,9 @@
+html{
+
+scroll-behavior:smooth;
+
+}
+
 *{
 margin:0;
 padding:0;
@@ -2901,4 +2907,698 @@ line-height:1.8;
 
 text-align:center;
 
+}
+
+/* =========================
+   FAQ SECTION
+========================= */
+
+.faq-section{
+
+padding:120px 8%;
+
+}
+
+.faq-container{
+
+max-width:900px;
+
+margin:auto;
+
+display:flex;
+
+flex-direction:column;
+
+gap:20px;
+
+}
+
+.faq-item{
+
+background:#111;
+
+border-radius:20px;
+
+overflow:hidden;
+
+border:1px solid rgba(255,255,255,0.05);
+
+transition:0.3s;
+
+}
+
+.faq-item:hover{
+
+transform:translateY(-3px);
+
+}
+
+.faq-question{
+
+width:100%;
+
+background:none;
+
+border:none;
+
+padding:25px;
+
+display:flex;
+
+justify-content:space-between;
+
+align-items:center;
+
+color:white;
+
+font-size:18px;
+
+font-weight:600;
+
+cursor:pointer;
+
+}
+
+.faq-answer{
+
+max-height:0;
+
+overflow:hidden;
+
+transition:0.4s ease;
+
+padding:0 25px;
+
+}
+
+.faq-answer p{
+
+padding-bottom:25px;
+
+line-height:1.8;
+
+opacity:0.8;
+
+}
+
+.faq-item.active .faq-answer{
+
+max-height:300px;
+
+}
+
+.faq-item.active i{
+
+transform:rotate(45deg);
+
+}
+
+.faq-question i{
+
+transition:0.3s;
+
+}
+
+@media(max-width:768px){
+
+.faq-question{
+
+font-size:16px;
+
+padding:20px;
+
+}
+
+}
+
+/* =========================
+   PREMIUM ANIMATIONS
+========================= */
+
+.stat-card,
+.program-card,
+.result-card,
+.payment-card,
+.module-item,
+.profile-info-box,
+.admin-card{
+
+transition:
+0.35s ease;
+
+}
+
+.stat-card:hover,
+.program-card:hover,
+.result-card:hover,
+.payment-card:hover,
+.module-item:hover,
+.profile-info-box:hover,
+.admin-card:hover{
+
+transform:
+translateY(-8px);
+
+box-shadow:
+0 15px 40px rgba(0,200,255,0.15);
+
+}
+
+/* BOUTONS */
+
+.primary-btn,
+.secondary-btn{
+
+transition:0.3s;
+
+}
+
+.primary-btn:hover{
+
+transform:translateY(-3px) scale(1.03);
+
+}
+
+.secondary-btn:hover{
+
+transform:translateY(-3px);
+
+}
+
+.sidebar a{
+
+transition:0.3s ease;
+
+}
+
+.sidebar a:hover{
+
+background:rgba(0,200,255,0.12);
+
+transform:translateX(5px);
+
+}
+
+.active-link{
+
+background:rgba(0,200,255,0.15);
+
+border-left:4px solid #00c8ff;
+
+}
+
+/* =========================
+   LEGAL PREMIUM
+========================= */
+
+.legal-container{
+
+background:
+linear-gradient(
+145deg,
+#0d0d0d,
+#161616
+);
+
+box-shadow:
+0 15px 40px rgba(0,0,0,0.4);
+
+}
+
+.legal-container h1{
+
+background:
+linear-gradient(
+90deg,
+#00c8ff,
+#00ffae
+);
+
+-webkit-background-clip:text;
+background-clip: text;
+-webkit-text-fill-color:
+transparent;
+
+}
+
+.legal-container h2{
+
+position:relative;
+
+padding-left:20px;
+
+}
+
+.legal-container h2::before{
+
+content:"";
+
+position:absolute;
+
+left:0;
+
+top:5px;
+
+width:5px;
+
+height:80%;
+
+background:#00c8ff;
+
+border-radius:20px;
+
+}
+
+.legal-container p{
+
+font-size:17px;
+
+}
+
+/* ========================================
+   RESPONSIVE FINAL — NATHAN TRADING
+======================================== */
+
+/* TABLET */
+
+@media screen and (max-width: 1024px){
+
+.dashboard-content-main{
+margin-left:0;
+padding:30px 20px;
+width:100%;
+}
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+display:flex;
+flex-wrap:wrap;
+justify-content:center;
+align-items:center;
+gap:12px;
+padding:20px;
+}
+
+.sidebar h2{
+width:100%;
+text-align:center;
+margin-bottom:10px;
+}
+
+.sidebar a,
+.logout-btn{
+width:48%;
+justify-content:center;
+}
+
+.stats-grid,
+.dashboard-grid,
+.program-container,
+.results-grid,
+.modules-grid,
+.profile-info-grid,
+.support-cards,
+.admin-stats{
+grid-template-columns:repeat(2,1fr);
+}
+
+.hero h1{
+font-size:52px;
+line-height:1.1;
+}
+
+.hero-content{
+padding:40px 20px;
+}
+
+.navbar{
+padding:18px 25px;
+flex-wrap:wrap;
+gap:20px;
+}
+
+.nav-links{
+flex-wrap:wrap;
+justify-content:center;
+}
+
+.video-card iframe{
+height:320px;
+}
+
+}
+
+/* MOBILE */
+
+@media screen and (max-width: 768px){
+
+body{
+overflow-x:hidden;
+}
+
+.navbar{
+flex-direction:column;
+align-items:center;
+padding:20px;
+gap:20px;
+}
+
+.logo{
+width:70px;
+}
+
+.nav-links{
+flex-direction:column;
+gap:15px;
+width:100%;
+text-align:center;
+}
+
+.auth-buttons{
+width:100%;
+display:flex;
+justify-content:center;
+gap:15px;
+flex-wrap:wrap;
+}
+
+.hero{
+padding:120px 20px 80px;
+min-height:auto;
+}
+
+.hero h1{
+font-size:38px;
+line-height:1.2;
+text-align:center;
+}
+
+.subtitle,
+.description{
+text-align:center;
+}
+
+.hero-buttons{
+flex-direction:column;
+align-items:center;
+}
+
+.primary-btn,
+.secondary-btn{
+width:100%;
+max-width:320px;
+}
+
+.section{
+padding:70px 20px;
+}
+
+.section h2{
+font-size:32px;
+text-align:center;
+}
+
+.program-container,
+.results-grid,
+.dashboard-grid,
+.stats-grid,
+.modules-grid,
+.profile-info-grid,
+.support-cards,
+.admin-stats{
+grid-template-columns:1fr;
+}
+
+.program-card,
+.dashboard-card,
+.stat-card,
+.module-item,
+.profile-info-box,
+.support-card,
+.admin-stat-card{
+width:100%;
+}
+
+.dashboard-body{
+flex-direction:column;
+}
+
+.sidebar{
+position:relative;
+width:100%;
+height:auto;
+padding:20px;
+display:flex;
+flex-direction:column;
+align-items:center;
+gap:15px;
+}
+
+.sidebar-logo{
+width:80px;
+}
+
+.sidebar a,
+.logout-btn{
+width:100%;
+max-width:320px;
+justify-content:center;
+}
+
+.dashboard-content-main{
+margin-left:0;
+width:100%;
+padding:25px 15px;
+}
+
+.dashboard-top{
+flex-direction:column;
+gap:25px;
+align-items:flex-start;
+}
+
+.premium-badge{
+width:100%;
+justify-content:center;
+}
+
+.progress-container{
+padding:20px;
+}
+
+.premium-content{
+flex-direction:column;
+text-align:center;
+gap:30px;
+}
+
+.academy-icon{
+font-size:70px;
+}
+
+.modules-title{
+font-size:30px;
+text-align:center;
+}
+
+.video-card{
+padding:20px;
+}
+
+.video-card iframe{
+height:220px;
+border-radius:16px;
+}
+
+.comments-section{
+padding:20px 15px;
+}
+
+.comment-form{
+flex-direction:column;
+}
+
+.comment-input{
+width:100%;
+}
+
+.comment-btn{
+width:100%;
+}
+
+.login-container{
+padding:30px 20px;
+}
+
+.login-container input{
+font-size:15px;
+}
+
+.footer-container{
+grid-template-columns:1fr;
+gap:40px;
+text-align:center;
+}
+
+.footer-column ul{
+padding:0;
+}
+
+.payment-box,
+.profile-card,
+.support-box,
+.certificate-card,
+.admin-card{
+padding:25px 20px;
+}
+
+.certificate-card h1{
+font-size:32px;
+}
+
+#student-name{
+font-size:36px;
+}
+
+.certificate-info{
+flex-direction:column;
+gap:25px;
+text-align:center;
+}
+
+.profile-top{
+flex-direction:column;
+text-align:center;
+gap:20px;
+}
+
+.profile-avatar{
+margin:auto;
+}
+
+.admin-users{
+grid-template-columns:1fr;
+}
+
+textarea{
+min-height:140px;
+}
+
+.support-header h1,
+.profile-card h1,
+.admin-panel h1{
+font-size:32px;
+text-align:center;
+}
+
+.results-grid img{
+height:230px;
+object-fit:cover;
+}
+
+}
+
+/* PETITS MOBILES */
+
+@media screen and (max-width: 480px){
+
+.hero h1{
+font-size:30px;
+}
+
+.section h2{
+font-size:28px;
+}
+
+.primary-btn,
+.secondary-btn{
+font-size:14px;
+padding:14px 20px;
+}
+
+.video-card iframe{
+height:190px;
+}
+
+.payment-price{
+font-size:42px;
+}
+
+.certificate-card h1{
+font-size:26px;
+}
+
+#student-name{
+font-size:28px;
+}
+
+.modules-title{
+font-size:24px;
+}
+
+.dashboard-top h1{
+font-size:28px;
+}
+
+}
+
+/* ========================================
+   RESPONSIVE IMAGES
+======================================== */
+
+img{
+max-width:100%;
+height:auto;
+display:block;
+}
+
+/* ========================================
+   FLEX SECURITY
+======================================== */
+
+*{
+box-sizing:border-box;
+}
+
+/* ========================================
+   SCROLLBAR PREMIUM
+======================================== */
+
+::-webkit-scrollbar{
+width:10px;
+}
+
+::-webkit-scrollbar-track{
+background:#0b0f1c;
+}
+
+::-webkit-scrollbar-thumb{
+background:#00ffae;
+border-radius:20px;
+}
+
+/* ========================================
+   ANIMATIONS
+======================================== */
+
+.video-card,
+.program-card,
+.dashboard-card,
+.stat-card,
+.profile-info-box,
+.support-card,
+.admin-card{
+transition:0.3s ease;
+}
+
+.video-card:hover,
+.program-card:hover,
+.dashboard-card:hover,
+.stat-card:hover,
+.profile-info-box:hover,
+.support-card:hover,
+.admin-card:hover{
+transform:translateY(-6px);
 }

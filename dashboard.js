@@ -21,6 +21,13 @@ getDoc
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 /* =========================
+   ADMIN EMAIL
+========================= */
+
+const ADMIN_EMAIL =
+"badumisanathan807@gmail.com";
+
+/* =========================
    FIREBASE CONFIG
 ========================= */
 
@@ -44,13 +51,18 @@ appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
    INITIALISATION
 ========================= */
 
-const app = initializeApp(firebaseConfig);
+const app =
+initializeApp(firebaseConfig);
 
-const auth = getAuth(app);
+const auth =
+getAuth(app);
 
-const db = getFirestore(app);
+const db =
+getFirestore(app);
 
-console.log("🔥 Dashboard Nathan Trading chargé");
+console.log(
+"🔥 Dashboard Nathan Trading chargé"
+);
 
 /* =========================
    PROTECTION PAGE
@@ -60,26 +72,33 @@ onAuthStateChanged(auth, async(user)=>{
 
 if(user){
 
-console.log("✅ Utilisateur connecté :", user.email);
-
-/* =========================
-   AFFICHAGE USER
-========================= */
-
-const welcomeMessage =
-document.getElementById(
-"welcome-message"
+console.log(
+"✅ Utilisateur connecté :",
+user.email
 );
 
-if(welcomeMessage){
+/* =========================
+   BOUTON ADMIN
+========================= */
 
-welcomeMessage.innerHTML =
-`Bienvenue ${user.email} 🔥`;
+const adminLink =
+document.getElementById(
+"admin-link"
+);
+
+if(user.email === ADMIN_EMAIL){
+
+if(adminLink){
+
+adminLink.style.display =
+"flex";
+
+}
 
 }
 
 /* =========================
-   FIRESTORE USER
+   RECUPERATION USER
 ========================= */
 
 try{
@@ -95,7 +114,25 @@ if(userSnap.exists()){
 const data =
 userSnap.data();
 
-/* PROGRESSION */
+/* =========================
+   BIENVENUE PRENOM
+========================= */
+
+const welcomeMessage =
+document.getElementById(
+"welcome-message"
+);
+
+if(welcomeMessage){
+
+welcomeMessage.innerHTML =
+`Bienvenue ${data.name || "Trader"} 🔥`;
+
+}
+
+/* =========================
+   PROGRESSION
+========================= */
 
 const progress =
 data.progression || 0;
@@ -127,12 +164,51 @@ progressText.innerHTML =
 
 }
 
+/* =========================
+   PREMIUM BADGE
+========================= */
+
+const premiumBadge =
+document.querySelector(
+".premium-badge"
+);
+
+if(premiumBadge){
+
+if(data.premium){
+
+premiumBadge.innerHTML = `
+
+<i class="fa-solid fa-crown"></i>
+
+<span>
+Premium Student
+</span>
+
+`;
+
+}else{
+
+premiumBadge.innerHTML = `
+
+<i class="fa-solid fa-lock"></i>
+
+<span>
+Compte Standard
+</span>
+
+`;
+
+}
+
+}
+
 }
 
 }catch(error){
 
 console.error(
-"Erreur Firestore :",
+"❌ Erreur Firestore :",
 error
 );
 
@@ -176,7 +252,7 @@ window.location.href =
 }catch(error){
 
 console.error(
-"Erreur déconnexion :",
+"❌ Erreur déconnexion :",
 error
 );
 
