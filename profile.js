@@ -20,7 +20,16 @@ getDoc
 
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-/* FIREBASE */
+/* ========================================
+   ADMIN EMAIL
+======================================== */
+
+const ADMIN_EMAIL =
+"badumisanathan807@gmail.com";
+
+/* ========================================
+   FIREBASE CONFIG
+======================================== */
 
 const firebaseConfig = {
 
@@ -38,31 +47,53 @@ appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 
 };
 
+/* ========================================
+   INITIALISATION
+======================================== */
+
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-/* USER */
+console.log("🔥 Profile Nathan Trading chargé");
+
+/* ========================================
+   AUTH USER
+======================================== */
 
 onAuthStateChanged(auth, async(user)=>{
 
 if(user){
 
-document.getElementById(
-"profile-name"
-).innerHTML = user.email;
+console.log("✅ Utilisateur connecté :", user.email);
 
-document.getElementById(
-"profile-email"
-).innerHTML = user.email;
+/* ========================================
+   ADMIN BUTTON
+======================================== */
 
+const adminLink =
 document.getElementById(
-"profile-uid"
-).innerHTML = user.uid;
+"admin-link"
+);
 
-/* FIRESTORE */
+if(user.email === ADMIN_EMAIL){
+
+if(adminLink){
+
+adminLink.style.display =
+"flex";
+
+}
+
+}
+
+/* ========================================
+   FIRESTORE USER
+======================================== */
+
+try{
 
 const userRef =
 doc(db,"users",user.uid);
@@ -75,6 +106,29 @@ if(userSnap.exists()){
 const data =
 userSnap.data();
 
+/* ========================================
+   USERNAME
+======================================== */
+
+document.getElementById(
+"profile-name"
+).innerHTML =
+data.name || "Étudiant Nathan Trading";
+
+/* EMAIL */
+
+document.getElementById(
+"profile-email"
+).innerHTML =
+user.email;
+
+/* UID */
+
+document.getElementById(
+"profile-uid"
+).innerHTML =
+user.uid;
+
 /* PREMIUM */
 
 document.getElementById(
@@ -84,7 +138,9 @@ data.premium
 ? "Premium Actif 👑"
 : "Compte Standard";
 
-/* PROGRESSION */
+/* ========================================
+   PROGRESSION
+======================================== */
 
 const progress =
 data.progression || 0;
@@ -99,13 +155,19 @@ document.getElementById(
 "profile-progress-fill"
 );
 
+if(progressFill){
+
 progressFill.style.width =
 `${progress}%`;
 
 progressFill.innerHTML =
 `${progress}%`;
 
-/* DATE */
+}
+
+/* ========================================
+   DATE INSCRIPTION
+======================================== */
 
 if(data.createdAt){
 
@@ -119,7 +181,29 @@ date.toLocaleDateString(
 "fr-FR"
 );
 
+}else{
+
+document.getElementById(
+"profile-created"
+).innerHTML =
+"Non disponible";
+
 }
+
+}else{
+
+console.error(
+"❌ Utilisateur introuvable"
+);
+
+}
+
+}catch(error){
+
+console.error(
+"❌ Erreur Firestore :",
+error
+);
 
 }
 
@@ -132,7 +216,9 @@ window.location.href =
 
 });
 
-/* LOGOUT */
+/* ========================================
+   LOGOUT
+======================================== */
 
 const logoutBtn =
 document.querySelector(
@@ -145,10 +231,25 @@ logoutBtn.addEventListener(
 "click",
 async()=>{
 
+try{
+
 await signOut(auth);
+
+alert(
+"Déconnexion réussie 🔥"
+);
 
 window.location.href =
 "index.html";
+
+}catch(error){
+
+console.error(
+"Erreur déconnexion :",
+error
+);
+
+}
 
 });
 

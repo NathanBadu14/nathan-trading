@@ -3,7 +3,8 @@ import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebas
 import {
 
 getAuth,
-onAuthStateChanged
+onAuthStateChanged,
+signOut
 
 }
 
@@ -19,7 +20,16 @@ getDoc
 
 from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-/* FIREBASE */
+/* ========================================
+   ADMIN EMAIL
+======================================== */
+
+const ADMIN_EMAIL =
+"badumisanathan807@gmail.com";
+
+/* ========================================
+   FIREBASE CONFIG
+======================================== */
 
 const firebaseConfig = {
 
@@ -37,17 +47,56 @@ appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 
 };
 
+/* ========================================
+   INITIALISATION
+======================================== */
+
 const app = initializeApp(firebaseConfig);
 
 const auth = getAuth(app);
 
 const db = getFirestore(app);
 
-/* PROTECTION */
+console.log("🔥 Certificate Nathan Trading chargé");
+
+/* ========================================
+   AUTH USER
+======================================== */
 
 onAuthStateChanged(auth, async(user)=>{
 
 if(user){
+
+console.log(
+"✅ Utilisateur connecté :",
+user.email
+);
+
+/* ========================================
+   ADMIN LINK
+======================================== */
+
+const adminLink =
+document.getElementById(
+"admin-link"
+);
+
+if(user.email === ADMIN_EMAIL){
+
+if(adminLink){
+
+adminLink.style.display =
+"flex";
+
+}
+
+}
+
+/* ========================================
+   FIRESTORE USER
+======================================== */
+
+try{
 
 const userRef =
 doc(db, "users", user.uid);
@@ -60,12 +109,14 @@ if(userSnap.exists()){
 const data =
 userSnap.data();
 
-/* VERIFICATION FIN */
+/* ========================================
+   VERIFICATION FORMATION
+======================================== */
 
-if(data.progression < 100){
+if((data.progression || 0) < 100){
 
 alert(
-"Terminez la formation pour obtenir le certificat."
+"Terminez toute la formation pour obtenir votre certificat."
 );
 
 window.location.href =
@@ -75,14 +126,18 @@ return;
 
 }
 
-/* NOM */
+/* ========================================
+   NOM ELEVE
+======================================== */
 
 document.getElementById(
 "student-name"
 ).innerHTML =
-user.email.split("@")[0];
+data.name || "Étudiant Nathan Trading";
 
-/* DATE */
+/* ========================================
+   DATE CERTIFICAT
+======================================== */
 
 const today =
 new Date();
@@ -90,7 +145,25 @@ new Date();
 document.getElementById(
 "certificate-date"
 ).innerHTML =
-`Date : ${today.toLocaleDateString()}`;
+`Date : ${today.toLocaleDateString("fr-FR")}`;
+
+}else{
+
+alert(
+"Utilisateur introuvable."
+);
+
+window.location.href =
+"dashboard.html";
+
+}
+
+}catch(error){
+
+console.error(
+"Erreur Firestore :",
+error
+);
 
 }
 
@@ -103,7 +176,9 @@ window.location.href =
 
 });
 
-/* DOWNLOAD */
+/* ========================================
+   DOWNLOAD CERTIFICATE
+======================================== */
 
 const downloadBtn =
 document.getElementById(
@@ -117,6 +192,45 @@ downloadBtn.addEventListener(
 ()=>{
 
 window.print();
+
+});
+
+}
+
+/* ========================================
+   LOGOUT
+======================================== */
+
+const logoutBtn =
+document.querySelector(
+".logout-btn"
+);
+
+if(logoutBtn){
+
+logoutBtn.addEventListener(
+"click",
+async()=>{
+
+try{
+
+await signOut(auth);
+
+alert(
+"Déconnexion réussie 🔥"
+);
+
+window.location.href =
+"index.html";
+
+}catch(error){
+
+console.error(
+"Erreur déconnexion :",
+error
+);
+
+}
 
 });
 

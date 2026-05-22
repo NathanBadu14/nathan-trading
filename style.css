@@ -3551,7 +3551,7 @@ font-size:28px;
 img{
 max-width:100%;
 height:auto;
-display:block;
+display:auto;
 }
 
 /* ========================================
@@ -3601,4 +3601,627 @@ transition:0.3s ease;
 .support-card:hover,
 .admin-card:hover{
 transform:translateY(-6px);
+}
+
+
+/* ==========================================
+   CORRECTION TEMPORAIRE POUR TOUT REAFFICHER
+   ========================================== */
+
+/* 1. Force l'affichage des sections bloquées par AOS */
+[data-aos] {
+    opacity: 1 !important;
+    transform: none !important;
+    visibility: visible !important;
+}
+
+@media(max-width:768px){
+
+.navbar{
+
+flex-direction:column;
+
+gap:20px;
+
+padding:20px;
+
+}
+
+.nav-links{
+
+flex-wrap:wrap;
+
+justify-content:center;
+
+gap:15px;
+
+}
+
+.auth-buttons{
+
+width:100%;
+
+justify-content:center;
+
+}
+
+}
+
+.hero-warning{
+
+margin-top:20px;
+
+font-size:14px;
+
+opacity:0.7;
+
+line-height:1.7;
+
+}
+
+/* =========================
+   LEGAL PAGES
+========================= */
+
+.legal-container{
+
+max-width:1000px;
+
+margin:auto;
+
+background:#111;
+
+padding:50px;
+
+border-radius:30px;
+
+line-height:2;
+
+border:1px solid rgba(255,255,255,0.05);
+
+}
+
+.legal-container h1{
+
+font-size:45px;
+
+margin-bottom:40px;
+
+}
+
+.legal-container h2{
+
+margin-top:40px;
+
+margin-bottom:20px;
+
+color:#00c8ff;
+
+}
+
+.legal-container p{
+
+opacity:0.9;
+
+margin-bottom:20px;
+
+}
+
+.legal-container ul{
+
+padding-left:20px;
+
+}
+
+.legal-container li{
+
+margin-bottom:15px;
+
+}
+
+@media(max-width:768px){
+
+.legal-container{
+
+padding:30px 20px;
+
+}
+
+.legal-container h1{
+
+font-size:34px;
+
+}
+
+}
+
+.results-grid{
+display:grid;
+grid-template-columns:repeat(auto-fit,minmax(280px,1fr));
+gap:20px;
+}
+
+.results-grid img{
+width:100%;
+height:auto;
+display:block;
+border-radius:15px;
+object-fit:cover;
+}
+
+.results-grid img{
+width:100%;
+height:auto;
+object-fit:contain;
+}
+
+.video-card.locked{
+    opacity:.5;
+    pointer-events:none;
+    position:relative;
+}
+
+.video-card.locked::after{
+    content:"🔒 Module verrouillé";
+    position:absolute;
+    top:50%;
+    left:50%;
+    transform:translate(-50%,-50%);
+    background:#111;
+    color:#fff;
+    padding:10px 20px;
+    border-radius:10px;
+    font-weight:600;
+}
+
+.locked {
+    opacity: .55;
+    pointer-events: none;
+    position: relative;
+}
+
+.lock-overlay {
+    text-align: center;
+    padding: 20px;
+}
+
+.lock-overlay i {
+    font-size: 32px;
+    margin-bottom: 10px;
+    color: #f5b942;
+}
+
+.module-status.locked {
+    background: #ff3d3d;
+}
+
+/* =========================
+   LEGAL PAGES
+========================= */
+
+.legal-section{
+    min-height:100vh;
+    padding:120px 20px 80px;
+    background:#0d1117;
+}
+
+.legal-container{
+    max-width:1000px;
+    margin:auto;
+    background:#161b22;
+    padding:40px;
+    border-radius:20px;
+    border:1px solid rgba(255,255,255,.08);
+    box-shadow:0 10px 40px rgba(0,0,0,.3);
+}
+
+.legal-container h1{
+    font-size:2.5rem;
+    margin-bottom:30px;
+    color:#ffffff;
+}
+
+.legal-container h2{
+    margin-top:30px;
+    margin-bottom:10px;
+    color:#f5b942;
+}
+
+.legal-container p,
+.legal-container li{
+    color:#d1d5db;
+    line-height:1.8;
+    margin-bottom:15px;
+}
+
+.legal-container ul{
+    padding-left:20px;
+}
+
+/* MOBILE */
+
+@media(max-width:768px){
+
+    .legal-container{
+        padding:25px;
+    }
+
+    .legal-container h1{
+        font-size:2rem;
+    }
+
+}
+
+
+/* =====================
+AUTH PAGES
+===================== */
+
+.auth-body{
+min-height:100vh;
+display:flex;
+justify-content:center;
+align-items:center;
+background:#0f172a;
+padding:20px;
+}
+
+.auth-container{
+width:100%;
+max-width:450px;
+background:#111827;
+padding:40px;
+border-radius:20px;
+text-align:center;
+box-shadow:0 0 30px rgba(0,255,174,.15);
+}
+
+.auth-logo{
+width:90px;
+margin-bottom:20px;
+}
+
+.auth-container h1{
+color:white;
+margin-bottom:10px;
+}
+
+.auth-container p{
+color:#9ca3af;
+margin-bottom:25px;
+}
+
+.auth-container form{
+display:flex;
+flex-direction:column;
+gap:15px;
+}
+
+.auth-container input{
+width:100%;
+padding:15px;
+border:none;
+border-radius:10px;
+background:#1f2937;
+color:white;
+}
+
+.auth-btn{
+width:100%;
+}
+
+.auth-links{
+margin-top:20px;
+}
+
+.auth-links a{
+color:#00ffae;
+text-decoration:none;
+font-weight:600;
+}
+
+.password-box{
+position:relative;
+}
+
+.toggle-password{
+position:absolute;
+right:15px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+color:#999;
+}
+
+
+/* ==========================
+   AUTH PAGES
+========================== */
+
+.auth-body{
+
+min-height:100vh;
+
+display:flex;
+
+justify-content:center;
+
+align-items:center;
+
+padding:30px;
+
+background:#0b0f17;
+
+}
+
+.auth-container{
+
+width:100%;
+
+max-width:450px;
+
+padding:40px;
+
+border-radius:20px;
+
+background:#121a28;
+
+text-align:center;
+
+box-shadow:0 0 40px rgba(0,255,174,.1);
+
+}
+
+.auth-logo{
+
+width:90px;
+
+margin-bottom:20px;
+
+}
+
+.auth-container h1{
+
+margin-bottom:10px;
+
+color:white;
+
+}
+
+.auth-container p{
+
+color:#b5b5b5;
+
+margin-bottom:20px;
+
+}
+
+.auth-container form{
+
+display:flex;
+
+flex-direction:column;
+
+gap:15px;
+
+}
+
+.auth-container input{
+
+padding:15px;
+
+border:none;
+
+border-radius:10px;
+
+background:#1b2435;
+
+color:white;
+
+font-size:15px;
+
+}
+
+.auth-container input:focus{
+
+outline:none;
+
+border:1px solid #00ffae;
+
+}
+
+.auth-switch{
+
+margin-top:20px;
+
+}
+
+.auth-switch a{
+
+color:#00ffae;
+
+text-decoration:none;
+
+font-weight:600;
+
+}
+
+.password-box{
+position:relative;
+width:100%;
+}
+
+.password-box input{
+width:100%;
+}
+
+.password-box i{
+position:absolute;
+right:15px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+color:#999;
+}
+
+.forgot-password{
+text-align:center;
+margin-top:15px;
+}
+
+.forgot-password a{
+color:#00d4ff;
+text-decoration:none;
+font-weight:600;
+}
+
+.forgot-password a:hover{
+text-decoration:underline;
+}
+
+.password-container{
+position:relative;
+width:100%;
+}
+
+.password-container input{
+width:100%;
+}
+
+.toggle-password{
+position:absolute;
+right:15px;
+top:50%;
+transform:translateY(-50%);
+cursor:pointer;
+font-size:18px;
+user-select:none;
+}
+
+.toggle-password:hover{
+opacity:0.8;
+}
+
+/* CONTAINER DU BOUTON GOOGLE */
+.google-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* LE BOUTON GOOGLE */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: #ffffff;
+    color: #1f2937; /* Texte gris très foncé/noir */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    max-width: 340px; /* Aligné sur ton bouton bleu */
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* EFFET AU SURVOL */
+.google-btn:hover {
+    background-color: #f1f5f9; /* Un blanc légèrement grisé */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* EFFET AU CLIC */
+.google-btn:active {
+    transform: translateY(0);
+}
+
+/* CONTAINER DU BOUTON GOOGLE */
+.google-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+}
+
+/* LE BOUTON GOOGLE */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background-color: #ffffff;
+    color: #1f2937; /* Texte gris très foncé/noir */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    font-size: 14px;
+    width: 100%;
+    max-width: 340px; /* Aligné sur ton bouton bleu */
+    padding: 12px;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.2);
+}
+
+/* EFFET AU SURVOL */
+.google-btn:hover {
+    background-color: #f1f5f9; /* Un blanc légèrement grisé */
+    transform: translateY(-2px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+/* EFFET AU CLIC */
+.google-btn:active {
+    transform: translateY(0);
+}
+
+/* FORMATTAGE DE L'ICÔNE GOOGLE */
+.google-btn i {
+    font-size: 18px;
+    color: #ea4335; /* Rouge Google original */
+}
+
+/* CONTAINER DU BOUTON GOOGLE */
+.google-btn-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 15px;
+    width: 100%;
+}
+/* Style moderne pour le bouton Google en mode sombre */
+.google-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    background: rgba(255, 255, 255, 0.05); /* Fond très sombre et transparent */
+    color: #ffffff; /* Texte blanc */
+    font-family: 'Poppins', sans-serif;
+    font-weight: 500;
+    width: 100%;
+    max-width: 340px;
+    padding: 12px;
+    border: 1px solid rgba(255, 255, 255, 0.2); /* Bordure discrète */
+    border-radius: 8px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.google-btn:hover {
+    background: rgba(255, 255, 255, 0.1);
+    border-color: #00d2ff; /* Le bleu de ton académie au survol */
+}
+
+.google-btn i {
+    font-size: 18px;
+    color: #ffffff; /* Icône blanche pour rester sobre */
 }

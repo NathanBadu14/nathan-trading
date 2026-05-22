@@ -1,9 +1,11 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+
 import {
     getAuth,
     onAuthStateChanged,
-    signOut
+    signOut // Ajout de signOut qui manquait dans tes imports
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+
 import {
     getFirestore,
     collection,
@@ -122,31 +124,96 @@ onAuthStateChanged(auth, async (user) => {
         let totalProgression = 0;
 
         /* =========================
-           TRAITEMENT DES DONNÉES
+           TRAITEMENT DES DONNÉES & AFFICHAGE
         ========================= */
         querySnapshot.forEach((docElement) => {
             const data = docElement.data();
+            const userId = docElement.id; // On récupère l'identifiant Firestore unique de l'utilisateur
+            
             totalUsers++;
 
             if (data.premium) {
                 premiumUsers++;
             }
 
-            // Correction de la ligne 226 : On récupère le champ 'progression' du document (par défaut 0 si absent)
             totalProgression += data.progression || 0;
 
-            // Optionnel : Tu pourras injecter ton HTML pour lister les utilisateurs ici plus tard
+            /* =========================
+               INJECTION DES CARTES DANS LE HTML
+            ========================= */
+            if (usersContainer) {
+                const isPremium = data.premium || false;
+                
+                // On crée une structure propre pour chaque utilisateur
+                const userCard = document.createElement("div");
+                userCard.className = "user-card";
+                userCard.innerHTML = `
+                    <div class="user-info">
+                        <p><strong>Nom :</strong> ${data.username || "Sans nom"}</p>
+                        <p><strong>Email :</strong> ${data.email || "Pas d'email"}</p>
+                        <p><strong>Progression :</strong> ${data.progression || 0}%</p>
+                    </div>
+                    <div class="user-actions">
+                        <button 
+                            class="premium-btn" 
+                            data-id="${userId}" 
+                            data-premium="${isPremium}">
+                            ${isPremium ? "❌ Retirer Premium" : "⭐ Activer Premium"}
+                        </button>
+                    </div>
+                `;
+                usersContainer.appendChild(userCard);
+            }
         });
 
         /* =========================
-           AFFICHAGE DES STATS (Exemple)
+           AFFICHAGE DES STATS
         ========================= */
         console.log(`Total: ${totalUsers}, Premium: ${premiumUsers}, Progression Globale: ${totalProgression}`);
         
-        // Si tu as des éléments HTML pour afficher tes compteurs, tu peux les lier ici :
-        // document.getElementById("total-users-count").innerText = totalUsers;
+        // Liens avec ton interface (si tu as ces IDs dans ton HTML)
+        if (document.getElementById("total-users-count")) {
+            document.getElementById("total-users-count").innerText = totalUsers;
+        }
 
     } catch (error) {
         console.error("Erreur lors de la récupération des utilisateurs :", error);
+    }
+});
+
+/* =========================
+   GESTION DU CLIC SUR LE BOUTON PREMIUM (DÉLÉGATION)
+========================= */
+document.addEventListener("click", async (e) => {
+    // Si l'élément cliqué possède la classe "premium-btn"
+    if (e.target.matches(".premium-btn")) {
+        const button = e.target;
+        const userId = button.getAttribute("data-id");
+        
+        // Attention : la valeur d'un attribut est toujours une String, on la convertit en Boolean
+        const currentPremiumStatus = button.getAttribute("data-premium") === "true";
+        
+        // On inverse le statut
+        const newPremiumStatus = !currentPremiumStatus;
+
+        try {
+            // Mise à jour dans Firebase Firestore
+            const userDocRef = doc(db, "users", userId);
+            await updateDoc(userDocRef, {
+                premium: newPremiumStatus
+            });
+
+            // Mise à jour visuelle immédiate du bouton
+            button.setAttribute("data-premium", newPremiumStatus);
+            button.innerHTML = newPremiumStatus ? "❌ Retirer Premium" : "⭐ Activer Premium";
+            
+            alert(`Statut premium modifié avec succès !`);
+            
+            // Astuce : pour mettre à jour les statistiques de la page sans recharger, 
+            // tu peux simplement exécuter un rafraîchissement ou laisser l'admin gérer.
+        } catch (error) {
+            console.error("Erreur Firestore lors du changement de statut premium :", error);
+            alert("Impossible de modifier le statut premium.");
+        }
     }
 });

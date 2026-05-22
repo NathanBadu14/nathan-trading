@@ -2,817 +2,363 @@
 <html lang="fr">
 
 <head>
-
-<meta charset="UTF-8">
-
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>
-Cours Premium | Nathan Trading
-</title>
-
-<link
-rel="stylesheet"
-href="style.css"
->
-
-<link
-rel="icon"
-type="image/png"
-href="assets/image2.png"
->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet"
->
-
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-/>
-
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cours Premium | Nathan Trading</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/image2.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
 </head>
 
 <body class="dashboard-body">
 
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-
-<img
-src="assets/image2.png"
-class="sidebar-logo"
->
-
-<h2>
-Nathan Trading
-</h2>
-
-<a href="dashboard.html">
-
-<i class="fa-solid fa-chart-line"></i>
-
-Dashboard
-
-</a>
-
-<a
-href="videos.html"
-class="active-link"
->
-
-<i class="fa-solid fa-play"></i>
-
-Cours Vidéos
-
-</a>
-
-<a href="profile.html">
-
-<i class="fa-solid fa-user"></i>
-
-Mon Profil
-
-</a>
-
-<a href="certificate.html">
-
-<i class="fa-solid fa-award"></i>
-
-Certificat
-
-</a>
-
-<a href="support.html">
-
-<i class="fa-solid fa-headset"></i>
-
-Support
-
-</a>
-
-<a
-href="admin.html"
-id="admin-link"
-style="display:none;"
->
-
-<i class="fa-solid fa-user-shield"></i>
-
-Admin Panel
-
-</a>
-
-<button class="logout-btn">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Déconnexion
-
-</button>
-
-</div>
-
-<!-- CONTENU -->
-
-<div class="dashboard-content-main">
-
-<!-- HEADER -->
-
-<div class="videos-header">
-
-<div>
-
-<h1>
-🎓 Académie Nathan Trading
-</h1>
-
-<p class="student-email">
-
-Formation Premium Complète
-
-</p>
-
-</div>
-
-<div class="premium-badge">
-
-<i class="fa-solid fa-crown"></i>
-
-<span>
-Premium Access
-</span>
-
-</div>
-
-</div>
-
-<!-- PROGRESSION -->
-
-<div class="course-progress-box">
-
-<div class="progress-title-row">
-
-<h2>
-Votre progression
-</h2>
-
-<p id="progress-text">
-0% terminé
-</p>
-
-</div>
-
-<div class="progress-bar">
-
-<div
-class="progress-fill"
-id="progress-fill"
->
-
-0%
-
-</div>
-
-</div>
-
-</div>
-
-<!-- VIDEOS GRID -->
-
-<div class="videos-grid">
-
-<!-- VIDEO 1 -->
-
-<div
-class="video-card unlocked"
-data-module="1"
->
-
-<div class="video-top">
-
-<span class="module-badge">
-Module 1
-</span>
-
-<span class="module-status completed">
-
-Disponible
-
-</span>
-
-</div>
-
-<iframe
-src=""
-allowfullscreen
-></iframe>
-
-<h3>
-🎬 Vidéo d’introduction
-</h3>
-
-<p class="video-description">
-
-Présentation complète de la formation
-Nathan Trading Academy.
-
-</p>
-
-<button
-class="complete-btn"
->
-
-Marquer comme terminé
-
-</button>
-
-<div class="comments-section">
-
-<h3>
-💬 Commentaires
-</h3>
-
-<form class="comment-form">
-
-<input
-type="text"
-class="comment-input"
-placeholder="Écrivez un commentaire..."
-required
->
-
-<button
-type="submit"
-class="comment-btn"
->
-
-Envoyer
-
-</button>
-
-</form>
-
-<div class="comments-container"></div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 2 -->
-
-<div
-class="video-card unlocked"
-data-module="2"
->
-
-<div class="video-top">
-
-<span class="module-badge">
-Module 2
-</span>
-
-<span class="module-status completed">
-
-Disponible
-
-</span>
-
-</div>
-
-<iframe
-src=""
-allowfullscreen
-></iframe>
-
-<h3>
-1️⃣ Les bases d’une stratégie
-</h3>
-
-<p class="video-description">
-
-Comprendre les fondations
-d’une stratégie rentable.
-
-</p>
-
-<button
-class="complete-btn"
->
-
-Marquer comme terminé
-
-</button>
-
-<div class="comments-section">
-
-<h3>
-💬 Commentaires
-</h3>
-
-<form class="comment-form">
-
-<input
-type="text"
-class="comment-input"
-placeholder="Écrivez un commentaire..."
-required
->
-
-<button
-type="submit"
-class="comment-btn"
->
-
-Envoyer
-
-</button>
-
-</form>
-
-<div class="comments-container"></div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 3 -->
-
-<div
-class="video-card unlocked"
-data-module="3"
->
-
-<div class="video-top">
-
-<span class="module-badge">
-Module 3
-</span>
-
-<span class="module-status completed">
-
-Disponible
-
-</span>
-
-</div>
-
-<iframe
-src=""
-allowfullscreen
-></iframe>
-
-<h3>
-2️⃣ Comment le prix bouge
-</h3>
-
-<p class="video-description">
-
-Comprendre les mouvements du marché
-et la logique du prix.
-
-</p>
-
-<button
-class="complete-btn"
->
-
-Marquer comme terminé
-
-</button>
-
-<div class="comments-section">
-
-<h3>
-💬 Commentaires
-</h3>
-
-<form class="comment-form">
-
-<input
-type="text"
-class="comment-input"
-placeholder="Écrivez un commentaire..."
-required
->
-
-<button
-type="submit"
-class="comment-btn"
->
-
-Envoyer
-
-</button>
-
-</form>
-
-<div class="comments-container"></div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 4 -->
-
-<div
-class="video-card unlocked"
-data-module="4"
->
-
-<div class="video-top">
-
-<span class="module-badge">
-Module 4
-</span>
-
-<span class="module-status completed">
-
-Disponible
-
-</span>
-
-</div>
-
-<iframe
-src=""
-allowfullscreen
-></iframe>
-
-<h3>
-3️⃣ La structure du marché
-</h3>
-
-<p class="video-description">
-
-Identifier les structures
-et tendances importantes.
-
-</p>
-
-<button
-class="complete-btn"
->
-
-Marquer comme terminé
-
-</button>
-
-<div class="comments-section">
-
-<h3>
-💬 Commentaires
-</h3>
-
-<form class="comment-form">
-
-<input
-type="text"
-class="comment-input"
-placeholder="Écrivez un commentaire..."
-required
->
-
-<button
-type="submit"
-class="comment-btn"
->
-
-Envoyer
-
-</button>
-
-</form>
-
-<div class="comments-container"></div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 5 -->
-
-<div
-class="video-card unlocked"
-data-module="5"
->
-
-<div class="video-top">
-
-<span class="module-badge">
-Module 5
-</span>
-
-<span class="module-status completed">
-
-Disponible
-
-</span>
-
-</div>
-
-<iframe
-src=""
-allowfullscreen
-></iframe>
-
-<h3>
-4️⃣ Les zones solides
-</h3>
-
-<p class="video-description">
-
-Comprendre les zones institutionnelles
-et les réactions du marché.
-
-</p>
-
-<button
-class="complete-btn"
->
-
-Marquer comme terminé
-
-</button>
-
-<div class="comments-section">
-
-<h3>
-💬 Commentaires
-</h3>
-
-<form class="comment-form">
-
-<input
-type="text"
-class="comment-input"
-placeholder="Écrivez un commentaire..."
-required
->
-
-<button
-type="submit"
-class="comment-btn"
->
-
-Envoyer
-
-</button>
-
-</form>
-
-<div class="comments-container"></div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 6 -->
-
-<div
-class="video-card unlocked"
-data-module="6"
->
-
-<div class="video-top">
-
-<span class="module-badge">
-Module 6
-</span>
-
-<span class="module-status completed">
-
-Disponible
-
-</span>
-
-</div>
-
-<iframe
-src=""
-allowfullscreen
-></iframe>
-
-<h3>
-5️⃣ Les deux patterns
-</h3>
-
-<p class="video-description">
-
-Les patterns essentiels
-de la méthode Nathan Trading.
-
-</p>
-
-<button
-class="complete-btn"
->
-
-Marquer comme terminé
-
-</button>
-
-<div class="comments-section">
-
-<h3>
-💬 Commentaires
-</h3>
-
-<form class="comment-form">
-
-<input
-type="text"
-class="comment-input"
-placeholder="Écrivez un commentaire..."
-required
->
-
-<button
-type="submit"
-class="comment-btn"
->
-
-Envoyer
-
-</button>
-
-</form>
-
-<div class="comments-container"></div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 7 -->
-
-<div
-class="video-card unlocked"
-data-module="7"
->
-
-<div class="video-top">
-
-<span class="module-badge">
-Module 7
-</span>
-
-<span class="module-status completed">
-
-Disponible
-
-</span>
-
-</div>
-
-<iframe
-src=""
-allowfullscreen
-></iframe>
-
-<h3>
-6️⃣ Le clean trafic
-</h3>
-
-<p class="video-description">
-
-Apprendre à éviter les mauvaises zones
-et filtrer les entrées.
-
-</p>
-
-<button
-class="complete-btn"
->
-
-Marquer comme terminé
-
-</button>
-
-<div class="comments-section">
-
-<h3>
-💬 Commentaires
-</h3>
-
-<form class="comment-form">
-
-<input
-type="text"
-class="comment-input"
-placeholder="Écrivez un commentaire..."
-required
->
-
-<button
-type="submit"
-class="comment-btn"
->
-
-Envoyer
-
-</button>
-
-</form>
-
-<div class="comments-container"></div>
-
-</div>
-
-</div>
-
-<!-- VIDEO 8 -->
-
-<div
-class="video-card unlocked"
-data-module="8"
->
-
-<div class="video-top">
-
-<span class="module-badge">
-Module 8
-</span>
-
-<span class="module-status completed">
-
-Disponible
-
-</span>
-
-</div>
-
-<iframe
-src=""
-allowfullscreen
-></iframe>
-
-<h3>
-7️⃣ Analyse du biais
-</h3>
-
-<p class="video-description">
-
-Déterminer correctement
-le sens du marché.
-
-</p>
-
-<button
-class="complete-btn"
->
-
-Marquer comme terminé
-
-</button>
-
-<div class="comments-section">
-
-<h3>
-💬 Commentaires
-</h3>
-
-<form class="comment-form">
-
-<input
-type="text"
-class="comment-input"
-placeholder="Écrivez un commentaire..."
-required
->
-
-<button
-type="submit"
-class="comment-btn"
->
-
-Envoyer
-
-</button>
-
-</form>
-
-<div class="comments-container"></div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<script
-type="module"
-src="videos.js"
-></script>
-
+    <div class="sidebar">
+        <img src="assets/image2.png" class="sidebar-logo">
+        <h2>Nathan Trading</h2>
+        <a href="dashboard.html">
+            <i class="fa-solid fa-chart-line"></i> Dashboard
+        </a>
+        <a href="videos.html" class="active-link">
+            <i class="fa-solid fa-play"></i> Cours Vidéos
+        </a>
+        <a href="profile.html">
+            <i class="fa-solid fa-user"></i> Mon Profil
+        </a>
+        <a href="certificate.html">
+            <i class="fa-solid fa-award"></i> Certificat
+        </a>
+        <a href="support.html">
+            <i class="fa-solid fa-headset"></i> Support
+        </a>
+        <a href="admin.html" id="admin-link" style="display:none;">
+            <i class="fa-solid fa-user-shield"></i> Admin Panel
+        </a>
+        <button class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
+        </button>
+    </div>
+
+    <div class="dashboard-content-main">
+
+        <div class="videos-header">
+            <div>
+                <h1>🎓 Académie Nathan Trading</h1>
+                <p class="student-email">Formation Premium Complète</p>
+            </div>
+            <div class="premium-badge">
+                <i class="fa-solid fa-crown"></i>
+                <span>Premium Access</span>
+            </div>
+        </div>
+
+        <div class="course-progress-box">
+            <div class="progress-title-row">
+                <h2>Votre progression</h2>
+                <p id="progress-text">0% terminé</p>
+            </div>
+            <div class="progress-bar">
+                <div class="progress-fill" id="progress-fill">0%</div>
+            </div>
+        </div>
+
+        <div class="videos-grid">
+
+            <div class="video-card unlocked" data-module="1">
+                <div class="video-top">
+                    <span class="module-badge">Module 1</span>
+                    <span class="module-status completed">Disponible</span>
+                </div>
+                <iframe src="" allowfullscreen></iframe>
+                <h3>🎬 Vidéo d’introduction</h3>
+                <p class="video-description">Présentation complète de la formation Nathan Trading Academy.</p>
+                <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>💬 Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
+            </div>
+
+            <div class="video-card unlocked" data-module="2">
+                <div class="video-top">
+                    <span class="module-badge">Module 2</span>
+                    <span class="module-status completed">Disponible</span>
+                </div>
+                <iframe src="" allowfullscreen></iframe>
+                <h3>1️⃣ Les bases d’une stratégie</h3>
+                <p class="video-description">Comprendre les fondations d’une stratégie rentable.</p>
+                <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>💬 Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
+            </div>
+
+            <div class="video-card locked" data-module="3">
+                <div class="video-top">
+                    <span class="module-badge">Module 3</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>2️⃣ Comment le prix bouge</h3>
+                <p class="video-description">Comprendre les mouvements du marché et la logique du prix.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="4">
+                <div class="video-top">
+                    <span class="module-badge">Module 4</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>3️⃣ La structure du marché</h3>
+                <p class="video-description">Identifier les structures et tendances importantes.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="5">
+                <div class="video-top">
+                    <span class="module-badge">Module 5</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>4️⃣ Les zones solides</h3>
+                <p class="video-description">Comprendre les zones institutionnelles et les réactions du marché.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="6">
+                <div class="video-top">
+                    <span class="module-badge">Module 6</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>5️⃣ Les deux patterns</h3>
+                <p class="video-description">Les patterns essentiels de la méthode Nathan Trading.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="7">
+                <div class="video-top">
+                    <span class="module-badge">Module 7</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>6️⃣ Le clean trafic</h3>
+                <p class="video-description">Apprendre à éviter les mauvaises zones et filtrer les entrées.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="8">
+                <div class="video-top">
+                    <span class="module-badge">Module 8</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>7️⃣ Analyse du biais</h3>
+                <p class="video-description">Déterminer correctement le sens du marché.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="9">
+                <div class="video-top">
+                    <span class="module-badge">Module 9</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>8️⃣ Les Confirmations (SETUPS)</h3>
+                <p class="video-description">Maîtriser les déclencheurs précis pour entrer en position.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="10">
+                <div class="video-top">
+                    <span class="module-badge">Module 9.1</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>8.1️⃣ Avalement CP Zone D1</h3>
+                <p class="video-description">Analyse et cas pratique du setup d'avalement sur la zone Daily.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="11">
+                <div class="video-top">
+                    <span class="module-badge">Module 9.2</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>8.2️⃣ Avalement CP Zone D1 Suite</h3>
+                <p class="video-description">Approfondissement et pièges à éviter sur l'avalement D1.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="12">
+                <div class="video-top">
+                    <span class="module-badge">Module 9.3</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>8.3️⃣ Avalement H4</h3>
+                <p class="video-description">Exploiter la puissance des bougies d'avalement en unité de temps H4.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="13">
+                <div class="video-top">
+                    <span class="module-badge">Module 9.4</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>8.4️⃣ Doji Marteau H4</h3>
+                <p class="video-description">Détecter les retournements institutionnels avec les mèches H4.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="14">
+                <div class="video-top">
+                    <span class="module-badge">Module 9.5</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>8.5️⃣ Avalement H4-H1 + M15</h3>
+                <p class="video-description">La technique de multi-timeframe ultime pour affiner votre précision.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="15">
+                <div class="video-top">
+                    <span class="module-badge">Module 10</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>9️⃣ Gestion du risque</h3>
+                <p class="video-description">Calculer son risque par trade et préserver son capital à long terme.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="16">
+                <div class="video-top">
+                    <span class="module-badge">Module 11</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>🔟 Gestion du trade</h3>
+                <p class="video-description">Savoir quand couper, laisser courir ou passer à Break-Even.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="17">
+                <div class="video-top">
+                    <span class="module-badge">Module 12</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>1️⃣1️⃣ Gestion des émotions</h3>
+                <p class="video-description">Vaincre le FOMO et le Revenge Trading grâce à la psychologie.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="18">
+                <div class="video-top">
+                    <span class="module-badge">Module 13</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>1️⃣2️⃣ Plan de Trading</h3>
+                <p class="video-description">Bâtir des règles strictes à suivre scrupuleusement au quotidien.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="19">
+                <div class="video-top">
+                    <span class="module-badge">Module 14</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-lock" style="font-size: 2rem; color: #ff3838; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Ce module nécessite un accès Premium.</p>
+                </div>
+                <h3>1️⃣3️⃣ Journal de Trading</h3>
+                <p class="video-description">Suivre ses performances et statistiques pour s'améliorer continuellement.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Marquer comme terminé</button>
+            </div>
+
+            <div class="video-card locked" data-module="20">
+                <div class="video-top">
+                    <span class="module-badge">Module Final</span>
+                    <span class="module-status locked-status">🔒 Verrouillé</span>
+                </div>
+                <div class="locked-overlay" style="padding: 40px; text-align: center; background: #1a1a1a; border-radius: 8px; margin-bottom: 15px;">
+                    <i class="fa-solid fa-trophy" style="font-size: 2.2rem; color: #ffd700; margin-bottom: 10px;"></i>
+                    <p style="color: #bbb; font-size: 0.9rem;">Complétez la formation pour débloquer votre certificat.</p>
+                </div>
+                <h3>🏆 Fin de formation</h3>
+                <p class="video-description">Conclusion et prochaines étapes pour valider son compte Prop Firm.</p>
+                <button class="complete-btn" disabled style="background-color: #333; cursor: not-allowed;">Obtenir mon Certificat</button>
+            </div>
+
+        </div>
+    </div>
+
+    <script type="module" src="videos.js"></script>
 </body>
 
 </html>
