@@ -1,6 +1,14 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
-import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-import { getFirestore, doc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
+import { getAuth, 
+          createUserWithEmailAndPassword,
+          sendEmailVerification } 
+          from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+      
+    import { getFirestore,
+              doc, 
+              setDoc }
+
+     from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 console.log("🔥 register.js chargé");
 
@@ -62,10 +70,20 @@ if (registerForm) {
         await sendEmailVerification(user);
         console.log("📧 Email de vérification envoyé avec succès !");
         alert("Compte créé avec succès 🔥 Un e-mail de vérification vous a été envoyé à l'adresse " + user.email + ". Veuillez valider votre boîte de réception avant de vous connecter.");
-      } catch (mailError) {
-        console.error("❌ Erreur critique lors de l'envoi du mail (SMTP) :", mailError);
-        alert("Compte créé avec succès ! Cependant, l'e-mail de vérification n'a pas pu être envoyé par le serveur SMTP. Vous pouvez tout de même essayer de vous connecter.");
-      }
+      }  catch (mailError) {
+
+  console.error("MAIL ERROR:", mailError);
+  console.error("CODE:", mailError.code);
+  console.error("MESSAGE:", mailError.message);
+
+  alert(
+    "Erreur mail : " +
+    mailError.code +
+    "\n\n" +
+    mailError.message
+  );
+
+}
 
       // Redirection automatique vers la page de connexion
       window.location.href = "connexion.html";

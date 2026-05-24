@@ -4225,3 +4225,48 @@ opacity:0.8;
     font-size: 18px;
     color: #ffffff; /* Icône blanche pour rester sobre */
 }
+
+.mobile-menu-btn{
+display:none;
+font-size:28px;
+cursor:pointer;
+}
+
+@media(max-width:768px){
+
+.mobile-menu-btn{
+display:block;
+}
+
+.nav-links{
+
+position:absolute;
+
+top:80px;
+
+left:0;
+
+width:100%;
+
+background:#0f172a;
+
+flex-direction:column;
+
+display:none;
+
+padding:20px;
+
+}
+
+.nav-links.active{
+display:flex;
+}
+
+}
+
+.conteneur-principal {
+    display: flex;
+    flex-direction: column;
+    /* Crée automatiquement un espace de 20px entre chaque bloc vertical */
+    gap: 20px; 
+}

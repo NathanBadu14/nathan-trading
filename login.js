@@ -36,23 +36,18 @@ if (loginForm) {
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
       const user = userCredential.user;
 
-      // 2. Vérification de l'email (DÉSACTIVÉE TEMPORAIREMENT POUR TES TESTS)
-      /*
-      if (!user.emailVerified) {
-        alert("Veuillez vérifier votre email.");
-        await auth.signOut(); 
-        return;
-      }
-      */
-
-      // 3. Redirection si tout est OK
+      // 2. Redirection si tout est OK
       alert("Connexion réussie 🔥 Bienvenue sur Nathan Trading Academy !");
       window.location.href = "dashboard.html";
 
     } catch (error) {
-      console.error(error);
-      alert("Email ou mot de passe incorrect.");
-    }
+  console.error(error);
+
+  alert(
+    "Code : " + error.code +
+    "\n\nMessage : " + error.message
+  );
+}
   });
 }
 
