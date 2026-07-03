@@ -38,73 +38,23 @@ const premiumVideos = {
     8: "https://iframe.mediadelivery.net/embed/682167/87684ed3-2df8-41fd-b7bf-e5d0cec96c21?autoplay=false&preload=false",
 
     // MODULE 8
-    9: "https://iframe.mediadelivery.net/embed/682167/cb38cabd-b139-4581-9fe4-47d8d457f700?autoplay=false&preload=false",
-    10: "https://iframe.mediadelivery.net/embed/682167/22e0264f-ac75-41c3-b30a-56b403dc97c1?autoplay=false&preload=false",
-    11: "https://iframe.mediadelivery.net/embed/682167/f9d8e428-e0e2-4fbc-a8e7-c5c609ed9b91?autoplay=false&preload=false",
-    12: "https://iframe.mediadelivery.net/embed/682167/9d3e39bb-e348-40a0-8ad9-5d2cb75a2d7c?autoplay=false&preload=false",
-    13: "https://iframe.mediadelivery.net/embed/682167/60c08261-75dc-4e7b-af75-5dd6745c81ba?autoplay=false&preload=false",
+    9: "https://player.mediadelivery.net/embed/682167/cb38cabd-b139-4581-9fe4-47d8d457f700?autoplay=false",
+    10: "https://player.mediadelivery.net/embed/682167/22e0264f-ac75-41c3-b30a-56b403dc97c1?autoplay=false",
+    11: "https://player.mediadelivery.net/embed/682167/f9d8e428-e0e2-4fbc-a8e7-c5c609ed9b91?autoplay=false",
+    12: "https://player.mediadelivery.net/embed/682167/9d3e39bb-e348-40a0-8ad9-5d2cb75a2d7c?autoplay=false",
+    13: "https://player.mediadelivery.net/embed/682167/60c08261-75dc-4e7b-af75-5dd6745c81ba?autoplay=false",
 
     // MODULES 9 à 11
-    14: "https://iframe.mediadelivery.net/embed/682167/44011b7f-8893-487b-8082-747eef456a45?autoplay=false&preload=false",
-    15: "https://iframe.mediadelivery.net/embed/682167/c5a278a0-d031-46d9-bbfe-7d0aea822a67?autoplay=false&preload=false",
-    16: "https://iframe.mediadelivery.net/embed/682167/0188751b-c06a-45b4-abd8-047438abc376?autoplay=false&preload=false",
+    14: "https://player.mediadelivery.net/embed/682167/44011b7f-8893-487b-8082-747eef456a45?autoplay=false",
+    15: "https://player.mediadelivery.net/embed/682167/c5a278a0-d031-46d9-bbfe-7d0aea822a67?autoplay=false",
+    16: "https://player.mediadelivery.net/embed/682167/0188751b-c06a-45b4-abd8-047438abc376?autoplay=false",
 
     // MODULES 12 & 13
-    17: "https://iframe.mediadelivery.net/embed/682167/ba7ac687-ac72-4506-8afd-66a0a6103831?autoplay=false&preload=false",
+    17: "https://player.mediadelivery.net/embed/682167/ba7ac687-ac72-4506-8afd-66a0a6103831?autoplay=false",
 
     // CONCLUSION
-    18: "https://iframe.mediadelivery.net/embed/682167/d1b287c9-7e11-4540-8928-2e37077b352b?autoplay=false&preload=false"
+    18: "https://player.mediadelivery.net/embed/682167/d1b287c9-7e11-4540-8928-2e37077b352b?autoplay=false"
 };
-
-/* ===========================
-   FILIGRANE
-=========================== */
-
-function creerFiligrane(email) {
-
-    // Supprime un filigrane existant
-    const ancien = document.getElementById("filigrane-global");
-    if (ancien) ancien.remove();
-
-    const filigrane = document.createElement("div");
-    filigrane.id = "filigrane-global";
-
-    filigrane.style.cssText = `
-        position: fixed;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        pointer-events: none;
-        z-index: 9999;
-        overflow: hidden;
-    `;
-
-    // Génère une grille de textes en diagonale
-    const texte = email + " • Nathan Trading";
-    let html = "";
-
-    for (let y = -200; y < window.innerHeight + 200; y += 180) {
-        for (let x = -200; x < window.innerWidth + 200; x += 350) {
-            html += `
-                <span style="
-                    position: absolute;
-                    left: ${x}px;
-                    top: ${y}px;
-                    transform: rotate(-25deg);
-                    font-size: 13px;
-                    font-family: Arial, sans-serif;
-                    color: rgba(255, 255, 255, 0.12);
-                    white-space: nowrap;
-                    user-select: none;
-                ">${texte}</span>
-            `;
-        }
-    }
-
-    filigrane.innerHTML = html;
-    document.body.appendChild(filigrane);
-}
 
 /* ===========================
    AUTH
@@ -136,17 +86,6 @@ onAuthStateChanged(auth, async (user) => {
         }
 
         /* ===========================
-           FILIGRANE AVEC EMAIL
-        =========================== */
-
-        creerFiligrane(user.email);
-
-        // Recrée le filigrane si la fenêtre est redimensionnée
-        window.addEventListener("resize", () => {
-            creerFiligrane(user.email);
-        });
-
-        /* ===========================
            CHARGEMENT DES VIDEOS
         =========================== */
 
@@ -160,7 +99,7 @@ onAuthStateChanged(auth, async (user) => {
                 <iframe
                     src="${url}"
                     loading="lazy"
-                    allow="accelerometer; gyroscope; encrypted-media; picture-in-picture; fullscreen"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
                     allowfullscreen
                     style="
                         width:100%;
@@ -177,22 +116,34 @@ onAuthStateChanged(auth, async (user) => {
            MODULES
         =========================== */
 
+        // TEMPORAIRE : tout débloquer
         const currentModuleIndex = 18;
-        const modules = document.querySelectorAll(".video-card");
+
+        const modules =
+            document.querySelectorAll(".video-card");
 
         modules.forEach((module, index) => {
 
-            const btn = module.querySelector(".complete-btn");
-            const overlay = module.querySelector(".locked-overlay");
-            const status = module.querySelector(".module-status");
-            const video = module.querySelector(".video-container");
+            const btn =
+                module.querySelector(".complete-btn");
 
+            const overlay =
+                module.querySelector(".locked-overlay");
+
+            const status =
+                module.querySelector(".module-status");
+
+            const video =
+                module.querySelector(".video-container");
+
+            // Module débloqué
             if (index <= currentModuleIndex) {
 
                 module.classList.remove("locked");
                 module.classList.add("unlocked");
 
-                if (overlay) overlay.style.display = "none";
+                if (overlay)
+                    overlay.style.display = "none";
 
                 if (video) {
                     video.style.filter = "none";
@@ -205,11 +156,16 @@ onAuthStateChanged(auth, async (user) => {
                 }
 
                 if (status) {
-                    status.className = "module-status completed";
-                    status.innerHTML = "Disponible";
-                }
+                    status.className =
+                        "module-status completed";
 
-            } else {
+                    status.innerHTML =
+                        "Disponible";
+                }
+            }
+
+            // Module verrouillé
+            else {
 
                 module.classList.add("locked");
 
@@ -218,11 +174,16 @@ onAuthStateChanged(auth, async (user) => {
                     video.style.pointerEvents = "none";
                 }
 
-                if (btn) btn.disabled = true;
+                if (btn)
+                    btn.disabled = true;
 
                 if (status) {
-                    status.className = "module-status locked-status";
-                    status.innerHTML = "Verrouillé";
+
+                    status.className =
+                        "module-status locked-status";
+
+                    status.innerHTML =
+                        "Verrouillé";
                 }
             }
         });
@@ -231,21 +192,41 @@ onAuthStateChanged(auth, async (user) => {
            PROGRESSION
         =========================== */
 
-        const progressText = document.getElementById("progress-text");
-        const progressFill = document.getElementById("progress-fill");
-        const progression = userData.progression || 0;
+        const progressText =
+            document.getElementById("progress-text");
 
-        if (progressText) progressText.innerText = `${progression}% terminé`;
+        const progressFill =
+            document.getElementById("progress-fill");
+
+        const progression =
+            userData.progression || 0;
+
+        if (progressText)
+            progressText.innerText =
+                `${progression}% terminé`;
 
         if (progressFill) {
-            progressFill.style.width = `${progression}%`;
-            progressFill.innerText = `${progression}%`;
+
+            progressFill.style.width =
+                `${progression}%`;
+
+            progressFill.innerText =
+                `${progression}%`;
         }
 
     } catch (error) {
 
-        console.error("Erreur videos.js :", error);
-        alert("Erreur lors du chargement des vidéos.");
-        window.location.replace("index.html");
+        console.error(
+            "Erreur videos.js :",
+            error
+        );
+
+        alert(
+            "Erreur lors du chargement des vidéos."
+        );
+
+        window.location.replace(
+            "index.html"
+        );
     }
 });
