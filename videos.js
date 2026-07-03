@@ -1,252 +1,232 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-import {
-  getAuth,
-  onAuthStateChanged,
-  signOut
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+/* ===========================
+   FIREBASE
+=========================== */
 
-import {
-  getFirestore,
-  doc,
-  getDoc,
-  updateDoc,
-  collection,
-  addDoc,
-  getDocs,
-  query,
-  orderBy
-} from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-/* =========================
-   FIREBASE CONFIG
-========================= */
 const firebaseConfig = {
-  apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
-  authDomain: "nathan-trading.firebaseapp.com",
-  projectId: "nathan-trading",
-  storageBucket: "nathan-trading.firebasestorage.app",
-  messagingSenderId: "908084098772",
-  appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
+    apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
+    authDomain: "nathan-trading.firebaseapp.com",
+    projectId: "nathan-trading",
+    storageBucket: "nathan-trading.firebasestorage.app",
+    messagingSenderId: "908084098772",
+    appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 };
 
-/* =========================
-   INITIALISATION
-========================= */
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const db = getFirestore(app);
 
-console.log("🔥 Videos page connectée");
+/* ===========================
+   VIDEOS PREMIUM
+=========================== */
 
-/* =========================
-   PROTECTION PAGE
-========================= */
+const premiumVideos = {
+
+    // INTRODUCTION
+    1: "https://iframe.mediadelivery.net/embed/682167/f4c635f5-ba3d-4281-9a06-9723eadeb1bb?autoplay=false&preload=false",
+
+    // MODULES 1 à 7
+    2: "https://iframe.mediadelivery.net/embed/682167/00260c83-1506-4715-bb86-8e8a8f7a5d05?autoplay=false&preload=false",
+    3: "https://iframe.mediadelivery.net/embed/682167/687d44ed-39cf-4fe2-b44f-a03b651aab31?autoplay=false&preload=false",
+    4: "https://iframe.mediadelivery.net/embed/682167/543411c3-dd5d-4c05-9a67-e2c61ac59cfd?autoplay=false&preload=false",
+    5: "https://iframe.mediadelivery.net/embed/682167/409f25ba-06f7-4680-9684-e7dc92e957d8?autoplay=false&preload=false",
+    6: "https://iframe.mediadelivery.net/embed/682167/c38276c8-4672-49f4-8a0a-e28456281506?autoplay=false&preload=false",
+    7: "https://iframe.mediadelivery.net/embed/682167/b8a9f640-95ba-4ccd-be8a-4eab50fc7879?autoplay=false&preload=false",
+    8: "https://iframe.mediadelivery.net/embed/682167/87684ed3-2df8-41fd-b7bf-e5d0cec96c21?autoplay=false&preload=false",
+
+    // MODULE 8
+    9: "https://player.mediadelivery.net/embed/682167/cb38cabd-b139-4581-9fe4-47d8d457f700?autoplay=false",
+    10: "https://player.mediadelivery.net/embed/682167/22e0264f-ac75-41c3-b30a-56b403dc97c1?autoplay=false",
+    11: "https://player.mediadelivery.net/embed/682167/f9d8e428-e0e2-4fbc-a8e7-c5c609ed9b91?autoplay=false",
+    12: "https://player.mediadelivery.net/embed/682167/9d3e39bb-e348-40a0-8ad9-5d2cb75a2d7c?autoplay=false",
+    13: "https://player.mediadelivery.net/embed/682167/60c08261-75dc-4e7b-af75-5dd6745c81ba?autoplay=false",
+
+    // MODULES 9 à 11
+    14: "https://player.mediadelivery.net/embed/682167/44011b7f-8893-487b-8082-747eef456a45?autoplay=false",
+    15: "https://player.mediadelivery.net/embed/682167/c5a278a0-d031-46d9-bbfe-7d0aea822a67?autoplay=false",
+    16: "https://player.mediadelivery.net/embed/682167/0188751b-c06a-45b4-abd8-047438abc376?autoplay=false",
+
+    // MODULES 12 & 13
+    17: "https://player.mediadelivery.net/embed/682167/ba7ac687-ac72-4506-8afd-66a0a6103831?autoplay=false",
+
+    // CONCLUSION
+    18: "https://player.mediadelivery.net/embed/682167/d1b287c9-7e11-4540-8928-2e37077b352b?autoplay=false"
+};
+
+/* ===========================
+   AUTH
+=========================== */
+
 onAuthStateChanged(auth, async (user) => {
-  if (!user) {
-    window.location.href = "index.html";
-    return;
-  }
 
-  try {
-    const userRef = doc(db, "users", user.uid);
-    const userSnap = await getDoc(userRef);
-
-    if (!userSnap.exists()) {
-      alert("Utilisateur introuvable");
-      window.location.href = "index.html";
-      return;
+    if (!user) {
+        window.location.replace("index.html");
+        return;
     }
 
-    const userData = userSnap.data();
-
-    /* =========================
-       PRENOM / BIENVENUE
-    ========================= */
-    const studentEmail = document.querySelector(".student-email");
-    if (studentEmail) {
-      studentEmail.innerHTML = `Bienvenue ${userData.username || "Trader"} 🔥`; // Correction de userData.name en userData.username pour correspondre à ton admin.js
-    }
-
-    /* =========================
-       ADMIN
-    ========================= */
-    const adminLink = document.getElementById("admin-link");
-    const ADMIN_EMAIL = "badumisanathan807@gmail.com";
-
-    if (adminLink) {
-      adminLink.style.display = user.email === ADMIN_EMAIL ? "flex" : "none";
-    }
-
-    /* =========================
-       PREMIUM
-    ========================= */
-    if (!userData.premium) {
-      alert("Accès réservé aux élèves Premium.");
-      window.location.href = "payment.html";
-      return;
-    }
-
-    /* =========================
-       DEBLOCAGE DYNAMIQUE DES MODULES
-    ========================= */
-    // Par défaut, l'utilisateur commence au module index 1 (deuxième carte débloquée, la première étant l'intro à l'index 0).
-    const currentModuleIndex = userData.currentModuleIndex !== undefined ? userData.currentModuleIndex : 1;
-    const modules = document.querySelectorAll(".video-card");
-    const totalModules = modules.length;
-
-    modules.forEach((module, index) => {
-      // Débloque tous les modules jusqu'à l'index courant de l'utilisateur
-      if (index <= currentModuleIndex) {
-        module.classList.remove("locked");
-        module.classList.add("unlocked");
-        
-        // Supprime l'overlay de verrouillage s'il existe pour ce module
-        const overlay = module.querySelector(".locked-overlay");
-        if (overlay) overlay.style.display = "none";
-        
-        // Active le bouton de complétion et l'iframe
-        const btn = module.querySelector(".complete-btn");
-        if (btn) {
-          btn.removeAttribute("disabled");
-          btn.style.backgroundColor = ""; // Reset couleur du bouton verrouillé
-          btn.style.cursor = "pointer";
-        }
-        const iframe = module.querySelector("iframe");
-        if (iframe) iframe.style.display = "block";
-
-        const statusSpan = module.querySelector(".module-status");
-        if (statusSpan && statusSpan.classList.contains("locked-status")) {
-          statusSpan.classList.remove("locked-status");
-          statusSpan.classList.add("completed");
-          statusSpan.innerHTML = "Disponible";
-        }
-      } else {
-        module.classList.remove("unlocked");
-        module.classList.add("locked");
-      }
-    });
-
-    /* =========================
-       MISE À JOUR DE LA BARRE DE PROGRESSION VISUELLE
-    ========================= */
-    const progressText = document.getElementById("progress-text");
-    const progressFill = document.getElementById("progress-fill");
-    const currentProgression = userData.progression || 0;
-
-    if (progressText) progressText.innerText = `${currentProgression}% terminé`;
-    if (progressFill) {
-      progressFill.style.width = `${currentProgression}%`;
-      progressFill.innerText = `${currentProgression}%`;
-    }
-
-    /* =========================
-       BOUTONS TERMINER
-    ========================= */
-    const completeButtons = document.querySelectorAll(".complete-btn");
-
-    completeButtons.forEach((button, index) => {
-      button.addEventListener("click", async () => {
-        // L'index du bouton correspond exactement à l'index du module en cours de validation
-        const nextModuleIndex = index + 1;
-
-        // Calcul précis basé sur le nombre total réel de tes cartes (20 modules)
-        let progression = Math.round((nextModuleIndex / totalModules) * 100);
-        if (progression > 100) progression = 100;
-
-        try {
-          await updateDoc(userRef, {
-            currentModuleIndex: nextModuleIndex,
-            progression: progression
-          });
-
-          alert(`Module validé ✅\nProgression : ${progression}%`);
-          location.reload();
-        } catch (error) {
-          console.error(error);
-          alert("Erreur lors de la mise à jour de la progression");
-        }
-      });
-    });
-
-    /* =========================
-       GESTION DES COMMENTAIRES
-    ========================= */
-    const commentForms = document.querySelectorAll(".comment-form");
-
-    commentForms.forEach((form, index) => {
-      form.addEventListener("submit", async (e) => {
-        e.preventDefault();
-        const input = form.querySelector(".comment-input");
-        const message = input.value.trim();
-
-        if (!message) return;
-
-        try {
-          await addDoc(collection(db, "comments"), {
-            videoId: index,
-            email: user.email,
-            name: userData.username || "Trader",
-            message: message,
-            createdAt: new Date()
-          });
-
-          input.value = "";
-          loadComments();
-        } catch (error) {
-          console.error(error);
-        }
-      });
-    });
-
-    /* =========================
-       CHARGEMENT DES COMMENTAIRES
-    ========================= */
-    async function loadComments() {
-      const containers = document.querySelectorAll(".comments-container");
-      containers.forEach(container => container.innerHTML = "");
-
-      const commentsQuery = query(
-        collection(db, "comments"),
-        orderBy("createdAt", "desc")
-      );
-
-      const snapshot = await getDocs(commentsQuery);
-
-      snapshot.forEach((docSnap) => {
-        const data = docSnap.data();
-        const container = containers[data.videoId];
-
-        if (!container) return;
-
-        container.innerHTML += `
-          <div class="comment-card">
-            <h4>${data.name || data.email}</h4>
-            <p>${data.message}</p>
-          </div>
-        `;
-      });
-    }
-
-    loadComments();
-
-  } catch (error) {
-    console.error(error);
-    alert("Erreur lors du chargement des vidéos");
-  }
-});
-
-/* =========================
-   DECONNEXION
-========================= */
-const logoutBtn = document.querySelector(".logout-btn");
-if (logoutBtn) {
-  logoutBtn.addEventListener("click", async () => {
     try {
-      await signOut(auth);
-      window.location.href = "index.html";
+
+        const userRef = doc(db, "users", user.uid);
+        const userSnap = await getDoc(userRef);
+
+        if (!userSnap.exists()) {
+            window.location.replace("index.html");
+            return;
+        }
+
+        const userData = userSnap.data();
+
+        if (!userData.premium) {
+            alert("Accès réservé aux élèves Premium.");
+            window.location.replace("payment.html");
+            return;
+        }
+
+        /* ===========================
+           CHARGEMENT DES VIDEOS
+        =========================== */
+
+        Object.entries(premiumVideos).forEach(([id, url]) => {
+
+            const container = document.getElementById(`video-${id}`);
+
+            if (!container) return;
+
+            container.innerHTML = `
+                <iframe
+                    src="${url}"
+                    loading="lazy"
+                    allow="accelerometer; gyroscope; autoplay; encrypted-media; picture-in-picture; fullscreen"
+                    allowfullscreen
+                    style="
+                        width:100%;
+                        height:480px;
+                        border:none;
+                        border-radius:16px;
+                        background:#000;
+                    ">
+                </iframe>
+            `;
+        });
+
+        /* ===========================
+           MODULES
+        =========================== */
+
+        // TEMPORAIRE : tout débloquer
+        const currentModuleIndex = 18;
+
+        const modules =
+            document.querySelectorAll(".video-card");
+
+        modules.forEach((module, index) => {
+
+            const btn =
+                module.querySelector(".complete-btn");
+
+            const overlay =
+                module.querySelector(".locked-overlay");
+
+            const status =
+                module.querySelector(".module-status");
+
+            const video =
+                module.querySelector(".video-container");
+
+            // Module débloqué
+            if (index <= currentModuleIndex) {
+
+                module.classList.remove("locked");
+                module.classList.add("unlocked");
+
+                if (overlay)
+                    overlay.style.display = "none";
+
+                if (video) {
+                    video.style.filter = "none";
+                    video.style.pointerEvents = "auto";
+                }
+
+                if (btn) {
+                    btn.disabled = false;
+                    btn.style.cursor = "pointer";
+                }
+
+                if (status) {
+                    status.className =
+                        "module-status completed";
+
+                    status.innerHTML =
+                        "Disponible";
+                }
+            }
+
+            // Module verrouillé
+            else {
+
+                module.classList.add("locked");
+
+                if (video) {
+                    video.style.filter = "blur(12px)";
+                    video.style.pointerEvents = "none";
+                }
+
+                if (btn)
+                    btn.disabled = true;
+
+                if (status) {
+
+                    status.className =
+                        "module-status locked-status";
+
+                    status.innerHTML =
+                        "Verrouillé";
+                }
+            }
+        });
+
+        /* ===========================
+           PROGRESSION
+        =========================== */
+
+        const progressText =
+            document.getElementById("progress-text");
+
+        const progressFill =
+            document.getElementById("progress-fill");
+
+        const progression =
+            userData.progression || 0;
+
+        if (progressText)
+            progressText.innerText =
+                `${progression}% terminé`;
+
+        if (progressFill) {
+
+            progressFill.style.width =
+                `${progression}%`;
+
+            progressFill.innerText =
+                `${progression}%`;
+        }
+
     } catch (error) {
-      console.error(error);
+
+        console.error(
+            "Erreur videos.js :",
+            error
+        );
+
+        alert(
+            "Erreur lors du chargement des vidéos."
+        );
+
+        window.location.replace(
+            "index.html"
+        );
     }
-  });
-}
+});
