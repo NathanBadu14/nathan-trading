@@ -2,262 +2,121 @@
 <html lang="fr">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mon Profil | Nathan Trading</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="icon" type="image/png" href="assets/image2.png">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
 
-<meta charset="UTF-8">
-
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-
-<title>Mon Profil | Nathan Trading</title>
-
-<link rel="stylesheet" href="style.css">
-
-<link rel="icon" type="image/png" href="assets/image2.png">
-
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-/>
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FGL81C37G2');
-</script>
-
-<script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/6b1aed9b5212c.js" data-cmp-host="c.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
-
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FGL81C37G2');
+    </script>
 </head>
 
 <body class="dashboard-body">
 
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-
-<img src="assets/image2.png" class="sidebar-logo">
-
-<h2>
-Nathan Trading
-</h2>
-
-<a href="dashboard.html">
-
-<i class="fa-solid fa-chart-line"></i>
-
-Dashboard
-
-</a>
-
-<a href="videos.html">
-
-<i class="fa-solid fa-play"></i>
-
-Cours Vidéos
-
-</a>
-
-<a href="profile.html" class="active-link">
-
-<i class="fa-solid fa-user"></i>
-
-Mon Profil
-
-</a>
-
-<a
-href="admin.html"
-id="admin-link"
-style="display:none;"
->
-
-<i class="fa-solid fa-lock"></i>
-
-Admin
-
-</a>
-
-<button class="logout-btn">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Déconnexion
-
-</button>
-
-</div>
-
-<!-- CONTENU -->
-
-<div class="dashboard-content-main">
-
-<div class="profile-card">
-
-<div class="profile-top">
-
-<div class="profile-avatar">
-
-<i class="fa-solid fa-user"></i>
-
-</div>
-
-<div>
-
-<h1 id="profile-name">
-
-Chargement...
-
-</h1>
-
-<p id="profile-email">
-
-Chargement...
-
-</p>
-
-</div>
-
-</div>
-
-<!-- INFOS -->
-
-<div class="profile-info-grid">
-
-<div class="profile-info-box">
-
-<h3>
-👑 Statut
-</h3>
-
-<p id="profile-premium">
-
-Chargement...
-
-</p>
-
-</div>
-
-<div class="profile-info-box">
-
-<h3>
-📈 Progression
-</h3>
-
-<p id="profile-progress">
-
-0%
-
-</p>
-
-</div>
-
-<div class="profile-info-box">
-
-<h3>
-🆔 UID
-</h3>
-
-<p id="profile-uid">
-
-Chargement...
-
-</p>
-
-</div>
-
-<div class="profile-info-box">
-
-<h3>
-📅 Inscription
-</h3>
-
-<p id="profile-created">
-
-Chargement...
-
-</p>
-
-</div>
-
-</div>
-
-<!-- BARRE PROGRESSION -->
-
-<div class="profile-progress-section">
-
-<h2>
-Votre progression
-</h2>
-
-<div class="progress-bar">
-
-<div
-class="progress-fill"
-id="profile-progress-fill"
->
-
-0%
-
-</div>
-
-</div>
-
-</div>
-
-<!-- PREMIUM BOX -->
-
-<div class="premium-box">
-
-<div class="premium-content">
-
-<div>
-
-<h2>
-Nathan Trading Academy
-</h2>
-
-<p>
-Continuez votre progression et développez
-une approche professionnelle du trading :
-gestion du risque, psychologie,
-analyse technique et exécution.
-</p>
-
-<a href="videos.html">
-
-<button class="primary-btn">
-
-Continuer la Formation
-
-</button>
-
-</a>
-
-</div>
-
-<div class="academy-icon">
-
-<i class="fa-solid fa-graduation-cap"></i>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-</div>
-
-<script type="module" src="profile.js"></script>
-
+    <!-- SIDEBAR -->
+    <div class="sidebar">
+        <img src="assets/image2.png" class="sidebar-logo">
+        <h2>Nathan Trading</h2>
+        <a href="dashboard.html">
+            <i class="fa-solid fa-chart-line"></i> Dashboard
+        </a>
+        <a href="videos.html">
+            <i class="fa-solid fa-play"></i> Cours Vidéos
+        </a>
+        <a href="profile.html" class="active-link">
+            <i class="fa-solid fa-user"></i> Mon Profil
+        </a>
+        <a href="admin.html" id="admin-link" style="display:none;">
+            <i class="fa-solid fa-user-shield"></i> Admin
+        </a>
+        <button class="logout-btn">
+            <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
+        </button>
+    </div>
+
+    <!-- CONTENU -->
+    <div class="dashboard-content-main">
+
+        <div class="profile-card">
+
+            <!-- AVATAR + NOM -->
+            <div class="profile-top">
+                <div class="profile-avatar">
+                    <i class="fa-solid fa-user"></i>
+                </div>
+                <div>
+                    <h1 id="profile-name">Chargement...</h1>
+                    <p id="profile-email" style="color:#bbb;">Chargement...</p>
+                </div>
+            </div>
+
+            <!-- INFOS -->
+            <div class="profile-info-grid">
+
+                <div class="profile-info-box">
+                    <h3>👑 Statut</h3>
+                    <p id="profile-premium">Chargement...</p>
+                </div>
+
+                <div class="profile-info-box">
+                    <h3>📈 Progression</h3>
+                    <p id="profile-progress">0%</p>
+                </div>
+
+                <div class="profile-info-box">
+                    <h3>🆔 UID</h3>
+                    <p id="profile-uid" style="font-size:11px;word-break:break-all;">Chargement...</p>
+                </div>
+
+                <div class="profile-info-box">
+                    <h3>📅 Inscription</h3>
+                    <p id="profile-created">Chargement...</p>
+                </div>
+
+            </div>
+
+            <!-- BARRE PROGRESSION -->
+            <div class="profile-progress-section">
+                <h2>Votre progression</h2>
+                <div class="progress-bar">
+                    <div class="progress-fill" id="profile-progress-fill">0%</div>
+                </div>
+            </div>
+
+            <!-- MODULES TERMINÉS -->
+            <div style="margin-top:40px;">
+                <h2 style="margin-bottom:20px;">
+                    ✅ Modules terminés
+                </h2>
+                <div id="profile-modules">
+                    <p style="color:#bbb;">Chargement...</p>
+                </div>
+            </div>
+
+            <!-- BOUTON CONTINUER -->
+            <div style="margin-top:40px;text-align:center;">
+                <a href="videos.html">
+                    <button class="primary-btn" style="padding:16px 40px;font-size:16px;">
+                        🎓 Continuer la Formation
+                    </button>
+                </a>
+            </div>
+
+        </div>
+
+    </div>
+
+    <script type="module" src="profile.js"></script>
 </body>
 
 </html>
