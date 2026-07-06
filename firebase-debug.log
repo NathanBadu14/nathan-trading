@@ -1,0 +1,50 @@
+[debug] [2026-07-06T09:21:24.586Z] ----------------------------------------------------------------------
+[debug] [2026-07-06T09:21:24.595Z] Command:       C:\Program Files\nodejs\node.exe C:\Users\BADUMISA nathan\AppData\Roaming\npm\node_modules\firebase-tools\lib\bin\firebase.js login
+[debug] [2026-07-06T09:21:24.596Z] CLI Version:   15.22.0
+[debug] [2026-07-06T09:21:24.597Z] Platform:      win32
+[debug] [2026-07-06T09:21:24.597Z] Node Version:  v22.23.0
+[debug] [2026-07-06T09:21:24.598Z] Detected Agent: unknown
+[debug] [2026-07-06T09:21:24.598Z] Time:          Mon Jul 06 2026 10:21:24 GMT+0100 (heure d’Afrique de l’Ouest)
+[debug] [2026-07-06T09:21:24.599Z] ----------------------------------------------------------------------
+[debug] 
+[info] i  The Firebase CLI’s MCP server feature can optionally make use of Gemini in Firebase. Learn more about Gemini in Firebase and how it uses your data: https://firebase.google.com/docs/gemini-in-firebase#how-gemini-in-firebase-uses-your-data 
+[info] 
+[info] i  Firebase optionally collects CLI and Emulator Suite usage and error reporting information to help improve our products. Data is collected in accordance with Google's privacy policy (https://policies.google.com/privacy) and is not used to identify you. 
+[info] 
+[info] i  To change your preferences at any time, run `firebase logout` and `firebase login` again. 
+[info] 
+[info] Visit this URL on this device to log in:
+[info] https://accounts.google.com/o/oauth2/auth?client_id=563584335869-fgrhgmd47bqnekij5i8b5pr03ho849e6.apps.googleusercontent.com&scope=email%20openid%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloudplatformprojects.readonly%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Ffirebase%20https%3A%2F%2Fwww.googleapis.com%2Fauth%2Fcloud-platform&response_type=code&state=399705200&redirect_uri=http%3A%2F%2Flocalhost%3A9005
+[info] 
+[info] Waiting for authentication...
+[debug] [2026-07-06T09:23:33.361Z] >>> [apiv2][query] POST https://accounts.google.com/o/oauth2/token [none]
+[debug] [2026-07-06T09:23:33.362Z] >>> [apiv2][body] POST https://accounts.google.com/o/oauth2/token [omitted]
+[debug] [2026-07-06T09:23:35.789Z] Token Fetch Error: FirebaseError: FetchError: Invalid response body while trying to fetch https://accounts.google.com/o/oauth2/token: Premature close
+    at RetryOperation._fn (C:\Users\BADUMISA nathan\AppData\Roaming\npm\node_modules\firebase-tools\lib\apiv2.js:317:88)
+    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)
+[error] Authentication Error: Your credentials are no longer valid. Please run firebase login --reauth
+
+For CI servers and headless environments, generate a new token with firebase login:ci
+[debug] [2026-07-06T09:23:35.822Z] >>> [apiv2][query] POST https://auth.firebase.tools/attest [none]
+[debug] [2026-07-06T09:23:35.824Z] >>> [apiv2][body] POST https://auth.firebase.tools/attest {"session_id":"bb15b154-d67c-4b10-a8fb-75aaf4c258a5"}
+[debug] [2026-07-06T09:23:37.415Z] <<< [apiv2][status] POST https://auth.firebase.tools/attest 200
+[debug] [2026-07-06T09:23:37.415Z] <<< [apiv2][body] POST https://auth.firebase.tools/attest {"token":"H2hgDSkP9yCKeUebSJvDF3wR7CtIStxehIemPwB0YTo"}
+[info] 
+[info] To sign in to the Firebase CLI:
+[info] 
+[info] 1. Take note of your session ID:
+[info] 
+[info]    BB15B
+[info] 
+[info] 2. Visit the URL below on any device and follow the instructions to get your code:
+[info] 
+[info]    https://auth.firebase.tools/login?code_challenge=I5A2Xn865_SxE5iSJxvYxESJ_s4dHGmnaKmhQC-3WEE&session=bb15b154-d67c-4b10-a8fb-75aaf4c258a5&attest=H2hgDSkP9yCKeUebSJvDF3wR7CtIStxehIemPwB0YTo
+[info] 
+[info] 3. Paste or enter the authorization code below once you have it:
+[info] 
+[debug] [2026-07-06T09:51:45.685Z] Error: Timed out.
+    at Timeout._onTimeout (C:\Users\BADUMISA nathan\AppData\Roaming\npm\node_modules\firebase-tools\lib\utils.js:313:49)
+    at listOnTimeout (node:internal/timers:585:17)
+    at process.processTimers (node:internal/timers:521:7)
+[error] 
+[error] Error: An unexpected error has occurred.
