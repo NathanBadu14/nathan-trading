@@ -4,10 +4,30 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Nathan Trading Academy | Formation Premium Forex & Crypto</title>
-    <meta name="description" content="Formation premium en trading Forex, indices et crypto avec Nathan Trading Academy. Méthode claire, résultats concrets.">
-    <meta name="keywords" content="trading, forex, crypto, formation trading, Nathan Trading Academy, indices synthétiques">
+
+    <title>Nathan Trading Academy | Formation Premium Trading Forex & Crypto</title>
+    <meta name="description" content="Rejoignez Nathan Trading Academy et maîtrisez le Forex, les indices synthétiques et le crypto avec une méthode claire, structurée et rentable. Formation premium en français pour traders débutants et intermédiaires.">
+    <meta name="keywords" content="formation trading, forex, crypto, indices synthétiques, Nathan Trading Academy, apprendre le trading, trading francophone, trading RDC, trading Afrique, trading Congo">
     <meta name="author" content="Nathan Trading">
+    <meta name="robots" content="index, follow">
+    <meta name="language" content="French">
+
+    <!-- Open Graph -->
+    <meta property="og:type" content="website">
+    <meta property="og:url" content="https://nathan-trading.com/">
+    <meta property="og:title" content="Nathan Trading Academy | Formation Premium Trading">
+    <meta property="og:description" content="Maîtrisez le Forex, les indices et le crypto avec une méthode claire et rentable. Formation premium en français.">
+    <meta property="og:image" content="https://nathan-trading.com/assets/image2.png">
+    <meta property="og:locale" content="fr_FR">
+    <meta property="og:site_name" content="Nathan Trading Academy">
+
+    <!-- Twitter Card -->
+    <meta name="twitter:card" content="summary_large_image">
+    <meta name="twitter:title" content="Nathan Trading Academy | Formation Premium Trading">
+    <meta name="twitter:description" content="Maîtrisez le Forex, les indices et le crypto avec une méthode claire et rentable.">
+    <meta name="twitter:image" content="https://nathan-trading.com/assets/image2.png">
+
+    <link rel="canonical" href="https://nathan-trading.com/">
     <link rel="icon" type="image/png" href="assets/image2.png">
     <link rel="stylesheet" href="style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -26,9 +46,6 @@
     </script>
 
     <style>
-        /* =====================
-           STATS BAR
-        ===================== */
         .stats-bar {
             display: flex;
             justify-content: center;
@@ -39,274 +56,47 @@
             border-top: 1px solid rgba(255,255,255,0.06);
             border-bottom: 1px solid rgba(255,255,255,0.06);
         }
+        .stat-item { text-align: center; }
+        .stat-item h3 { font-size: 38px; font-weight: 800; color: #00c8ff; margin-bottom: 5px; }
+        .stat-item p { font-size: 14px; color: #aaa; letter-spacing: 1px; }
 
-        .stat-item {
-            text-align: center;
-        }
+        .why-section { padding: 100px 8%; text-align: center; }
+        .why-section h2 { font-size: 42px; margin-bottom: 15px; color: #fff; }
+        .why-section h2 span { color: #00c8ff; }
+        .why-subtitle { color: #aaa; font-size: 17px; margin-bottom: 60px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .why-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); gap: 25px; }
+        .why-card { background: #0f0f0f; padding: 35px 30px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: left; transition: 0.3s; }
+        .why-card:hover { border-color: #00c8ff; transform: translateY(-6px); box-shadow: 0 15px 40px rgba(0,200,255,0.1); }
+        .why-card .icon { font-size: 28px; margin-bottom: 18px; }
+        .why-card h3 { font-size: 18px; font-weight: 700; margin-bottom: 12px; color: #fff; }
+        .why-card p { font-size: 14px; color: #aaa; line-height: 1.7; }
 
-        .stat-item h3 {
-            font-size: 38px;
-            font-weight: 800;
-            color: #00c8ff;
-            margin-bottom: 5px;
-        }
+        .testimonials-section { padding: 100px 8%; background: #080808; text-align: center; }
+        .testimonials-section h2 { font-size: 42px; margin-bottom: 15px; color: #fff; }
+        .testimonials-section h2 span { color: #00c8ff; }
+        .testimonials-subtitle { color: #aaa; font-size: 17px; margin-bottom: 60px; }
+        .testimonials-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 25px; }
+        .testimonial-card { background: #111; padding: 35px; border-radius: 20px; border: 1px solid rgba(255,255,255,0.05); text-align: left; transition: 0.3s; }
+        .testimonial-card:hover { border-color: #00c8ff; transform: translateY(-4px); }
+        .testimonial-stars { color: #ffd700; font-size: 16px; margin-bottom: 15px; letter-spacing: 2px; }
+        .testimonial-text { font-size: 15px; color: #ccc; line-height: 1.8; margin-bottom: 20px; font-style: italic; }
+        .testimonial-author { display: flex; align-items: center; gap: 12px; }
+        .testimonial-avatar { width: 42px; height: 42px; border-radius: 50%; background: linear-gradient(135deg, #00c8ff, #00ffae); display: flex; align-items: center; justify-content: center; font-weight: 700; color: #000; font-size: 16px; flex-shrink: 0; }
+        .testimonial-author-info h4 { font-size: 15px; font-weight: 700; color: #fff; }
+        .testimonial-author-info p { font-size: 12px; color: #aaa; }
 
-        .stat-item p {
-            font-size: 14px;
-            color: #aaa;
-            letter-spacing: 1px;
-        }
+        .cta-section { padding: 100px 8%; text-align: center; background: linear-gradient(135deg, rgba(0,200,255,0.08), rgba(0,255,174,0.05)); border-top: 1px solid rgba(0,200,255,0.1); border-bottom: 1px solid rgba(0,200,255,0.1); }
+        .cta-section h2 { font-size: 46px; font-weight: 800; margin-bottom: 20px; color: #fff; }
+        .cta-section h2 span { color: #00c8ff; }
+        .cta-section p { font-size: 18px; color: #aaa; margin-bottom: 40px; max-width: 600px; margin-left: auto; margin-right: auto; }
+        .cta-buttons { display: flex; justify-content: center; gap: 20px; flex-wrap: wrap; }
+        .cta-primary { padding: 20px 50px; background: #00c8ff; color: #000; border: none; border-radius: 16px; font-size: 18px; font-weight: 800; cursor: pointer; transition: 0.3s; }
+        .cta-primary:hover { transform: translateY(-4px); box-shadow: 0 15px 40px rgba(0,200,255,0.4); }
+        .cta-secondary { padding: 20px 50px; background: transparent; color: #00c8ff; border: 2px solid #00c8ff; border-radius: 16px; font-size: 18px; font-weight: 700; cursor: pointer; transition: 0.3s; }
+        .cta-secondary:hover { background: rgba(0,200,255,0.1); transform: translateY(-4px); }
 
-        /* =====================
-           POURQUOI NTA
-        ===================== */
-        .why-section {
-            padding: 100px 8%;
-            text-align: center;
-        }
-
-        .why-section h2 {
-            font-size: 42px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .why-section h2 span {
-            color: #00c8ff;
-        }
-
-        .why-subtitle {
-            color: #aaa;
-            font-size: 17px;
-            margin-bottom: 60px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .why-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 25px;
-        }
-
-        .why-card {
-            background: #0f0f0f;
-            padding: 35px 30px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            text-align: left;
-            transition: 0.3s;
-        }
-
-        .why-card:hover {
-            border-color: #00c8ff;
-            transform: translateY(-6px);
-            box-shadow: 0 15px 40px rgba(0,200,255,0.1);
-        }
-
-        .why-card .icon {
-            font-size: 28px;
-            margin-bottom: 18px;
-        }
-
-        .why-card h3 {
-            font-size: 18px;
-            font-weight: 700;
-            margin-bottom: 12px;
-            color: #fff;
-        }
-
-        .why-card p {
-            font-size: 14px;
-            color: #aaa;
-            line-height: 1.7;
-        }
-
-        /* =====================
-           TÉMOIGNAGES
-        ===================== */
-        .testimonials-section {
-            padding: 100px 8%;
-            background: #080808;
-            text-align: center;
-        }
-
-        .testimonials-section h2 {
-            font-size: 42px;
-            margin-bottom: 15px;
-            color: #fff;
-        }
-
-        .testimonials-section h2 span {
-            color: #00c8ff;
-        }
-
-        .testimonials-subtitle {
-            color: #aaa;
-            font-size: 17px;
-            margin-bottom: 60px;
-        }
-
-        .testimonials-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 25px;
-        }
-
-        .testimonial-card {
-            background: #111;
-            padding: 35px;
-            border-radius: 20px;
-            border: 1px solid rgba(255,255,255,0.05);
-            text-align: left;
-            transition: 0.3s;
-        }
-
-        .testimonial-card:hover {
-            border-color: #00c8ff;
-            transform: translateY(-4px);
-        }
-
-        .testimonial-stars {
-            color: #ffd700;
-            font-size: 16px;
-            margin-bottom: 15px;
-            letter-spacing: 2px;
-        }
-
-        .testimonial-text {
-            font-size: 15px;
-            color: #ccc;
-            line-height: 1.8;
-            margin-bottom: 20px;
-            font-style: italic;
-        }
-
-        .testimonial-author {
-            display: flex;
-            align-items: center;
-            gap: 12px;
-        }
-
-        .testimonial-avatar {
-            width: 42px;
-            height: 42px;
-            border-radius: 50%;
-            background: linear-gradient(135deg, #00c8ff, #00ffae);
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            font-weight: 700;
-            color: #000;
-            font-size: 16px;
-            flex-shrink: 0;
-        }
-
-        .testimonial-author-info h4 {
-            font-size: 15px;
-            font-weight: 700;
-            color: #fff;
-        }
-
-        .testimonial-author-info p {
-            font-size: 12px;
-            color: #aaa;
-        }
-
-        /* =====================
-           CTA SECTION
-        ===================== */
-        .cta-section {
-            padding: 100px 8%;
-            text-align: center;
-            background: linear-gradient(135deg, rgba(0,200,255,0.08), rgba(0,255,174,0.05));
-            border-top: 1px solid rgba(0,200,255,0.1);
-            border-bottom: 1px solid rgba(0,200,255,0.1);
-        }
-
-        .cta-section h2 {
-            font-size: 46px;
-            font-weight: 800;
-            margin-bottom: 20px;
-            color: #fff;
-        }
-
-        .cta-section h2 span {
-            color: #00c8ff;
-        }
-
-        .cta-section p {
-            font-size: 18px;
-            color: #aaa;
-            margin-bottom: 40px;
-            max-width: 600px;
-            margin-left: auto;
-            margin-right: auto;
-        }
-
-        .cta-buttons {
-            display: flex;
-            justify-content: center;
-            gap: 20px;
-            flex-wrap: wrap;
-        }
-
-        .cta-primary {
-            padding: 20px 50px;
-            background: #00c8ff;
-            color: #000;
-            border: none;
-            border-radius: 16px;
-            font-size: 18px;
-            font-weight: 800;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .cta-primary:hover {
-            transform: translateY(-4px);
-            box-shadow: 0 15px 40px rgba(0,200,255,0.4);
-        }
-
-        .cta-secondary {
-            padding: 20px 50px;
-            background: transparent;
-            color: #00c8ff;
-            border: 2px solid #00c8ff;
-            border-radius: 16px;
-            font-size: 18px;
-            font-weight: 700;
-            cursor: pointer;
-            transition: 0.3s;
-        }
-
-        .cta-secondary:hover {
-            background: rgba(0,200,255,0.1);
-            transform: translateY(-4px);
-        }
-
-        /* =====================
-           HERO AMÉLIORÉ
-        ===================== */
-        .hero-badge {
-            display: inline-block;
-            background: rgba(0,200,255,0.15);
-            color: #00c8ff;
-            padding: 8px 20px;
-            border-radius: 30px;
-            font-size: 13px;
-            font-weight: 600;
-            letter-spacing: 2px;
-            margin-bottom: 25px;
-            border: 1px solid rgba(0,200,255,0.3);
-        }
-
-        .hero-warning {
-            margin-top: 25px;
-            font-size: 12px;
-            color: #666;
-        }
+        .hero-badge { display: inline-block; background: rgba(0,200,255,0.15); color: #00c8ff; padding: 8px 20px; border-radius: 30px; font-size: 13px; font-weight: 600; letter-spacing: 2px; margin-bottom: 25px; border: 1px solid rgba(0,200,255,0.3); }
+        .hero-warning { margin-top: 25px; font-size: 12px; color: #666; }
 
         @media (max-width: 768px) {
             .stats-bar { gap: 30px; padding: 30px 20px; }
@@ -320,7 +110,6 @@
 
 <body>
 
-    <!-- NAVBAR -->
     <nav class="navbar">
         <div class="logo-container">
             <img src="assets/image2.png" class="logo" alt="Logo Nathan Trading">
@@ -342,7 +131,6 @@
         </div>
     </nav>
 
-    <!-- HERO -->
     <section class="hero" data-aos="fade-up" id="accueil">
         <div class="hero-content">
             <div class="hero-badge">🔥 FORMATION PREMIUM — PLACES LIMITÉES</div>
@@ -354,76 +142,33 @@
                 structurée, testée et appliquée sur les marchés réels.
             </p>
             <div class="hero-buttons">
-                <a href="payment.html">
-                    <button class="primary-btn">🚀 Rejoindre la Formation</button>
-                </a>
-                <a href="#temoignages">
-                    <button class="secondary-btn">💬 Voir les Témoignages</button>
-                </a>
+                <a href="payment.html"><button class="primary-btn">🚀 Rejoindre la Formation</button></a>
+                <a href="#temoignages"><button class="secondary-btn">💬 Voir les Témoignages</button></a>
             </div>
             <p class="hero-warning">⚠️ Le trading comporte des risques. Ce programme est éducatif.</p>
         </div>
     </section>
 
-    <!-- STATS BAR -->
     <div class="stats-bar" data-aos="fade-up">
-        <div class="stat-item">
-            <h3>18+</h3>
-            <p>MODULES DE FORMATION</p>
-        </div>
-        <div class="stat-item">
-            <h3>100%</h3>
-            <p>ACCÈS À VIE</p>
-        </div>
-        <div class="stat-item">
-            <h3>3</h3>
-            <p>MARCHÉS COUVERTS</p>
-        </div>
-        <div class="stat-item">
-            <h3>24/7</h3>
-            <p>ACCÈS AUX VIDÉOS</p>
-        </div>
+        <div class="stat-item"><h3>18+</h3><p>MODULES DE FORMATION</p></div>
+        <div class="stat-item"><h3>100%</h3><p>ACCÈS À VIE</p></div>
+        <div class="stat-item"><h3>3</h3><p>MARCHÉS COUVERTS</p></div>
+        <div class="stat-item"><h3>24/7</h3><p>ACCÈS AUX VIDÉOS</p></div>
     </div>
 
-    <!-- POURQUOI NTA -->
     <section class="why-section" data-aos="fade-up">
         <h2>Pourquoi choisir <span>Nathan Trading</span> ?</h2>
         <p class="why-subtitle">Une formation pensée pour te donner des résultats concrets, pas juste de la théorie.</p>
         <div class="why-grid">
-            <div class="why-card">
-                <div class="icon">🎯</div>
-                <h3>Méthode Structurée</h3>
-                <p>Une approche pas-à-pas de l'introduction jusqu'au trading professionnel. Aucun prérequis nécessaire.</p>
-            </div>
-            <div class="why-card">
-                <div class="icon">📊</div>
-                <h3>Analyse Technique Avancée</h3>
-                <p>Structure du marché, zones institutionnelles, patterns d'avalement, multi-timeframe D1→H4→M15.</p>
-            </div>
-            <div class="why-card">
-                <div class="icon">🧠</div>
-                <h3>Psychologie du Trader</h3>
-                <p>Vaincre le FOMO, le revenge trading et construire une discipline mentale solide pour durer.</p>
-            </div>
-            <div class="why-card">
-                <div class="icon">🛡️</div>
-                <h3>Gestion du Risque</h3>
-                <p>Calculer son risque par trade, gérer ses positions et préserver son capital sur le long terme.</p>
-            </div>
-            <div class="why-card">
-                <div class="icon">📱</div>
-                <h3>Accès Mobile & Desktop</h3>
-                <p>Regardez les cours sur n'importe quel appareil, à votre rythme, n'importe où dans le monde.</p>
-            </div>
-            <div class="why-card">
-                <div class="icon">🏆</div>
-                <h3>Certificat de Réussite</h3>
-                <p>Obtenez votre certificat officiel Nathan Trading Academy à la fin de la formation.</p>
-            </div>
+            <div class="why-card"><div class="icon">🎯</div><h3>Méthode Structurée</h3><p>Une approche pas-à-pas de l'introduction jusqu'au trading professionnel. Aucun prérequis nécessaire.</p></div>
+            <div class="why-card"><div class="icon">📊</div><h3>Analyse Technique Avancée</h3><p>Structure du marché, zones institutionnelles, patterns d'avalement, multi-timeframe D1→H4→M15.</p></div>
+            <div class="why-card"><div class="icon">🧠</div><h3>Psychologie du Trader</h3><p>Vaincre le FOMO, le revenge trading et construire une discipline mentale solide pour durer.</p></div>
+            <div class="why-card"><div class="icon">🛡️</div><h3>Gestion du Risque</h3><p>Calculer son risque par trade, gérer ses positions et préserver son capital sur le long terme.</p></div>
+            <div class="why-card"><div class="icon">📱</div><h3>Accès Mobile & Desktop</h3><p>Regardez les cours sur n'importe quel appareil, à votre rythme, n'importe où dans le monde.</p></div>
+            <div class="why-card"><div class="icon">🏆</div><h3>Certificat de Réussite</h3><p>Obtenez votre certificat officiel Nathan Trading Academy à la fin de la formation.</p></div>
         </div>
     </section>
 
-    <!-- PROGRAMME -->
     <section class="section dark-section" data-aos="fade-up" id="formation">
         <h2>Programme de Formation</h2>
         <div class="program-container">
@@ -457,7 +202,6 @@
         </div>
     </section>
 
-    <!-- TÉMOIGNAGES -->
     <section class="testimonials-section" data-aos="fade-up" id="temoignages">
         <h2>Ce que disent nos <span>Élèves</span></h2>
         <p class="testimonials-subtitle">Des traders qui ont appliqué la méthode et transformé leur approche des marchés.</p>
@@ -467,10 +211,7 @@
                 <p class="testimonial-text">"Avant Nathan Trading, je perdais constamment. Aujourd'hui j'ai une méthode claire et je comprends enfin comment le marché fonctionne. La section sur les zones institutionnelles a tout changé pour moi."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">K</div>
-                    <div class="testimonial-author-info">
-                        <h4>Kevin M.</h4>
-                        <p>Élève Premium • Kinshasa</p>
-                    </div>
+                    <div class="testimonial-author-info"><h4>Kevin M.</h4><p>Élève Premium • Kinshasa</p></div>
                 </div>
             </div>
             <div class="testimonial-card">
@@ -478,10 +219,7 @@
                 <p class="testimonial-text">"La formation est très complète et bien structurée. J'ai particulièrement apprécié les modules sur la psychologie du trader — c'est souvent négligé ailleurs mais c'est crucial."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">A</div>
-                    <div class="testimonial-author-info">
-                        <h4>Amina T.</h4>
-                        <p>Élève Premium • Lubumbashi</p>
-                    </div>
+                    <div class="testimonial-author-info"><h4>Amina T.</h4><p>Élève Premium • Lubumbashi</p></div>
                 </div>
             </div>
             <div class="testimonial-card">
@@ -489,16 +227,12 @@
                 <p class="testimonial-text">"J'ai essayé plusieurs formations en ligne mais Nathan Trading Academy est la seule qui m'a donné une vraie méthode applicable immédiatement. Les vidéos sont claires et les exemples concrets."</p>
                 <div class="testimonial-author">
                     <div class="testimonial-avatar">D</div>
-                    <div class="testimonial-author-info">
-                        <h4>David N.</h4>
-                        <p>Élève Premium • Goma</p>
-                    </div>
+                    <div class="testimonial-author-info"><h4>David N.</h4><p>Élève Premium • Goma</p></div>
                 </div>
             </div>
         </div>
     </section>
 
-    <!-- RÉSULTATS -->
     <section class="section" data-aos="fade-up" id="resultats">
         <h2>Résultats Trading</h2>
         <div class="results-grid">
@@ -514,21 +248,15 @@
         </div>
     </section>
 
-    <!-- CTA -->
     <section class="cta-section" data-aos="fade-up">
         <h2>Prêt à <span>transformer</span> votre trading ?</h2>
         <p>Rejoignez Nathan Trading Academy aujourd'hui et commencez à trader avec une vraie méthode.</p>
         <div class="cta-buttons">
-            <a href="payment.html">
-                <button class="cta-primary">🚀 Accéder à la Formation</button>
-            </a>
-            <a href="connexion.html">
-                <button class="cta-secondary">🔑 J'ai déjà un compte</button>
-            </a>
+            <a href="payment.html"><button class="cta-primary">🚀 Accéder à la Formation</button></a>
+            <a href="connexion.html"><button class="cta-secondary">🔑 J'ai déjà un compte</button></a>
         </div>
     </section>
 
-    <!-- DASHBOARD -->
     <section class="section dark-section" data-aos="fade-up" id="dashboard">
         <h2>Espace Élève</h2>
         <div class="dashboard-grid">
@@ -550,88 +278,47 @@
         </div>
     </section>
 
-    <!-- FAQ -->
     <section class="faq-section" data-aos="fade-up">
         <h2 class="section-title">Questions Fréquentes</h2>
         <div class="faq-container">
             <div class="faq-item">
-                <button class="faq-question">
-                    La formation est-elle adaptée aux débutants ?
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <div class="faq-answer">
-                    <p>Oui. Nathan Trading Academy a été conçue pour les débutants complets comme pour les traders intermédiaires. On part des bases et on monte progressivement vers les techniques avancées.</p>
-                </div>
+                <button class="faq-question">La formation est-elle adaptée aux débutants ?<i class="fa-solid fa-plus"></i></button>
+                <div class="faq-answer"><p>Oui. Nathan Trading Academy a été conçue pour les débutants complets comme pour les traders intermédiaires. On part des bases et on monte progressivement vers les techniques avancées.</p></div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Comment accéder aux cours après le paiement ?
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <div class="faq-answer">
-                    <p>Après validation du paiement, vous contactez Nathan Trading sur WhatsApp avec votre preuve de paiement. L'accès premium est activé sur votre compte dans les 24h.</p>
-                </div>
+                <button class="faq-question">Comment accéder aux cours après le paiement ?<i class="fa-solid fa-plus"></i></button>
+                <div class="faq-answer"><p>Après validation du paiement, vous contactez Nathan Trading sur WhatsApp avec votre preuve de paiement. L'accès premium est activé sur votre compte dans les 24h.</p></div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Puis-je suivre les cours sur téléphone ?
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <div class="faq-answer">
-                    <p>Oui. La plateforme Nathan Trading est entièrement responsive — compatible mobile, tablette et ordinateur.</p>
-                </div>
+                <button class="faq-question">Puis-je suivre les cours sur téléphone ?<i class="fa-solid fa-plus"></i></button>
+                <div class="faq-answer"><p>Oui. La plateforme Nathan Trading est entièrement responsive — compatible mobile, tablette et ordinateur.</p></div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    L'accès aux vidéos est-il permanent ?
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <div class="faq-answer">
-                    <p>Oui. Les élèves premium conservent leur accès à vie aux vidéos et aux mises à jour de la formation.</p>
-                </div>
+                <button class="faq-question">L'accès aux vidéos est-il permanent ?<i class="fa-solid fa-plus"></i></button>
+                <div class="faq-answer"><p>Oui. Les élèves premium conservent leur accès à vie aux vidéos et aux mises à jour de la formation.</p></div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Le trading garantit-il des gains ?
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <div class="faq-answer">
-                    <p>Non. Le trading comporte des risques de perte en capital. Tous les contenus de Nathan Trading Academy sont uniquement éducatifs et ne constituent pas des conseils financiers.</p>
-                </div>
+                <button class="faq-question">Le trading garantit-il des gains ?<i class="fa-solid fa-plus"></i></button>
+                <div class="faq-answer"><p>Non. Le trading comporte des risques de perte en capital. Tous les contenus de Nathan Trading Academy sont uniquement éducatifs et ne constituent pas des conseils financiers.</p></div>
             </div>
             <div class="faq-item">
-                <button class="faq-question">
-                    Comment contacter le support ?
-                    <i class="fa-solid fa-plus"></i>
-                </button>
-                <div class="faq-answer">
-                    <p>Via WhatsApp au +243 82 745 9732, par email à support@nathan-trading.com, ou depuis votre espace élève dans la section Support.</p>
-                </div>
+                <button class="faq-question">Comment contacter le support ?<i class="fa-solid fa-plus"></i></button>
+                <div class="faq-answer"><p>Via WhatsApp au +243 82 745 9732, par email à support@nathan-trading.com, ou depuis votre espace élève dans la section Support.</p></div>
             </div>
         </div>
     </section>
 
-    <!-- CONTACT -->
     <section class="section" data-aos="fade-up" id="contact">
         <h2>Contactez Nathan Trading</h2>
         <p class="contact-description">Rejoignez notre communauté et posez vos questions.</p>
         <div class="social-links">
-            <a href="https://wa.me/243827459732" target="_blank" class="social-btn whatsapp">
-                <i class="fa-brands fa-whatsapp"></i>
-            </a>
-            <a href="https://www.instagram.com/badu_fx?igsh=MXJtNnB6bHdrN3Y2Yg%3D%3D&utm_source=qr" target="_blank" class="social-btn instagram">
-                <i class="fa-brands fa-instagram"></i>
-            </a>
-            <a href="https://www.facebook.com/share/1Ro7ZRF62S/?mibextid=wwXIfr" target="_blank" class="social-btn facebook">
-                <i class="fa-brands fa-facebook-f"></i>
-            </a>
-            <a href="mailto:support@nathan-trading.com" class="social-btn mail">
-                <i class="fa-solid fa-envelope"></i>
-            </a>
+            <a href="https://wa.me/243827459732" target="_blank" class="social-btn whatsapp"><i class="fa-brands fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com/badu_fx?igsh=MXJtNnB6bHdrN3Y2Yg%3D%3D&utm_source=qr" target="_blank" class="social-btn instagram"><i class="fa-brands fa-instagram"></i></a>
+            <a href="https://www.facebook.com/share/1Ro7ZRF62S/?mibextid=wwXIfr" target="_blank" class="social-btn facebook"><i class="fa-brands fa-facebook-f"></i></a>
+            <a href="mailto:support@nathan-trading.com" class="social-btn mail"><i class="fa-solid fa-envelope"></i></a>
         </div>
     </section>
 
-    <!-- FOOTER -->
     <footer class="main-footer">
         <div class="footer-container">
             <div class="footer-column">
@@ -663,8 +350,6 @@
 
     <script type="module" src="script.js"></script>
     <script src="https://unpkg.com/aos@2.3.4/dist/aos.js"></script>
-    <script>
-        AOS.init({ duration: 1000, once: true });
-    </script>
+    <script>AOS.init({ duration: 1000, once: true });</script>
 </body>
 </html>
