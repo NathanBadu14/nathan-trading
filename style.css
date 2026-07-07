@@ -4319,3 +4319,10 @@ display:flex;
         height:220px;
     }
 }
+*/* PAYMENT PAGE */
+.payment-page {
+    margin-left: 0 !important;
+    max-width: 900px;
+    margin: 0 auto !important;
+    padding: 60px 20px;
+}
