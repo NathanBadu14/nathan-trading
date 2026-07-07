@@ -1,226 +1,115 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
+import { getAuth, onAuthStateChanged, signOut } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, collection, addDoc, doc, getDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
-import {
-
-getAuth,
-onAuthStateChanged,
-signOut
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
-
-import {
-
-getFirestore,
-collection,
-addDoc
-
-}
-
-from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
-
-/* ========================================
-   ADMIN EMAIL
-======================================== */
-
-const ADMIN_EMAIL =
-"badumisanathan807@gmail.com";
-
-/* ========================================
-   FIREBASE CONFIG
-======================================== */
+const ADMIN_EMAIL = "badumisanathan807@gmail.com";
 
 const firebaseConfig = {
-
-apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
-
-authDomain: "nathan-trading.firebaseapp.com",
-
-projectId: "nathan-trading",
-
-storageBucket: "nathan-trading.firebasestorage.app",
-
-messagingSenderId: "908084098772",
-
-appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
-
+    apiKey: "AIzaSyC6JiynxWiPQVjqZ-UMGpSyI9f_aDqxEGc",
+    authDomain: "nathan-trading.firebaseapp.com",
+    projectId: "nathan-trading",
+    storageBucket: "nathan-trading.firebasestorage.app",
+    messagingSenderId: "908084098772",
+    appId: "1:908084098772:web:c99392d2e52a10f1e7ed41"
 };
 
-/* ========================================
-   INITIALISATION
-======================================== */
-
 const app = initializeApp(firebaseConfig);
-
 const auth = getAuth(app);
-
 const db = getFirestore(app);
 
-console.log("🔥 Support Nathan Trading chargé");
+let currentUser = null;
 
-/* ========================================
-   AUTH PROTECTION
-======================================== */
+onAuthStateChanged(auth, async (user) => {
 
-onAuthStateChanged(auth, (user)=>{
+    if (!user) {
+        window.location.href = "index.html";
+        return;
+    }
 
-if(user){
+    currentUser = user;
 
-console.log(
-"✅ Utilisateur connecté :",
-user.email
-);
-
-/* ========================================
-   ADMIN LINK
-======================================== */
-
-const adminLink =
-document.getElementById(
-"admin-link"
-);
-
-if(user.email === ADMIN_EMAIL){
-
-if(adminLink){
-
-adminLink.style.display =
-"flex";
-
-}
-
-}
-
-}else{
-
-window.location.href =
-"index.html";
-
-}
-
+    const adminLink = document.getElementById("admin-link");
+    if (user.email === ADMIN_EMAIL && adminLink) {
+        adminLink.style.display = "flex";
+    }
 });
 
-/* ========================================
-   LOGOUT
-======================================== */
-
-const logoutBtn =
-document.querySelector(
-".logout-btn"
-);
-
-if(logoutBtn){
-
-logoutBtn.addEventListener(
-"click",
-async()=>{
-
-try{
-
-await signOut(auth);
-
-alert(
-"Déconnexion réussie 🔥"
-);
-
-window.location.href =
-"index.html";
-
-}catch(error){
-
-console.error(
-"Erreur déconnexion :",
-error
-);
-
+/* --- Déconnexion --- */
+const logoutBtn = document.querySelector(".logout-btn");
+if (logoutBtn) {
+    logoutBtn.addEventListener("click", async () => {
+        try {
+            await signOut(auth);
+            window.location.href = "index.html";
+        } catch (error) {
+            console.error("Erreur déconnexion :", error);
+        }
+    });
 }
 
-});
+/* --- Formulaire support --- */
+const supportForm = document.getElementById("support-form");
+const submitBtn = supportForm ? supportForm.querySelector("button[type='submit']") : null;
+const successMsg = document.getElementById("support-success");
 
-}
+if (supportForm) {
+    supportForm.addEventListener("submit", async (e) => {
+        e.preventDefault();
 
-/* ========================================
-   SUPPORT FORM
-======================================== */
+        if (!currentUser) {
+            alert("Vous devez être connecté.");
+            return;
+        }
 
-const supportForm =
-document.getElementById(
-"support-form"
-);
+        const messageEl = document.getElementById("support-message");
+        const message = messageEl ? messageEl.value.trim() : "";
 
-if(supportForm){
+        if (!message) {
+            alert("Veuillez écrire un message.");
+            return;
+        }
 
-supportForm.addEventListener(
-"submit",
-async(e)=>{
+        if (submitBtn) {
+            submitBtn.disabled = true;
+            submitBtn.innerHTML = "Envoi en cours...";
+        }
 
-e.preventDefault();
+        try {
+            await addDoc(collection(db, "supports"), {
+                email: currentUser.email,
+                uid: currentUser.uid,
+                message: message,
+                createdAt: new Date(),
+                lu: false
+            });
 
-const user =
-auth.currentUser;
+            // Confirmation visuelle sans alert
+            if (submitBtn) {
+                submitBtn.innerHTML = "✅ Message envoyé !";
+                submitBtn.style.background = "#00ffae";
+                submitBtn.style.color = "#000";
+            }
 
-if(!user){
+            if (successMsg) successMsg.style.display = "block";
+            supportForm.reset();
 
-alert(
-"Vous devez être connecté."
-);
+            setTimeout(() => {
+                if (submitBtn) {
+                    submitBtn.disabled = false;
+                    submitBtn.innerHTML = "Envoyer le message";
+                    submitBtn.style.background = "";
+                    submitBtn.style.color = "";
+                }
+                if (successMsg) successMsg.style.display = "none";
+            }, 4000);
 
-return;
-
-}
-
-const message =
-document.getElementById(
-"support-message"
-).value;
-
-/* VERIFICATION MESSAGE */
-
-if(message.trim() === ""){
-
-alert(
-"Veuillez écrire un message."
-);
-
-return;
-
-}
-
-try{
-
-await addDoc(
-collection(db, "supports"),
-{
-
-email: user.email,
-
-message: message,
-
-createdAt: new Date()
-
-}
-);
-
-alert(
-"Message envoyé avec succès 🔥"
-);
-
-supportForm.reset();
-
-}catch(error){
-
-console.error(
-"Erreur support :",
-error
-);
-
-alert(
-"Erreur lors de l'envoi."
-);
-
-}
-
-});
-
+        } catch (error) {
+            console.error("Erreur support :", error);
+            alert("Erreur lors de l'envoi. Réessayez.");
+            if (submitBtn) {
+                submitBtn.disabled = false;
+                submitBtn.innerHTML = "Envoyer le message";
+            }
+        }
+    });
 }

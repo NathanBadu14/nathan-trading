@@ -1,57 +1,34 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion | Nathan Trading</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/image2.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FGL81C37G2');
-</script>
-
-<script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/6b1aed9b5212c.js" data-cmp-host="c.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FGL81C37G2');
+    </script>
 </head>
-
 <body class="auth-body">
 
     <div class="auth-container">
-
         <img src="assets/image2.png" class="auth-logo" alt="Nathan Trading Logo">
-
         <h1>Connexion</h1>
         <p>Accédez à votre espace élève</p>
 
         <form id="login-form">
-            <input 
-                type="email" 
-                id="login-email" 
-                placeholder="Adresse email" 
-                autocomplete="email"
-                required
-            >
+            <input type="email" id="login-email" placeholder="Adresse email" autocomplete="email" required>
 
             <div class="password-box">
-                <input
-                    type="password"
-                    id="login-password"
-                    placeholder="Mot de passe"
-                    required
-                >
+                <input type="password" id="login-password" placeholder="Mot de passe" required>
                 <i class="fa-solid fa-eye" id="toggle-login-password"></i>
             </div>
 
@@ -59,11 +36,9 @@
                 <a href="#" id="reset-password">Mot de passe oublié ?</a>
             </p>
 
-            <button type="submit" class="primary-btn">
-                Se connecter
-            </button>
-            
-            <div class="auth-divider">
+            <button type="submit" class="primary-btn auth-btn">Se connecter</button>
+
+            <div class="auth-divider" style="text-align:center;margin:15px 0;color:#555;">
                 <span>ou</span>
             </div>
 
@@ -73,13 +48,10 @@
         </form>
 
         <p class="auth-switch">
-            Pas encore inscrit ?
-            <a href="inscription.html">Créer un compte</a>
+            Pas encore inscrit ? <a href="inscription.html">Créer un compte</a>
         </p>
-
     </div>
 
     <script type="module" src="login.js"></script>
-
 </body>
 </html>

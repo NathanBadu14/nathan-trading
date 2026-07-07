@@ -1,92 +1,51 @@
 <!DOCTYPE html>
 <html lang="fr">
-
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription | Nathan Trading</title>
-    
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    
     <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/image2.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght=300;400;500;600;700;800&display=swap" rel="stylesheet">
-
-    <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FGL81C37G2');
-</script>
-
-<script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/6b1aed9b5212c.js" data-cmp-host="c.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
-
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+      gtag('config', 'G-FGL81C37G2');
+    </script>
 </head>
-
 <body class="auth-body">
 
     <div class="auth-container">
-
         <img src="assets/image2.png" class="auth-logo" alt="Nathan Trading Logo">
-
         <h1>Créer un compte</h1>
         <p>Rejoignez Nathan Trading Academy</p>
 
         <form id="register-form">
-            <input 
-                type="text" 
-                id="register-name" 
-                placeholder="Votre prénom" 
-                autocomplete="given-name"
-                required
-            >
-
-            <input 
-                type="email" 
-                id="register-email" 
-                placeholder="Adresse email" 
-                autocomplete="email"
-                required
-            >
+            <input type="text" id="register-name" placeholder="Votre prénom" autocomplete="given-name" required>
+            <input type="email" id="register-email" placeholder="Adresse email" autocomplete="email" required>
 
             <div class="password-box">
-                <input
-                    type="password"
-                    id="register-password"
-                    placeholder="Mot de passe"
-                    required
-                >
+                <input type="password" id="register-password" placeholder="Mot de passe" required>
                 <i class="fa-solid fa-eye" id="toggle-register-password"></i>
             </div>
 
             <div class="password-box">
-                <input 
-                    type="password" 
-                    id="register-password-confirm" 
-                    placeholder="Confirmer le mot de passe" 
-                    autocomplete="new-password"
-                    required
-                >
+                <input type="password" id="register-password-confirm" placeholder="Confirmer le mot de passe" autocomplete="new-password" required>
                 <i class="fa-solid fa-eye" id="toggle-register-password-confirm"></i>
             </div>
 
-            <button type="submit" class="primary-btn">
-                Créer mon compte
-            </button>
+            <button type="submit" class="primary-btn auth-btn">Créer mon compte</button>
         </form>
 
         <p class="auth-switch">
-            Déjà inscrit ?
-            <a href="connexion.html">Se connecter</a>
+            Déjà inscrit ? <a href="connexion.html">Se connecter</a>
         </p>
-
     </div>
 
     <script type="module" src="register.js"></script>
-
 </body>
 </html>
