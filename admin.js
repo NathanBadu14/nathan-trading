@@ -13,9 +13,7 @@ import {
     deleteDoc,
     doc,
     updateDoc,
-    setDoc,
-    query,
-    orderBy
+    setDoc
 } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 /* =========================
@@ -35,6 +33,31 @@ const auth = getAuth(app);
 const db = getFirestore(app);
 
 const ADMIN_EMAIL = "badumisanathan807@gmail.com";
+const TOTAL_MODULES = 18;
+
+const nomsModules = {
+    1:  "Introduction",
+    2:  "Module 1 — Les bases d'une stratégie",
+    3:  "Module 2 — Comment le prix bouge",
+    4:  "Module 3 — La structure du marché",
+    5:  "Module 4 — Les zones solides",
+    6:  "Module 5 — Les deux patterns",
+    7:  "Module 6 — Le clean trafic",
+    8:  "Module 7 — Analyse du biais",
+    9:  "Module 8.1 — Avalement CP Zone D1",
+    10: "Module 8.2 — Avalement CP Zone D1 Suite",
+    11: "Module 8.3 — Avalement H4",
+    12: "Module 8.4 — Doji Marteau H4",
+    13: "Module 8.5 — Avalement H4-H1 + M15",
+    14: "Module 9 — Gestion du risque",
+    15: "Module 10 — Gestion du trade",
+    16: "Module 11 — Gestion des émotions",
+    17: "Modules 12 & 13 — Plan & Journal de Trading",
+    18: "Module Final — Fin de formation"
+};
+
+// Cache global des utilisateurs pour l'export CSV
+let tousLesUtilisateurs = [];
 
 /* =========================
    AUTH & PROTECTION
@@ -74,11 +97,7 @@ onAuthStateChanged(auth, async (user) => {
         publishBtn.addEventListener("click", async () => {
             const input = document.getElementById("announcement-input");
             const message = input ? input.value.trim() : "";
-
-            if (!message) {
-                alert("Écris une annonce");
-                return;
-            }
+            if (!message) { alert("Écris une annonce"); return; }
 
             try {
                 await setDoc(doc(db, "announcements", "latest"), {
@@ -102,18 +121,40 @@ onAuthStateChanged(auth, async (user) => {
         searchInput.addEventListener("input", () => {
             const terme = searchInput.value.toLowerCase();
             document.querySelectorAll(".admin-card").forEach(card => {
-                const texte = card.innerText.toLowerCase();
-                card.style.display = texte.includes(terme) ? "block" : "none";
+                card.style.display = card.innerText.toLowerCase().includes(terme) ? "block" : "none";
             });
         });
     }
 
     /* =========================
-       CHARGEMENT USERS & STATS
+       EXPORT CSV
     ========================= */
+    const exportBtn = document.getElementById("export-csv");
+    if (exportBtn) {
+        exportBtn.addEventListener("click", () => exporterCSV());
+    }
+
+    /* =========================
+       EMAIL GROUPÉ
+    ========================= */
+    const emailBtn = document.getElementById("email-tous");
+    if (emailBtn) {
+        emailBtn.addEventListener("click", () => {
+            const emails = tousLesUtilisateurs
+                .map(u => u.email)
+                .filter(Boolean)
+                .join(",");
+            if (!emails) { alert("Aucun email trouvé."); return; }
+            window.open(`mailto:?bcc=${emails}&subject=Nathan Trading Academy&body=Bonjour,%0A%0A`, "_blank");
+        });
+    }
+
     await chargerUtilisateurs();
 });
 
+/* =========================
+   CHARGEMENT UTILISATEURS
+========================= */
 async function chargerUtilisateurs() {
 
     const usersContainer = document.getElementById("admin-users");
@@ -125,8 +166,8 @@ async function chargerUtilisateurs() {
         let totalUsers = 0;
         let premiumUsers = 0;
         let totalProgression = 0;
-
         const cartes = [];
+        tousLesUtilisateurs = [];
 
         snapshot.forEach((docElement) => {
             const data = docElement.data();
@@ -134,51 +175,70 @@ async function chargerUtilisateurs() {
 
             totalUsers++;
             if (data.premium) premiumUsers++;
-            totalProgression += data.progression || 0;
+
+            const modulesTermines = data.modulesTermines || [];
+            const progression = Math.round((modulesTermines.length / TOTAL_MODULES) * 100);
+            totalProgression += progression;
 
             const isPremium = data.premium || false;
-            const progression = data.progression || 0;
+
+            // Cache pour CSV
+            tousLesUtilisateurs.push({
+                id: userId,
+                nom: data.username || "Sans nom",
+                email: data.email || "",
+                premium: isPremium,
+                progression: progression,
+                modulesTermines: modulesTermines
+            });
+
+            // Liste des modules terminés
+            const listeModules = modulesTermines.length > 0
+                ? modulesTermines
+                    .sort((a, b) => a - b)
+                    .map(id => `<li style="margin-bottom:4px;">✅ ${nomsModules[id] || "Module " + id}</li>`)
+                    .join("")
+                : "<li style='color:#bbb;'>Aucun module terminé</li>";
 
             cartes.push(`
-                <div class="admin-card">
+                <div class="admin-card" data-id="${userId}">
                     <h3>${data.username || "Sans nom"}</h3>
                     <p><i class="fa-solid fa-envelope"></i> ${data.email || "Pas d'email"}</p>
-                    <p><i class="fa-solid fa-chart-line"></i> Progression : <strong>${progression}%</strong></p>
+                    <p><i class="fa-solid fa-chart-line"></i> Progression : <strong>${progression}%</strong> (${modulesTermines.length}/${TOTAL_MODULES} modules)</p>
                     <p><i class="fa-solid fa-crown"></i> Statut : <strong>${isPremium ? "⭐ Premium" : "Gratuit"}</strong></p>
-                    <button
-                        class="premium-btn"
-                        data-id="${userId}"
-                        data-premium="${isPremium}">
-                        ${isPremium ? "❌ Retirer Premium" : "⭐ Activer Premium"}
-                    </button>
-                    <button
-                        class="delete-user-btn"
-                        data-id="${userId}">
-                        🗑️ Supprimer
-                    </button>
+
+                    <!-- Détails modules (masqués par défaut) -->
+                    <div class="modules-detail" id="modules-${userId}" style="display:none;margin:15px 0;background:#1a1a1a;padding:15px;border-radius:12px;">
+                        <p style="font-weight:600;margin-bottom:10px;color:#00c8ff;">Modules terminés :</p>
+                        <ul style="list-style:none;padding:0;font-size:13px;">
+                            ${listeModules}
+                        </ul>
+                    </div>
+
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:15px;">
+                        <button class="voir-modules-btn" data-id="${userId}" style="padding:10px 16px;border:1px solid #00c8ff;background:transparent;color:#00c8ff;border-radius:10px;cursor:pointer;font-size:13px;">
+                            📋 Voir modules
+                        </button>
+                        <button class="premium-btn" data-id="${userId}" data-premium="${isPremium}" style="padding:10px 16px;border:none;background:#00c8ff;color:#000;border-radius:10px;cursor:pointer;font-weight:700;font-size:13px;">
+                            ${isPremium ? "❌ Retirer Premium" : "⭐ Activer Premium"}
+                        </button>
+                        <button class="delete-user-btn" data-id="${userId}" style="padding:10px 16px;border:none;background:#ff3b3b;color:#fff;border-radius:10px;cursor:pointer;font-weight:700;font-size:13px;">
+                            🗑️ Supprimer
+                        </button>
+                    </div>
                 </div>
             `);
         });
 
-        /* =========================
-           AFFICHAGE STATS — IDs corrects
-        ========================= */
+        /* Stats */
         const elTotal = document.getElementById("total-users");
         const elPremium = document.getElementById("premium-users");
         const elProgress = document.getElementById("average-progress");
 
         if (elTotal) elTotal.innerText = totalUsers;
         if (elPremium) elPremium.innerText = premiumUsers;
-        if (elProgress) {
-            const moyenne = totalUsers > 0
-                ? Math.round(totalProgression / totalUsers)
-                : 0;
-            elProgress.innerText = `${moyenne}%`;
-        }
+        if (elProgress) elProgress.innerText = `${totalUsers > 0 ? Math.round(totalProgression / totalUsers) : 0}%`;
 
-        /* =========================
-           AFFICHAGE CARTES
-        ========================= */
         if (usersContainer) {
             usersContainer.innerHTML = cartes.length > 0
                 ? cartes.join("")
@@ -193,9 +253,20 @@ async function chargerUtilisateurs() {
 }
 
 /* =========================
-   CLICS DÉLÉGUÉS (Premium + Supprimer)
+   CLICS DÉLÉGUÉS
 ========================= */
 document.addEventListener("click", async (e) => {
+
+    /* --- VOIR MODULES --- */
+    if (e.target.matches(".voir-modules-btn")) {
+        const userId = e.target.getAttribute("data-id");
+        const detail = document.getElementById(`modules-${userId}`);
+        if (detail) {
+            const visible = detail.style.display !== "none";
+            detail.style.display = visible ? "none" : "block";
+            e.target.innerText = visible ? "📋 Voir modules" : "🔼 Masquer";
+        }
+    }
 
     /* --- TOGGLE PREMIUM --- */
     if (e.target.matches(".premium-btn")) {
@@ -209,16 +280,17 @@ document.addEventListener("click", async (e) => {
             btn.setAttribute("data-premium", newStatus);
             btn.innerHTML = newStatus ? "❌ Retirer Premium" : "⭐ Activer Premium";
 
-            // Met à jour le statut visible sur la carte
             const card = btn.closest(".admin-card");
             if (card) {
                 const statutEl = card.querySelector("p:nth-child(4) strong");
                 if (statutEl) statutEl.innerText = newStatus ? "⭐ Premium" : "Gratuit";
             }
 
-            // Recalcule les stats
-            await chargerStats();
+            // Mettre à jour le cache
+            const u = tousLesUtilisateurs.find(u => u.id === userId);
+            if (u) u.premium = newStatus;
 
+            await chargerStats();
             alert(`Statut premium ${newStatus ? "activé" : "retiré"} ✅`);
         } catch (error) {
             console.error(error);
@@ -226,7 +298,7 @@ document.addEventListener("click", async (e) => {
         }
     }
 
-    /* --- SUPPRIMER UTILISATEUR --- */
+    /* --- SUPPRIMER --- */
     if (e.target.matches(".delete-user-btn")) {
         const userId = e.target.getAttribute("data-id");
         if (!confirm("Supprimer cet utilisateur définitivement ?")) return;
@@ -234,6 +306,7 @@ document.addEventListener("click", async (e) => {
         try {
             await deleteDoc(doc(db, "users", userId));
             e.target.closest(".admin-card").remove();
+            tousLesUtilisateurs = tousLesUtilisateurs.filter(u => u.id !== userId);
             await chargerStats();
             alert("Utilisateur supprimé ✅");
         } catch (error) {
@@ -244,7 +317,45 @@ document.addEventListener("click", async (e) => {
 });
 
 /* =========================
-   RECALCUL STATS SEUL
+   EXPORT CSV
+========================= */
+function exporterCSV() {
+    if (tousLesUtilisateurs.length === 0) {
+        alert("Aucun utilisateur à exporter.");
+        return;
+    }
+
+    const entetes = ["Nom", "Email", "Premium", "Progression (%)", "Modules terminés", "Nombre modules"];
+
+    const lignes = tousLesUtilisateurs.map(u => {
+        const modulesNoms = u.modulesTermines
+            .sort((a, b) => a - b)
+            .map(id => nomsModules[id] || "Module " + id)
+            .join(" | ");
+
+        return [
+            `"${u.nom}"`,
+            `"${u.email}"`,
+            u.premium ? "Oui" : "Non",
+            u.progression,
+            `"${modulesNoms}"`,
+            u.modulesTermines.length
+        ].join(",");
+    });
+
+    const csv = [entetes.join(","), ...lignes].join("\n");
+    const blob = new Blob(["\uFEFF" + csv], { type: "text/csv;charset=utf-8;" });
+    const url = URL.createObjectURL(blob);
+
+    const lien = document.createElement("a");
+    lien.href = url;
+    lien.download = `eleves_nathan_trading_${new Date().toLocaleDateString("fr-FR").replace(/\//g, "-")}.csv`;
+    lien.click();
+    URL.revokeObjectURL(url);
+}
+
+/* =========================
+   RECALCUL STATS
 ========================= */
 async function chargerStats() {
     try {
@@ -255,7 +366,8 @@ async function chargerStats() {
             const data = d.data();
             total++;
             if (data.premium) premium++;
-            progression += data.progression || 0;
+            const modules = data.modulesTermines || [];
+            progression += Math.round((modules.length / TOTAL_MODULES) * 100);
         });
 
         const elTotal = document.getElementById("total-users");

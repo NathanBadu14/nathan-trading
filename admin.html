@@ -258,7 +258,39 @@ Chargement des messages...
 👨‍🎓 Gestion des Élèves
 
 </h2>
+<!-- Ajoute ces boutons dans admin.html, JUSTE AVANT la div class="admin-users-section" -->
 
+<div style="display:flex;gap:15px;flex-wrap:wrap;margin-bottom:30px;">
+
+    <button id="export-csv" style="
+        padding:14px 24px;
+        background:#00ffae;
+        color:#000;
+        border:none;
+        border-radius:14px;
+        font-weight:700;
+        cursor:pointer;
+        font-size:15px;
+        transition:0.3s;
+    ">
+        📥 Exporter CSV
+    </button>
+
+    <button id="email-tous" style="
+        padding:14px 24px;
+        background:#00c8ff;
+        color:#000;
+        border:none;
+        border-radius:14px;
+        font-weight:700;
+        cursor:pointer;
+        font-size:15px;
+        transition:0.3s;
+    ">
+        📧 Envoyer un email à tous
+    </button>
+
+</div>
 <div
 class="admin-users"
 id="admin-users"
