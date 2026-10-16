@@ -59,6 +59,24 @@ const nomsModules = {
 // Cache global des utilisateurs pour l'export CSV
 let tousLesUtilisateurs = [];
 
+// Échappe le texte saisi par les utilisateurs avant de l'afficher
+function esc(valeur) {
+    return String(valeur ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
+function formaterDate(ts) {
+    if (!ts) return "";
+    const d = ts.toDate ? ts.toDate() : new Date(ts);
+    return d.toLocaleString("fr-FR", { dateStyle: "short", timeStyle: "short" });
+}
+
+const boutonStyle = "padding:10px 16px;border:none;border-radius:10px;cursor:pointer;font-weight:700;font-size:13px;";
+
 /* =========================
    AUTH & PROTECTION
 ========================= */
@@ -120,7 +138,7 @@ onAuthStateChanged(auth, async (user) => {
     if (searchInput) {
         searchInput.addEventListener("input", () => {
             const terme = searchInput.value.toLowerCase();
-            document.querySelectorAll(".admin-card").forEach(card => {
+            document.querySelectorAll("#admin-users .admin-card").forEach(card => {
                 card.style.display = card.innerText.toLowerCase().includes(terme) ? "block" : "none";
             });
         });
@@ -150,7 +168,127 @@ onAuthStateChanged(auth, async (user) => {
     }
 
     await chargerUtilisateurs();
+    await Promise.all([chargerPaiements(), chargerProspects(), chargerSupport()]);
 });
+
+/* =========================
+   PAIEMENTS À VALIDER
+========================= */
+async function chargerPaiements() {
+    const container = document.getElementById("admin-payments");
+    const countEl = document.getElementById("pending-payments");
+    if (!container) return;
+
+    try {
+        const snapshot = await getDocs(collection(db, "payments"));
+        const paiements = snapshot.docs
+            .map((d) => ({ id: d.id, ...d.data() }))
+            .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+
+        const enAttente = paiements.filter((p) => p.status === "pending");
+        if (countEl) countEl.innerText = enAttente.length;
+
+        if (paiements.length === 0) {
+            container.innerHTML = "<p style='color:#bbb;'>Aucun paiement déclaré pour le moment.</p>";
+            return;
+        }
+
+        container.innerHTML = paiements.map((p) => {
+            const statut = p.status === "validated" ? "✅ Validé"
+                : p.status === "rejected" ? "❌ Rejeté" : "⏳ En attente";
+
+            const actions = p.status === "pending" ? `
+                <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+                    <button class="pay-validate-btn" data-id="${esc(p.id)}" data-uid="${esc(p.uid)}" style="${boutonStyle}background:#00ffae;color:#000;">✅ Valider et activer Premium</button>
+                    <button class="pay-reject-btn" data-id="${esc(p.id)}" style="${boutonStyle}background:#ff3b3b;color:#fff;">❌ Rejeter</button>
+                </div>` : "";
+
+            return `
+                <div class="admin-card" style="margin-bottom:14px;">
+                    <h3>${esc(p.name || "Sans nom")} — ${esc(p.amount || 199)} $</h3>
+                    <p><i class="fa-solid fa-envelope"></i> ${esc(p.email)}</p>
+                    <p><i class="fa-solid fa-wallet"></i> ${esc(p.method)} · Réf : <strong>${esc(p.reference)}</strong></p>
+                    ${p.payerPhone ? `<p><i class="fa-solid fa-phone"></i> ${esc(p.payerPhone)}</p>` : ""}
+                    <p style="font-size:13px;color:#aaa;">${esc(formaterDate(p.createdAt))} · <strong>${statut}</strong></p>
+                    ${actions}
+                </div>`;
+        }).join("");
+
+    } catch (error) {
+        console.error("Erreur paiements :", error);
+        container.innerHTML = "<p>Erreur de chargement des paiements.</p>";
+    }
+}
+
+/* =========================
+   PROSPECTS (formulaire de l'accueil)
+========================= */
+async function chargerProspects() {
+    const container = document.getElementById("admin-leads");
+    if (!container) return;
+
+    try {
+        const snapshot = await getDocs(collection(db, "leads"));
+        const leads = snapshot.docs
+            .map((d) => ({ id: d.id, ...d.data() }))
+            .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+
+        if (leads.length === 0) {
+            container.innerHTML = "<p style='color:#bbb;'>Aucun prospect pour le moment.</p>";
+            return;
+        }
+
+        container.innerHTML = leads.map((l) => {
+            const chiffres = String(l.phone || "").replace(/\D/g, "");
+            return `
+                <div class="admin-card" style="margin-bottom:14px;${l.contacted ? "opacity:0.6;" : ""}">
+                    <h3>${esc(l.name)}</h3>
+                    <p><i class="fa-solid fa-phone"></i> ${esc(l.phone)}</p>
+                    <p style="font-size:13px;color:#aaa;">${esc(formaterDate(l.createdAt))} · ${l.contacted ? "✅ Contacté" : "🆕 À contacter"}</p>
+                    <div style="display:flex;gap:10px;flex-wrap:wrap;margin-top:14px;">
+                        <a href="https://wa.me/${esc(chiffres)}" target="_blank" rel="noopener" style="${boutonStyle}background:#25d366;color:#04210f;text-decoration:none;">💬 Écrire sur WhatsApp</a>
+                        ${l.contacted ? "" : `<button class="lead-done-btn" data-id="${esc(l.id)}" style="${boutonStyle}background:transparent;border:1px solid #00c8ff;color:#00c8ff;">Marquer contacté</button>`}
+                    </div>
+                </div>`;
+        }).join("");
+
+    } catch (error) {
+        console.error("Erreur prospects :", error);
+        container.innerHTML = "<p>Erreur de chargement des prospects.</p>";
+    }
+}
+
+/* =========================
+   MESSAGES SUPPORT
+========================= */
+async function chargerSupport() {
+    const container = document.getElementById("support-messages");
+    if (!container) return;
+
+    try {
+        const snapshot = await getDocs(collection(db, "supports"));
+        const messages = snapshot.docs
+            .map((d) => ({ id: d.id, ...d.data() }))
+            .sort((a, b) => (b.createdAt?.seconds || 0) - (a.createdAt?.seconds || 0));
+
+        if (messages.length === 0) {
+            container.innerHTML = "<p style='color:#bbb;'>Aucun message pour le moment.</p>";
+            return;
+        }
+
+        container.innerHTML = messages.map((m) => `
+            <div class="admin-card" style="margin-bottom:14px;${m.lu ? "opacity:0.6;" : ""}">
+                <h3>${esc(m.email)}</h3>
+                <p style="white-space:pre-wrap;">${esc(m.message)}</p>
+                <p style="font-size:13px;color:#aaa;">${esc(formaterDate(m.createdAt))} · ${m.lu ? "✅ Lu" : "🆕 Non lu"}</p>
+                ${m.lu ? "" : `<div style="margin-top:14px;"><button class="support-read-btn" data-id="${esc(m.id)}" style="${boutonStyle}background:transparent;border:1px solid #00c8ff;color:#00c8ff;">Marquer comme lu</button></div>`}
+            </div>`).join("");
+
+    } catch (error) {
+        console.error("Erreur support :", error);
+        container.innerHTML = "<p>Erreur de chargement des messages.</p>";
+    }
+}
 
 /* =========================
    CHARGEMENT UTILISATEURS
@@ -183,9 +321,11 @@ async function chargerUtilisateurs() {
             const isPremium = data.premium || false;
 
             // Cache pour CSV
+            const nomAffiche = data.username || data.name || "Sans nom";
+
             tousLesUtilisateurs.push({
                 id: userId,
-                nom: data.username || "Sans nom",
+                nom: nomAffiche,
                 email: data.email || "",
                 premium: isPremium,
                 progression: progression,
@@ -201,9 +341,9 @@ async function chargerUtilisateurs() {
                 : "<li style='color:#bbb;'>Aucun module terminé</li>";
 
             cartes.push(`
-                <div class="admin-card" data-id="${userId}">
-                    <h3>${data.username || "Sans nom"}</h3>
-                    <p><i class="fa-solid fa-envelope"></i> ${data.email || "Pas d'email"}</p>
+                <div class="admin-card" data-id="${esc(userId)}">
+                    <h3>${esc(nomAffiche)}</h3>
+                    <p><i class="fa-solid fa-envelope"></i> ${esc(data.email || "Pas d'email")}</p>
                     <p><i class="fa-solid fa-chart-line"></i> Progression : <strong>${progression}%</strong> (${modulesTermines.length}/${TOTAL_MODULES} modules)</p>
                     <p><i class="fa-solid fa-crown"></i> Statut : <strong>${isPremium ? "⭐ Premium" : "Gratuit"}</strong></p>
 
@@ -295,6 +435,70 @@ document.addEventListener("click", async (e) => {
         } catch (error) {
             console.error(error);
             alert("Erreur lors de la modification du statut.");
+        }
+    }
+
+    /* --- VALIDER UN PAIEMENT --- */
+    if (e.target.matches(".pay-validate-btn")) {
+        const btn = e.target;
+        const paymentId = btn.getAttribute("data-id");
+        const uid = btn.getAttribute("data-uid");
+        if (!confirm("Valider ce paiement et activer le Premium de cet élève ?")) return;
+
+        btn.disabled = true;
+        try {
+            // 1. Activer le Premium (échoue si le compte élève n'existe plus)
+            await updateDoc(doc(db, "users", uid), { premium: true });
+            // 2. Marquer le paiement comme validé
+            await updateDoc(doc(db, "payments", paymentId), {
+                status: "validated",
+                validatedAt: new Date()
+            });
+            alert("Paiement validé, Premium activé ✅");
+            await Promise.all([chargerPaiements(), chargerUtilisateurs()]);
+        } catch (error) {
+            console.error(error);
+            btn.disabled = false;
+            alert("Impossible de valider : le compte de l'élève existe-t-il encore ?");
+        }
+    }
+
+    /* --- REJETER UN PAIEMENT --- */
+    if (e.target.matches(".pay-reject-btn")) {
+        const paymentId = e.target.getAttribute("data-id");
+        if (!confirm("Rejeter ce paiement ?")) return;
+
+        try {
+            await updateDoc(doc(db, "payments", paymentId), {
+                status: "rejected",
+                rejectedAt: new Date()
+            });
+            await chargerPaiements();
+        } catch (error) {
+            console.error(error);
+            alert("Erreur lors du rejet.");
+        }
+    }
+
+    /* --- PROSPECT CONTACTÉ --- */
+    if (e.target.matches(".lead-done-btn")) {
+        try {
+            await updateDoc(doc(db, "leads", e.target.getAttribute("data-id")), { contacted: true });
+            await chargerProspects();
+        } catch (error) {
+            console.error(error);
+            alert("Erreur de mise à jour.");
+        }
+    }
+
+    /* --- MESSAGE SUPPORT LU --- */
+    if (e.target.matches(".support-read-btn")) {
+        try {
+            await updateDoc(doc(db, "supports", e.target.getAttribute("data-id")), { lu: true });
+            await chargerSupport();
+        } catch (error) {
+            console.error(error);
+            alert("Erreur de mise à jour.");
         }
     }
 

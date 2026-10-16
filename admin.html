@@ -2,316 +2,118 @@
 <html lang="fr">
 
 <head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin | Nathan Trading Academy</title>
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#05080b">
+    <link rel="icon" type="image/png" href="assets/image2.png">
 
-<meta charset="UTF-8">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="app.css">
 
-<meta
-name="viewport"
-content="width=device-width, initial-scale=1.0"
->
-
-<title>
-Admin Panel | Nathan Trading
-</title>
-
-<link
-rel="stylesheet"
-href="style.css"
->
-
-<link
-rel="icon"
-type="image/png"
-href="assets/image2.png"
->
-
-<link rel="preconnect" href="https://fonts.googleapis.com">
-
-<link
-href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap"
-rel="stylesheet"
->
-
-<link
-rel="stylesheet"
-href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"
-/>
-
-<!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FGL81C37G2');
-</script>
-
-<script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/6b1aed9b5212c.js" data-cmp-host="c.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
-
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FGL81C37G2');
+    </script>
 </head>
 
-<body class="dashboard-body">
-
-<!-- SIDEBAR -->
-
-<div class="sidebar">
-
-<img
-src="assets/image2.png"
-class="sidebar-logo"
->
-
-<h2>
-Nathan Trading
-</h2>
-
-<a href="dashboard.html">
-
-<i class="fa-solid fa-chart-line"></i>
-
-Dashboard
-
-</a>
-
-<a href="videos.html">
-
-<i class="fa-solid fa-play"></i>
-
-Cours Vidéos
-
-</a>
-
-<a
-href="admin.html"
-id="admin-link"
-class="active-link"
-style="display:none;"
->
-
-<i class="fa-solid fa-user-shield"></i>
-
-Admin Panel
-
-</a>
-
-<button class="logout-btn">
-
-<i class="fa-solid fa-right-from-bracket"></i>
-
-Déconnexion
-
-</button>
-
-</div>
-
-<!-- CONTENU -->
-
-<div class="dashboard-content-main">
-
-<!-- HEADER -->
-
-<div class="admin-header">
-
-<div>
-
-<h1>
-👑 Nathan Trading Admin Panel
-</h1>
-
-<p class="admin-subtitle">
-
-Gestion complète des élèves,
-des accès premium et du support.
-
-</p>
-
-</div>
-
-<div class="premium-badge">
-
-<i class="fa-solid fa-crown"></i>
-
-<span>
-Administrateur
-</span>
-
-</div>
-
-</div>
-
-<!-- STATS -->
-
-<div class="admin-stats">
-
-<div class="admin-stat-card">
-
-<i class="fa-solid fa-users"></i>
-
-<h2 id="total-users">
-0
-</h2>
-
-<p>
-Élèves
-</p>
-
-</div>
-
-<div class="admin-stat-card">
-
-<i class="fa-solid fa-crown"></i>
-
-<h2 id="premium-users">
-0
-</h2>
-
-<p>
-Premium
-</p>
-
-</div>
-
-<div class="admin-stat-card">
-
-<i class="fa-solid fa-chart-line"></i>
-
-<h2 id="average-progress">
-0%
-</h2>
-
-<p>
-Progression Moyenne
-</p>
-
-</div>
-
-</div>
-
-<!-- RECHERCHE -->
-
-<div class="search-box">
-
-<i class="fa-solid fa-magnifying-glass"></i>
-
-<input
-type="text"
-id="search-user"
-placeholder="Rechercher un élève..."
->
-
-</div>
-
-<!-- ANNONCE -->
-
-<div class="announcement-box">
-
-<h2>
-📢 Publier une annonce
-</h2>
-
-<textarea
-id="announcement-input"
-placeholder="Écrire une annonce pour tous les élèves..."
-></textarea>
-
-<button
-id="publish-announcement"
-class="primary-btn"
->
-
-Publier l'annonce
-
-</button>
-
-</div>
-
-<!-- SUPPORT -->
-
-<div class="support-section">
-
-<h2 class="support-title">
-
-📩 Messages Support
-
-</h2>
-
-<div
-class="support-messages"
-id="support-messages"
->
-
-<p>
-Chargement des messages...
-</p>
-
-</div>
-
-</div>
-
-<!-- USERS -->
-
-<div class="admin-users-section">
-
-<h2 class="support-title">
-
-👨‍🎓 Gestion des Élèves
-
-</h2>
-
-<!-- mail a tous -->
-
-<div style="display:flex;gap:15px;flex-wrap:wrap;margin-bottom:30px;">
-
-    <button id="export-csv" style="
-        padding:14px 24px;
-        background:#00ffae;
-        color:#000;
-        border:none;
-        border-radius:14px;
-        font-weight:700;
-        cursor:pointer;
-        font-size:15px;
-        transition:0.3s;
-    ">
-        📥 Exporter CSV
-    </button>
-
-    <button id="email-tous" style="
-        padding:14px 24px;
-        background:#00c8ff;
-        color:#000;
-        border:none;
-        border-radius:14px;
-        font-weight:700;
-        cursor:pointer;
-        font-size:15px;
-        transition:0.3s;
-    ">
-        📧 Envoyer un email à tous
-    </button>
-
-</div>
-<div
-class="admin-users"
-id="admin-users"
->
-
-<p>
-Chargement des utilisateurs...
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-<script
-type="module"
-src="admin.js"
-></script>
-
+<body class="app">
+
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <img src="assets/image2.png" class="sidebar-logo" alt="Logo Nathan Trading">
+            <span>NATHAN TRADING</span>
+        </a>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-line"></i> Tableau de bord</a>
+        <a href="videos.html" class="nav-item"><i class="fa-solid fa-play"></i> Cours vidéos</a>
+        <a href="admin.html" id="admin-link" class="nav-item active-link" style="display:none;"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        <button class="logout-btn" type="button"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
+    </aside>
+
+    <main class="main">
+
+        <div class="admin-header">
+            <div>
+                <h1>Panneau d'administration</h1>
+                <p class="admin-subtitle">Élèves, paiements, prospects et support.</p>
+            </div>
+            <div class="premium-badge">
+                <i class="fa-solid fa-crown"></i>
+                <span>Administrateur</span>
+            </div>
+        </div>
+
+        <div class="admin-stats">
+            <div class="admin-stat-card">
+                <i class="fa-solid fa-users"></i>
+                <h2 id="total-users">0</h2>
+                <p>Élèves</p>
+            </div>
+            <div class="admin-stat-card">
+                <i class="fa-solid fa-crown"></i>
+                <h2 id="premium-users">0</h2>
+                <p>Premium</p>
+            </div>
+            <div class="admin-stat-card">
+                <i class="fa-solid fa-chart-line"></i>
+                <h2 id="average-progress">0%</h2>
+                <p>Progression moyenne</p>
+            </div>
+        </div>
+
+        <!-- PAIEMENTS -->
+        <section class="support-section">
+            <h2 class="support-title">Paiements déclarés (<span id="pending-payments">0</span> en attente)</h2>
+            <div id="admin-payments"><p>Chargement des paiements...</p></div>
+        </section>
+
+        <!-- PROSPECTS -->
+        <section class="support-section">
+            <h2 class="support-title">Prospects (formulaire de l'accueil)</h2>
+            <div id="admin-leads"><p>Chargement des prospects...</p></div>
+        </section>
+
+        <!-- SUPPORT -->
+        <section class="support-section">
+            <h2 class="support-title">Messages du support</h2>
+            <div class="support-messages" id="support-messages"><p>Chargement des messages...</p></div>
+        </section>
+
+        <!-- ANNONCE -->
+        <section class="announcement-box">
+            <h2>Publier une annonce</h2>
+            <textarea id="announcement-input" placeholder="Écrire une annonce pour tous les élèves..."></textarea>
+            <button id="publish-announcement" class="btn btn-primary" type="button">Publier l'annonce</button>
+        </section>
+
+        <!-- ÉLÈVES -->
+        <section class="admin-users-section">
+            <h2 class="support-title">Gestion des élèves</h2>
+
+            <div class="search-box">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" id="search-user" placeholder="Rechercher un élève...">
+            </div>
+
+            <div style="display:flex;gap:12px;flex-wrap:wrap;margin-bottom:22px;">
+                <button id="export-csv" class="btn btn-primary" type="button">Exporter en CSV</button>
+                <button id="email-tous" class="btn" type="button" style="background:transparent;border-color:var(--line-strong);color:var(--cyan);">Envoyer un email à tous</button>
+            </div>
+
+            <div class="admin-users" id="admin-users"><p>Chargement des utilisateurs...</p></div>
+        </section>
+
+    </main>
+
+    <script type="module" src="admin.js"></script>
 </body>
 
 </html>

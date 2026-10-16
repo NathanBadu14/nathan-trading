@@ -4,71 +4,51 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Dashboard | Nathan Trading Academy</title>
-    <meta name="description" content="Votre espace élève Nathan Trading Academy. Suivez votre progression, accédez aux cours et consultez vos statistiques.">
+    <title>Tableau de bord | Nathan Trading Academy</title>
+    <meta name="description" content="Votre espace élève Nathan Trading Academy : progression, cours et annonces.">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#05080b">
     <link rel="canonical" href="https://nathan-trading.com/dashboard.html">
-    
-    <meta name="description" content="Dashboard premium Nathan Trading Academy.">
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="assets/image2.png">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="app.css">
 
     <!-- Google tag (gtag.js) -->
-<script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
-<script>
-  window.dataLayer = window.dataLayer || [];
-  function gtag(){dataLayer.push(arguments);}
-  gtag('js', new Date());
-
-  gtag('config', 'G-FGL81C37G2');
-</script>
-
-<script type="text/javascript" data-cmp-ab="1" src="https://cdn.consentmanager.net/delivery/autoblocking/6b1aed9b5212c.js" data-cmp-host="c.delivery.consentmanager.net" data-cmp-cdn="cdn.consentmanager.net" data-cmp-codesrc="16"></script>
-
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FGL81C37G2');
+    </script>
 </head>
 
-<body class="dashboard-body">
+<body class="app">
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <img src="assets/image2.png" class="sidebar-logo" alt="Logo Nathan Trading">
+            <span>NATHAN TRADING</span>
+        </a>
+        <a href="dashboard.html" class="nav-item active-link"><i class="fa-solid fa-chart-line"></i> Tableau de bord</a>
+        <a href="videos.html" class="nav-item"><i class="fa-solid fa-play"></i> Cours vidéos</a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i> Mon profil</a>
+        <a href="certificate.html" class="nav-item"><i class="fa-solid fa-award"></i> Certificat</a>
+        <a href="support.html" class="nav-item"><i class="fa-solid fa-headset"></i> Support</a>
+        <a href="admin.html" id="admin-link" class="nav-item" style="display:none;"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        <button class="logout-btn" type="button"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
+    </aside>
 
-    <div class="sidebar">
-        <img src="assets/image2.png" class="sidebar-logo" alt="Nathan Trading Logo">
-        <h2>Nathan Trading</h2>
-        
-        <a href="dashboard.html" class="active-link">
-            <i class="fa-solid fa-chart-line"></i> Dashboard
-        </a>
-        <a href="videos.html">
-            <i class="fa-solid fa-play"></i> Cours Vidéos
-        </a>
-        <a href="profile.html">
-            <i class="fa-solid fa-user"></i> Mon Profil
-        </a>
-        <a href="certificate.html">
-            <i class="fa-solid fa-award"></i> Certificat
-        </a>
-        <a href="support.html">
-            <i class="fa-solid fa-headset"></i> Support
-        </a>
+    <main class="main">
 
-        <a href="admin.html" id="admin-link" style="display:none;">
-            <i class="fa-solid fa-lock"></i> Admin
-        </a>
-
-        <button class="logout-btn">
-            <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
-        </button>
-    </div>
-
-    <div class="dashboard-content-main">
-        
         <div class="dashboard-top">
             <div>
                 <h1 id="welcome-message">Bienvenue</h1>
                 <div class="student-announcement">
-                    <h2>📢 Annonce</h2>
+                    <h2>Annonce</h2>
                     <p id="announcement-message">Chargement...</p>
                 </div>
             </div>
@@ -80,29 +60,29 @@
 
         <div class="stats-grid">
             <div class="stat-card">
-                <i class="fa-solid fa-book-open"></i>
-                <h2>17</h2>
-                <p>Cours Disponibles</p>
-            </div>
-            <div class="stat-card">
                 <i class="fa-solid fa-video"></i>
-                <h2>17</h2>
-                <p>Vidéos Premium</p>
+                <h2>18</h2>
+                <p>Modules vidéo</p>
             </div>
             <div class="stat-card">
                 <i class="fa-solid fa-chart-line"></i>
-                <h2>100%</h2>
-                <p>Stratégie Nathan Trading</p>
+                <h2>3</h2>
+                <p>Marchés couverts</p>
+            </div>
+            <div class="stat-card">
+                <i class="fa-solid fa-infinity"></i>
+                <h2>À vie</h2>
+                <p>Accès illimité</p>
             </div>
             <div class="stat-card">
                 <i class="fa-solid fa-headset"></i>
-                <h2>24/7</h2>
-                <p>Support Élèves</p>
+                <h2>24 h</h2>
+                <p>Réponse du support</p>
             </div>
         </div>
 
         <div class="progress-container">
-            <h2>Votre progression</h2>
+            <h2>Ta progression</h2>
             <div class="progress-bar">
                 <div class="progress-fill" id="progress-fill">0%</div>
             </div>
@@ -113,45 +93,40 @@
             <div class="premium-content">
                 <div>
                     <h2>Nathan Trading Academy</h2>
-                    <p>
-                        Accédez à l'intégralité de la formation : structure du marché, zones solides, confirmations, gestion du risque, psychologie et exécution professionnelle.
-                    </p>
-                    <a href="videos.html">
-                        <button class="primary-btn">Accéder aux cours</button>
-                    </a>
+                    <p>Accède à l'intégralité de la formation : structure du marché, zones solides, confirmations, gestion du risque, psychologie et exécution.</p>
+                    <a href="videos.html" class="btn btn-primary">Accéder aux cours</a>
                 </div>
-                <div class="academy-icon">
-                    <i class="fa-solid fa-graduation-cap"></i>
-                </div>
+                <div class="academy-icon"><i class="fa-solid fa-graduation-cap"></i></div>
             </div>
         </div>
 
         <div class="modules-preview">
-            <h2 class="modules-title">Programme de Formation</h2>
+            <h2 class="modules-title">Programme de la formation</h2>
             <div class="modules-grid">
-                <div class="module-item">🎬 Vidéo d’introduction</div>
-                <div class="module-item">🎬 Les bases d’une stratégie</div>
-                <div class="module-item">🎬 Comment le prix bouge</div>
-                <div class="module-item">🎬 La structure du marché</div>
-                <div class="module-item">🎬 Les zones solides</div>
-                <div class="module-item">🎬 Les deux patterns</div>
-                <div class="module-item">🎬 Le clean trafic</div>
-                <div class="module-item">🎬 Analyse du biais</div>
-                <div class="module-item">🎬 AVALEMENT | CP ZONE D1</div>
-                <div class="module-item">🎬 AVALEMENT | CP ZONE (suite)</div>
-                <div class="module-item">🎬 AVALEMENT H4</div>
-                <div class="module-item">🎬 DOJI | MARTEAU H4</div>
-                <div class="module-item">🎬 Avalement H4-H1 + M15</div>
-                <div class="module-item">🎬 La gestion de risque</div>
-                <div class="module-item">🎬 La gestion du trade</div>
-                <div class="module-item">🎬 La gestion des émotions</div>
-                <div class="module-item">🎬 Plan de Trading et Journal</div>
-                <div class="module-item">🏆 Fin de formation</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">01</b>Introduction</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">02</b>Les bases d'une stratégie</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">03</b>Comment le prix bouge</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">04</b>La structure du marché</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">05</b>Les zones solides</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">06</b>Les deux patterns</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">07</b>Le clean traffic</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">08</b>Analyse du biais</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">09</b>Avalement CP Zone D1</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">10</b>Avalement CP Zone D1 (suite)</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">11</b>Avalement H4</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">12</b>Doji et marteau H4</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">13</b>Avalement H4-H1 + M15</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">14</b>Gestion du risque</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">15</b>Gestion du trade</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">16</b>Gestion des émotions</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">17</b>Plan de trading et journal</div>
+                <div class="module-item"><b style="color:var(--muted);margin-right:8px;">18</b>Fin de formation</div>
             </div>
         </div>
 
-    </div>
+    </main>
 
     <script type="module" src="dashboard.js"></script>
 </body>
+
 </html>

@@ -54,13 +54,16 @@ if (registerForm) {
       console.log("✅ Compte Firebase créé pour :", user.email);
 
       // 2. Enregistrement des données dans Firestore
+      // Les champs "username" et "modulesTermines" sont ceux lus par le
+      // tableau de bord, les vidéos, le profil et l'admin.
       await setDoc(doc(db, "users", user.uid), {
-        name: name,
+        username: name.trim(),
+        name: name.trim(),
         email: user.email,
         uid: user.uid,
         premium: false,
         progression: 0,
-        completedModules: [],
+        modulesTermines: [],
         createdAt: new Date()
       });
       console.log("✅ Données enregistrées dans Firestore");
@@ -70,20 +73,10 @@ if (registerForm) {
         await sendEmailVerification(user);
         console.log("📧 Email de vérification envoyé avec succès !");
         alert("Compte créé avec succès 🔥 Un e-mail de vérification vous a été envoyé à l'adresse " + user.email + ". Veuillez valider votre boîte de réception avant de vous connecter.");
-      }  catch (mailError) {
-
-  console.error("MAIL ERROR:", mailError);
-  console.error("CODE:", mailError.code);
-  console.error("MESSAGE:", mailError.message);
-
-  alert(
-    "Erreur mail : " +
-    mailError.code +
-    "\n\n" +
-    mailError.message
-  );
-
-}
+      } catch (mailError) {
+        console.error("MAIL ERROR:", mailError.code, mailError.message);
+        alert("Compte créé 🔥 Mais l'e-mail de vérification n'a pas pu être envoyé. Tu pourras te connecter normalement.");
+      }
 
       // Redirection automatique vers la page de connexion
       window.location.href = "connexion.html";

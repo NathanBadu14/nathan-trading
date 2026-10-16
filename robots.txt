@@ -1,0 +1,10 @@
+User-agent: *
+Allow: /
+Disallow: /admin.html
+Disallow: /dashboard.html
+Disallow: /videos.html
+Disallow: /profile.html
+Disallow: /certificate.html
+Disallow: /support.html
+
+Sitemap: https://nathan-trading.com/sitemap.xml

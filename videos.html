@@ -4,137 +4,50 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cours Vidéos Premium | Nathan Trading Academy</title>
-    <meta name="description" content="Accédez à vos cours vidéo premium Nathan Trading Academy. 18 modules couvrant le Forex, les indices synthétiques, la gestion du risque et la psychologie du trader.">
+    <title>Cours vidéos | Nathan Trading Academy</title>
+    <meta name="description" content="Accédez à vos cours vidéo Nathan Trading Academy : 18 modules sur l'analyse graphique, la gestion du risque et la psychologie du trader.">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#05080b">
     <link rel="canonical" href="https://nathan-trading.com/videos.html">
-
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="assets/image2.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="app.css">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FGL81C37G2');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FGL81C37G2');
     </script>
-
-    <style>
-        .videos-grid {
-            display: flex !important;
-            flex-direction: column !important;
-            gap: 30px !important;
-        }
-        .video-card {
-            width: 100% !important;
-            max-width: 100% !important;
-        }
-        .video-card iframe {
-            width: 100% !important;
-            height: 480px !important;
-            border-radius: 16px !important;
-            border: none !important;
-            margin-bottom: 18px !important;
-            background: #000 !important;
-        }
-        @media (max-width: 768px) {
-            .video-card iframe {
-                height: 220px !important;
-            }
-        }
-        .videos-header {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 30px;
-            flex-wrap: wrap;
-            gap: 15px;
-        }
-        .course-progress-box {
-            background: #111;
-            padding: 25px 30px;
-            border-radius: 20px;
-            margin-bottom: 35px;
-            border: 1px solid rgba(255,255,255,0.05);
-        }
-        .progress-title-row {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .video-top {
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            margin-bottom: 15px;
-        }
-        .module-badge {
-            background: rgba(0,200,255,0.15);
-            color: #00c8ff;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .module-status.completed {
-            background: rgba(0,255,174,0.15);
-            color: #00ffae;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-        .module-status.locked-status {
-            background: rgba(255,56,56,0.15);
-            color: #ff3838;
-            padding: 6px 14px;
-            border-radius: 20px;
-            font-size: 13px;
-            font-weight: 600;
-        }
-    </style>
 </head>
 
-<body class="dashboard-body">
+<body class="app">
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <img src="assets/image2.png" class="sidebar-logo" alt="Logo Nathan Trading">
+            <span>NATHAN TRADING</span>
+        </a>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-line"></i> Tableau de bord</a>
+        <a href="videos.html" class="nav-item active-link"><i class="fa-solid fa-play"></i> Cours vidéos</a>
+        <a href="profile.html" class="nav-item"><i class="fa-solid fa-user"></i> Mon profil</a>
+        <a href="certificate.html" class="nav-item"><i class="fa-solid fa-award"></i> Certificat</a>
+        <a href="support.html" class="nav-item"><i class="fa-solid fa-headset"></i> Support</a>
+        <a href="admin.html" id="admin-link" class="nav-item" style="display:none;"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        <button class="logout-btn" type="button"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
+    </aside>
 
-    <div class="sidebar">
-        <img src="assets/image2.png" class="sidebar-logo">
-        <h2>Nathan Trading</h2>
-        <a href="dashboard.html">
-            <i class="fa-solid fa-chart-line"></i> Dashboard
-        </a>
-        <a href="videos.html" class="active-link">
-            <i class="fa-solid fa-play"></i> Cours Vidéos
-        </a>
-        <a href="profile.html">
-            <i class="fa-solid fa-user"></i> Mon Profil
-        </a>
-        <a href="certificate.html">
-            <i class="fa-solid fa-award"></i> Certificat
-        </a>
-        <a href="support.html">
-            <i class="fa-solid fa-headset"></i> Support
-        </a>
-        <a href="admin.html" id="admin-link" style="display:none;">
-            <i class="fa-solid fa-user-shield"></i> Admin Panel
-        </a>
-        <button class="logout-btn">
-            <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
-        </button>
-    </div>
-
-    <div class="dashboard-content-main">
+    <main class="main">
 
         <div class="videos-header">
             <div>
-                <h1>🎓 Académie Nathan Trading</h1>
-                <p class="student-email">Formation Premium Complète</p>
+                <h1>Académie Nathan Trading</h1>
+                <p class="student-email">Formation complète · 18 modules</p>
             </div>
             <div class="premium-badge">
                 <i class="fa-solid fa-crown"></i>
@@ -144,7 +57,7 @@
 
         <div class="course-progress-box">
             <div class="progress-title-row">
-                <h2>Votre progression</h2>
+                <h2>Ta progression</h2>
                 <p id="progress-text">0% terminé</p>
             </div>
             <div class="progress-bar">
@@ -154,7 +67,7 @@
 
         <div class="videos-grid">
 
-            <!-- INTRODUCTION -->
+            <!-- MODULE 1 -->
             <div class="video-card unlocked" data-module="1">
                 <div class="video-top">
                     <span class="module-badge">Introduction</span>
@@ -165,29 +78,9 @@
                 <p class="video-description">Présentation complète de la formation Nathan Trading Academy.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
                 <div class="comments-section">
-                    <h3>💬 Commentaires</h3>
+                    <h3>Commentaires</h3>
                     <form class="comment-form">
-                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
-                        <button type="submit" class="comment-btn">Envoyer</button>
-                    </form>
-                    <div class="comments-container"></div>
-                </div>
-            </div>
-
-            <!-- MODULE 1 -->
-            <div class="video-card unlocked" data-module="2">
-                <div class="video-top">
-                    <span class="module-badge">Module 1</span>
-                    <span class="module-status completed">Disponible</span>
-                </div>
-                <div class="video-container" id="video-2"></div>
-                <h3>🎬 Les bases d'une stratégie</h3>
-                <p class="video-description">Comprendre les fondations d'une stratégie rentable.</p>
-                <button class="complete-btn">Marquer comme terminé</button>
-                <div class="comments-section">
-                    <h3>💬 Commentaires</h3>
-                    <form class="comment-form">
-                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
                         <button type="submit" class="comment-btn">Envoyer</button>
                     </form>
                     <div class="comments-container"></div>
@@ -195,6 +88,26 @@
             </div>
 
             <!-- MODULE 2 -->
+            <div class="video-card unlocked" data-module="2">
+                <div class="video-top">
+                    <span class="module-badge">Module 1</span>
+                    <span class="module-status completed">Disponible</span>
+                </div>
+                <div class="video-container" id="video-2"></div>
+                <h3>🎬 Les bases d'une stratégie</h3>
+                <p class="video-description">Comprendre les fondations d'une stratégie de trading structurée.</p>
+                <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
+            </div>
+
+            <!-- MODULE 3 -->
             <div class="video-card unlocked" data-module="3">
                 <div class="video-top">
                     <span class="module-badge">Module 2</span>
@@ -205,16 +118,16 @@
                 <p class="video-description">Comprendre les mouvements du marché et la logique du prix.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
                 <div class="comments-section">
-                    <h3>💬 Commentaires</h3>
+                    <h3>Commentaires</h3>
                     <form class="comment-form">
-                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
                         <button type="submit" class="comment-btn">Envoyer</button>
                     </form>
                     <div class="comments-container"></div>
                 </div>
             </div>
 
-            <!-- MODULE 3 -->
+            <!-- MODULE 4 -->
             <div class="video-card unlocked" data-module="4">
                 <div class="video-top">
                     <span class="module-badge">Module 3</span>
@@ -225,16 +138,16 @@
                 <p class="video-description">Identifier les structures et tendances importantes.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
                 <div class="comments-section">
-                    <h3>💬 Commentaires</h3>
+                    <h3>Commentaires</h3>
                     <form class="comment-form">
-                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
                         <button type="submit" class="comment-btn">Envoyer</button>
                     </form>
                     <div class="comments-container"></div>
                 </div>
             </div>
 
-            <!-- MODULE 4 -->
+            <!-- MODULE 5 -->
             <div class="video-card unlocked" data-module="5">
                 <div class="video-top">
                     <span class="module-badge">Module 4</span>
@@ -245,16 +158,16 @@
                 <p class="video-description">Comprendre les zones institutionnelles et les réactions du marché.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
                 <div class="comments-section">
-                    <h3>💬 Commentaires</h3>
+                    <h3>Commentaires</h3>
                     <form class="comment-form">
-                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
                         <button type="submit" class="comment-btn">Envoyer</button>
                     </form>
                     <div class="comments-container"></div>
                 </div>
             </div>
 
-            <!-- MODULE 5 -->
+            <!-- MODULE 6 -->
             <div class="video-card unlocked" data-module="6">
                 <div class="video-top">
                     <span class="module-badge">Module 5</span>
@@ -265,16 +178,16 @@
                 <p class="video-description">Les patterns essentiels de la méthode Nathan Trading.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
                 <div class="comments-section">
-                    <h3>💬 Commentaires</h3>
+                    <h3>Commentaires</h3>
                     <form class="comment-form">
-                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
                         <button type="submit" class="comment-btn">Envoyer</button>
                     </form>
                     <div class="comments-container"></div>
                 </div>
             </div>
 
-            <!-- MODULE 6 -->
+            <!-- MODULE 7 -->
             <div class="video-card unlocked" data-module="7">
                 <div class="video-top">
                     <span class="module-badge">Module 6</span>
@@ -285,16 +198,16 @@
                 <p class="video-description">Apprendre à éviter les mauvaises zones et filtrer les entrées.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
                 <div class="comments-section">
-                    <h3>💬 Commentaires</h3>
+                    <h3>Commentaires</h3>
                     <form class="comment-form">
-                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
                         <button type="submit" class="comment-btn">Envoyer</button>
                     </form>
                     <div class="comments-container"></div>
                 </div>
             </div>
 
-            <!-- MODULE 7 -->
+            <!-- MODULE 8 -->
             <div class="video-card unlocked" data-module="8">
                 <div class="video-top">
                     <span class="module-badge">Module 7</span>
@@ -305,16 +218,16 @@
                 <p class="video-description">Déterminer correctement le sens du marché.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
                 <div class="comments-section">
-                    <h3>💬 Commentaires</h3>
+                    <h3>Commentaires</h3>
                     <form class="comment-form">
-                        <input type="text" class="comment-input" placeholder="Écrivez un commentaire..." required>
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
                         <button type="submit" class="comment-btn">Envoyer</button>
                     </form>
                     <div class="comments-container"></div>
                 </div>
             </div>
 
-            <!-- MODULE 8.1 -->
+            <!-- MODULE 9 -->
             <div class="video-card unlocked" data-module="9">
                 <div class="video-top">
                     <span class="module-badge">Module 8.1</span>
@@ -324,9 +237,17 @@
                 <h3>🎬 Avalement CP Zone D1</h3>
                 <p class="video-description">Analyse et cas pratique du setup d'avalement sur la zone Daily.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-            <!-- MODULE 8.2 -->
+            <!-- MODULE 10 -->
             <div class="video-card unlocked" data-module="10">
                 <div class="video-top">
                     <span class="module-badge">Module 8.2</span>
@@ -336,9 +257,17 @@
                 <h3>🎬 Avalement CP Zone D1 Suite</h3>
                 <p class="video-description">Approfondissement et pièges à éviter sur l'avalement D1.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-            <!-- MODULE 8.3 -->
+            <!-- MODULE 11 -->
             <div class="video-card unlocked" data-module="11">
                 <div class="video-top">
                     <span class="module-badge">Module 8.3</span>
@@ -348,9 +277,17 @@
                 <h3>🎬 Avalement H4</h3>
                 <p class="video-description">Exploiter la puissance des bougies d'avalement en unité de temps H4.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-            <!-- MODULE 8.4 -->
+            <!-- MODULE 12 -->
             <div class="video-card unlocked" data-module="12">
                 <div class="video-top">
                     <span class="module-badge">Module 8.4</span>
@@ -360,9 +297,17 @@
                 <h3>🎬 Doji Marteau H4</h3>
                 <p class="video-description">Détecter les retournements institutionnels avec les mèches H4.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-            <!-- MODULE 8.5 -->
+            <!-- MODULE 13 -->
             <div class="video-card unlocked" data-module="13">
                 <div class="video-top">
                     <span class="module-badge">Module 8.5</span>
@@ -372,9 +317,17 @@
                 <h3>🎬 Avalement H4-H1 + M15</h3>
                 <p class="video-description">La technique de multi-timeframe ultime pour affiner votre précision.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-            <!-- MODULE 9 -->
+            <!-- MODULE 14 -->
             <div class="video-card unlocked" data-module="14">
                 <div class="video-top">
                     <span class="module-badge">Module 9</span>
@@ -384,9 +337,17 @@
                 <h3>🎬 Gestion du risque</h3>
                 <p class="video-description">Calculer son risque par trade et préserver son capital à long terme.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-            <!-- MODULE 10 -->
+            <!-- MODULE 15 -->
             <div class="video-card unlocked" data-module="15">
                 <div class="video-top">
                     <span class="module-badge">Module 10</span>
@@ -396,9 +357,17 @@
                 <h3>🎬 Gestion du trade</h3>
                 <p class="video-description">Savoir quand couper, laisser courir ou passer à Break-Even.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-            <!-- MODULE 11 -->
+            <!-- MODULE 16 -->
             <div class="video-card unlocked" data-module="16">
                 <div class="video-top">
                     <span class="module-badge">Module 11</span>
@@ -408,21 +377,37 @@
                 <h3>🎬 Gestion des émotions</h3>
                 <p class="video-description">Vaincre le FOMO et le Revenge Trading grâce à la psychologie.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-            <!-- MODULE 12 & 13 (Fusionnés) -->
+            <!-- MODULE 17 -->
             <div class="video-card unlocked" data-module="17">
                 <div class="video-top">
-                    <span class="module-badge">Modules 12 & 13</span>
+                    <span class="module-badge">Modules 12 &amp; 13</span>
                     <span class="module-status completed">Disponible</span>
                 </div>
                 <div class="video-container" id="video-17"></div>
-                <h3>🎬 Plan de Trading & Journal</h3>
+                <h3>🎬 Plan de Trading &amp; Journal</h3>
                 <p class="video-description">Bâtir ses règles et suivre ses performances pour s'améliorer continuellement.</p>
                 <button class="complete-btn">Marquer comme terminé</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-                   <!-- MODULE FINAL -->
+            <!-- MODULE 18 -->
             <div class="video-card unlocked" data-module="18">
                 <div class="video-top">
                     <span class="module-badge">Module Final</span>
@@ -430,19 +415,23 @@
                 </div>
                 <div class="video-container" id="video-18"></div>
                 <h3>🏆 Fin de formation</h3>
-                <p class="video-description">
-                    Conclusion et prochaines étapes pour aller plus loin.
-                </p>
-                <button class="complete-btn">
-                    Obtenir mon Certificat
-                </button>
+                <p class="video-description">Conclusion et prochaines étapes pour aller plus loin.</p>
+                <button class="complete-btn">Obtenir mon Certificat</button>
+                <div class="comments-section">
+                    <h3>Commentaires</h3>
+                    <form class="comment-form">
+                        <input type="text" class="comment-input" placeholder="Écris un commentaire..." maxlength="1000" required>
+                        <button type="submit" class="comment-btn">Envoyer</button>
+                    </form>
+                    <div class="comments-container"></div>
+                </div>
             </div>
 
-        </div> <!-- fin videos-grid -->
+        </div>
 
-    </div> <!-- fin dashboard-content-main -->
+    </main>
 
     <script type="module" src="videos.js"></script>
-
 </body>
+
 </html>

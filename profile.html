@@ -4,121 +4,96 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Mon Profil | Nathan Trading Academy</title>
+    <title>Mon profil | Nathan Trading Academy</title>
     <meta name="description" content="Consultez votre profil élève Nathan Trading Academy, votre progression et vos modules terminés.">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#05080b">
     <link rel="canonical" href="https://nathan-trading.com/profile.html">
-
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" type="image/png" href="assets/image2.png">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css"/>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="app.css">
 
     <!-- Google tag (gtag.js) -->
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FGL81C37G2');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FGL81C37G2');
     </script>
 </head>
 
-<body class="dashboard-body">
+<body class="app">
+    <aside class="sidebar">
+        <a href="index.html" class="sidebar-brand">
+            <img src="assets/image2.png" class="sidebar-logo" alt="Logo Nathan Trading">
+            <span>NATHAN TRADING</span>
+        </a>
+        <a href="dashboard.html" class="nav-item"><i class="fa-solid fa-chart-line"></i> Tableau de bord</a>
+        <a href="videos.html" class="nav-item"><i class="fa-solid fa-play"></i> Cours vidéos</a>
+        <a href="profile.html" class="nav-item active-link"><i class="fa-solid fa-user"></i> Mon profil</a>
+        <a href="certificate.html" class="nav-item"><i class="fa-solid fa-award"></i> Certificat</a>
+        <a href="support.html" class="nav-item"><i class="fa-solid fa-headset"></i> Support</a>
+        <a href="admin.html" id="admin-link" class="nav-item" style="display:none;"><i class="fa-solid fa-user-shield"></i> Admin</a>
+        <button class="logout-btn" type="button"><i class="fa-solid fa-right-from-bracket"></i> <span>Déconnexion</span></button>
+    </aside>
 
-    <!-- SIDEBAR -->
-    <div class="sidebar">
-        <img src="assets/image2.png" class="sidebar-logo">
-        <h2>Nathan Trading</h2>
-        <a href="dashboard.html">
-            <i class="fa-solid fa-chart-line"></i> Dashboard
-        </a>
-        <a href="videos.html">
-            <i class="fa-solid fa-play"></i> Cours Vidéos
-        </a>
-        <a href="profile.html" class="active-link">
-            <i class="fa-solid fa-user"></i> Mon Profil
-        </a>
-        <a href="admin.html" id="admin-link" style="display:none;">
-            <i class="fa-solid fa-user-shield"></i> Admin
-        </a>
-        <button class="logout-btn">
-            <i class="fa-solid fa-right-from-bracket"></i> Déconnexion
-        </button>
-    </div>
-
-    <!-- CONTENU -->
-    <div class="dashboard-content-main">
+    <main class="main">
 
         <div class="profile-card">
 
-            <!-- AVATAR + NOM -->
             <div class="profile-top">
-                <div class="profile-avatar">
-                    <i class="fa-solid fa-user"></i>
-                </div>
+                <div class="profile-avatar"><i class="fa-solid fa-user"></i></div>
                 <div>
                     <h1 id="profile-name">Chargement...</h1>
-                    <p id="profile-email" style="color:#bbb;">Chargement...</p>
+                    <p id="profile-email" style="color:var(--muted);">Chargement...</p>
                 </div>
             </div>
 
-            <!-- INFOS -->
             <div class="profile-info-grid">
-
                 <div class="profile-info-box">
-                    <h3>👑 Statut</h3>
+                    <h3>Statut</h3>
                     <p id="profile-premium">Chargement...</p>
                 </div>
-
                 <div class="profile-info-box">
-                    <h3>📈 Progression</h3>
+                    <h3>Progression</h3>
                     <p id="profile-progress">0%</p>
                 </div>
-
                 <div class="profile-info-box">
-                    <h3>🆔 UID</h3>
+                    <h3>Identifiant</h3>
                     <p id="profile-uid" style="font-size:11px;word-break:break-all;">Chargement...</p>
                 </div>
-
                 <div class="profile-info-box">
-                    <h3>📅 Inscription</h3>
+                    <h3>Inscription</h3>
                     <p id="profile-created">Chargement...</p>
                 </div>
-
             </div>
 
-            <!-- BARRE PROGRESSION -->
             <div class="profile-progress-section">
-                <h2>Votre progression</h2>
+                <h2>Ta progression</h2>
                 <div class="progress-bar">
                     <div class="progress-fill" id="profile-progress-fill">0%</div>
                 </div>
             </div>
 
-            <!-- MODULES TERMINÉS -->
-            <div style="margin-top:40px;">
-                <h2 style="margin-bottom:20px;">
-                    ✅ Modules terminés
-                </h2>
+            <div style="margin-top:36px;">
+                <h2 style="margin-bottom:16px;font-size:19px;">Modules terminés</h2>
                 <div id="profile-modules">
-                    <p style="color:#bbb;">Chargement...</p>
+                    <p style="color:var(--muted);">Chargement...</p>
                 </div>
             </div>
 
-            <!-- BOUTON CONTINUER -->
-            <div style="margin-top:40px;text-align:center;">
-                <a href="videos.html">
-                    <button class="primary-btn" style="padding:16px 40px;font-size:16px;">
-                        🎓 Continuer la Formation
-                    </button>
-                </a>
+            <div style="margin-top:36px;text-align:center;">
+                <a href="videos.html" class="btn btn-primary">Continuer la formation</a>
             </div>
 
         </div>
 
-    </div>
+    </main>
 
     <script type="module" src="profile.js"></script>
 </body>

@@ -1,54 +1,73 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Inscription | Nathan Trading Academy</title>
-    <meta name="description" content="Créez votre compte Nathan Trading Academy et commencez votre formation premium en trading Forex, indices et crypto en français.">
+    <meta name="description" content="Créez votre compte Nathan Trading Academy et commencez votre formation en trading Forex, indices et crypto en français.">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#05080b">
     <link rel="canonical" href="https://nathan-trading.com/inscription.html">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/image2.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="site.css">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FGL81C37G2');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FGL81C37G2');
     </script>
 </head>
-<body class="auth-body">
 
-    <div class="auth-container">
-        <img src="assets/image2.png" class="auth-logo" alt="Nathan Trading Logo">
-        <h1>Créer un compte</h1>
-        <p>Rejoignez Nathan Trading Academy</p>
+<body>
+    <main class="auth-page">
+        <div class="auth-card">
+            <a href="index.html" aria-label="Retour à l'accueil"><img src="assets/image2.png" class="auth-logo" alt="Logo Nathan Trading"></a>
+            <h1>Créer un compte</h1>
+            <p class="auth-sub">Rejoins Nathan Trading Academy</p>
 
-        <form id="register-form">
-            <input type="text" id="register-name" placeholder="Votre prénom" autocomplete="given-name" required>
-            <input type="email" id="register-email" placeholder="Adresse email" autocomplete="email" required>
+            <form class="form" id="register-form">
+                <div class="field">
+                    <label for="register-name">Prénom</label>
+                    <input class="input" type="text" id="register-name" placeholder="Ton prénom" autocomplete="given-name" maxlength="60" required>
+                </div>
 
-            <div class="password-box">
-                <input type="password" id="register-password" placeholder="Mot de passe" required>
-                <i class="fa-solid fa-eye" id="toggle-register-password"></i>
-            </div>
+                <div class="field">
+                    <label for="register-email">Adresse email</label>
+                    <input class="input" type="email" id="register-email" placeholder="ton@email.com" autocomplete="email" required>
+                </div>
 
-            <div class="password-box">
-                <input type="password" id="register-password-confirm" placeholder="Confirmer le mot de passe" autocomplete="new-password" required>
-                <i class="fa-solid fa-eye" id="toggle-register-password-confirm"></i>
-            </div>
+                <div class="field">
+                    <label for="register-password">Mot de passe</label>
+                    <div class="pw-box">
+                        <input class="input" type="password" id="register-password" placeholder="6 caractères minimum" autocomplete="new-password" minlength="6" required>
+                        <i class="fa-solid fa-eye" id="toggle-register-password" role="button" aria-label="Afficher le mot de passe"></i>
+                    </div>
+                </div>
 
-            <button type="submit" class="primary-btn auth-btn">Créer mon compte</button>
-        </form>
+                <div class="field">
+                    <label for="register-password-confirm">Confirmer le mot de passe</label>
+                    <div class="pw-box">
+                        <input class="input" type="password" id="register-password-confirm" placeholder="Répète le mot de passe" autocomplete="new-password" required>
+                        <i class="fa-solid fa-eye" id="toggle-register-password-confirm" role="button" aria-label="Afficher le mot de passe"></i>
+                    </div>
+                </div>
 
-        <p class="auth-switch">
-            Déjà inscrit ? <a href="connexion.html">Se connecter</a>
-        </p>
-    </div>
+                <button type="submit" class="btn btn-primary btn-block">Créer mon compte</button>
+            </form>
+
+            <p class="auth-switch">Déjà inscrit ? <a href="connexion.html">Se connecter</a></p>
+        </div>
+    </main>
 
     <script type="module" src="register.js"></script>
 </body>
+
 </html>

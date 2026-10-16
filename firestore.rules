@@ -1,0 +1,118 @@
+rules_version = '2';
+
+// =====================================================
+// NATHAN TRADING ACADEMY — Règles Firestore
+// À copier-coller dans Firebase Console > Firestore Database > Règles > Publier
+// =====================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // ---------- Fonctions utiles ----------
+
+    function connecte() {
+      return request.auth != null;
+    }
+
+    function estAdmin() {
+      return connecte()
+        && request.auth.token.email == 'badumisanathan807@gmail.com';
+    }
+
+    function estProprietaire(uid) {
+      return connecte() && request.auth.uid == uid;
+    }
+
+    function estPremium() {
+      return connecte()
+        && exists(/databases/$(database)/documents/users/$(request.auth.uid))
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.premium == true;
+    }
+
+    // ---------- Élèves ----------
+    // Un élève lit et crée SON profil, mais ne peut jamais se donner le
+    // statut premium : seul l'admin peut modifier ce champ.
+    match /users/{uid} {
+      allow read: if estProprietaire(uid) || estAdmin();
+
+      allow create: if estProprietaire(uid)
+        && request.resource.data.premium == false
+        && request.resource.data.uid == uid;
+
+      // L'élève ne peut modifier que sa progression
+      allow update: if (estProprietaire(uid)
+          && request.resource.data.diff(resource.data).affectedKeys()
+              .hasOnly(['modulesTermines', 'progression']))
+        || estAdmin();
+
+      allow delete: if estAdmin();
+    }
+
+    // ---------- Paiements déclarés ----------
+    match /payments/{paymentId} {
+      allow read: if estAdmin()
+        || (connecte() && resource.data.uid == request.auth.uid);
+
+      allow create: if connecte()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.status == 'pending'
+        && request.resource.data.amount == 199
+        && request.resource.data.reference is string
+        && request.resource.data.reference.size() >= 4
+        && request.resource.data.reference.size() <= 120
+        && request.resource.data.method is string
+        && request.resource.data.method.size() <= 30;
+
+      allow update, delete: if estAdmin();
+    }
+
+    // ---------- Prospects (formulaire de la page d'accueil) ----------
+    // N'importe quel visiteur peut en envoyer un, seul l'admin les lit.
+    match /leads/{leadId} {
+      allow read, update, delete: if estAdmin();
+
+      allow create: if request.resource.data.name is string
+        && request.resource.data.name.size() >= 2
+        && request.resource.data.name.size() <= 60
+        && request.resource.data.phone is string
+        && request.resource.data.phone.size() >= 8
+        && request.resource.data.phone.size() <= 25
+        && request.resource.data.contacted == false;
+    }
+
+    // ---------- Messages au support ----------
+    match /supports/{messageId} {
+      allow read, update, delete: if estAdmin();
+
+      allow create: if connecte()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 2000;
+    }
+
+    // ---------- Commentaires sous les vidéos ----------
+    match /comments/{commentId} {
+      allow read: if estPremium() || estAdmin();
+
+      allow create: if estPremium()
+        && request.resource.data.email == request.auth.token.email
+        && request.resource.data.message is string
+        && request.resource.data.message.size() > 0
+        && request.resource.data.message.size() <= 1000;
+
+      allow update, delete: if estAdmin();
+    }
+
+    // ---------- Annonce du tableau de bord ----------
+    match /announcements/{id} {
+      allow read: if connecte();
+      allow write: if estAdmin();
+    }
+
+    // ---------- Tout le reste est fermé ----------
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

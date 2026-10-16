@@ -1,61 +1,68 @@
 <!DOCTYPE html>
 <html lang="fr">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Connexion | Nathan Trading Academy</title>
-    <meta name="description" content="Connectez-vous à votre espace élève Nathan Trading Academy pour accéder à vos cours premium de trading Forex et indices synthétiques.">
+    <meta name="description" content="Connectez-vous à votre espace élève Nathan Trading Academy pour accéder à vos cours de trading.">
     <meta name="robots" content="noindex, nofollow">
+    <meta name="theme-color" content="#05080b">
     <link rel="canonical" href="https://nathan-trading.com/connexion.html">
-
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
     <link rel="icon" href="assets/image2.png">
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="site.css">
+
     <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-FGL81C37G2');
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FGL81C37G2');
     </script>
 </head>
-<body class="auth-body">
 
-    <div class="auth-container">
-        <img src="assets/image2.png" class="auth-logo" alt="Nathan Trading Logo">
-        <h1>Connexion</h1>
-        <p>Accédez à votre espace élève</p>
+<body>
+    <main class="auth-page">
+        <div class="auth-card">
+            <a href="index.html" aria-label="Retour à l'accueil"><img src="assets/image2.png" class="auth-logo" alt="Logo Nathan Trading"></a>
+            <h1>Connexion</h1>
+            <p class="auth-sub">Accède à ton espace élève</p>
 
-        <form id="login-form">
-            <input type="email" id="login-email" placeholder="Adresse email" autocomplete="email" required>
+            <form class="form" id="login-form">
+                <div class="field">
+                    <label for="login-email">Adresse email</label>
+                    <input class="input" type="email" id="login-email" placeholder="ton@email.com" autocomplete="email" required>
+                </div>
 
-            <div class="password-box">
-                <input type="password" id="login-password" placeholder="Mot de passe" required>
-                <i class="fa-solid fa-eye" id="toggle-login-password"></i>
-            </div>
+                <div class="field">
+                    <label for="login-password">Mot de passe</label>
+                    <div class="pw-box">
+                        <input class="input" type="password" id="login-password" placeholder="Ton mot de passe" autocomplete="current-password" required>
+                        <i class="fa-solid fa-eye" id="toggle-login-password" role="button" aria-label="Afficher le mot de passe"></i>
+                    </div>
+                </div>
 
-            <p class="forgot-password">
-                <a href="#" id="reset-password">Mot de passe oublié ?</a>
-            </p>
+                <p class="auth-link-row"><a href="#" id="reset-password">Mot de passe oublié ?</a></p>
 
-            <button type="submit" class="primary-btn auth-btn">Se connecter</button>
+                <button type="submit" class="btn btn-primary btn-block">Se connecter</button>
 
-            <div class="auth-divider" style="text-align:center;margin:15px 0;color:#555;">
-                <span>ou</span>
-            </div>
+                <div class="auth-divider">ou</div>
 
-            <button type="button" id="google-login" class="google-btn">
-                <i class="fa-brands fa-google"></i> Continuer avec Google
-            </button>
-        </form>
+                <button type="button" id="google-login" class="btn google-btn btn-block">
+                    <i class="fa-brands fa-google"></i> Continuer avec Google
+                </button>
+            </form>
 
-        <p class="auth-switch">
-            Pas encore inscrit ? <a href="inscription.html">Créer un compte</a>
-        </p>
-    </div>
+            <p class="auth-switch">Pas encore inscrit ? <a href="inscription.html">Créer un compte</a></p>
+        </div>
+    </main>
 
     <script type="module" src="login.js"></script>
 </body>
+
 </html>

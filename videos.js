@@ -31,6 +31,16 @@ const db = getFirestore(app);
 
 const TOTAL_MODULES = 18;
 
+// Échappe le texte saisi par les élèves avant de l'afficher (anti-XSS)
+function esc(valeur) {
+    return String(valeur ?? "")
+        .replace(/&/g, "&amp;")
+        .replace(/</g, "&lt;")
+        .replace(/>/g, "&gt;")
+        .replace(/"/g, "&quot;")
+        .replace(/'/g, "&#39;");
+}
+
 /* ===========================
    VIDEOS PREMIUM
 =========================== */
@@ -253,8 +263,8 @@ async function chargerCommentaires() {
 
             container.innerHTML += `
                 <div class="comment-card">
-                    <h4>${data.name || data.email}</h4>
-                    <p>${data.message}</p>
+                    <h4>${esc(data.name || data.email)}</h4>
+                    <p>${esc(data.message)}</p>
                 </div>
             `;
         });

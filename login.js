@@ -1,5 +1,6 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-app.js";
 import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail, GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-auth.js";
+import { getFirestore, doc, getDoc, setDoc } from "https://www.gstatic.com/firebasejs/10.8.0/firebase-firestore.js";
 
 console.log("🔥 login.js chargé");
 
@@ -17,7 +18,46 @@ const firebaseConfig = {
 
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
+const db = getFirestore(app);
 const provider = new GoogleAuthProvider();
+
+/* Messages d'erreur lisibles */
+function messageErreur(error) {
+  switch (error.code) {
+    case "auth/invalid-credential":
+    case "auth/wrong-password":
+    case "auth/user-not-found":
+    case "auth/invalid-email":
+      return "Email ou mot de passe incorrect.";
+    case "auth/too-many-requests":
+      return "Trop de tentatives. Réessaie dans quelques minutes ou réinitialise ton mot de passe.";
+    case "auth/network-request-failed":
+      return "Problème de connexion internet. Réessaie.";
+    case "auth/popup-closed-by-user":
+      return "Connexion Google annulée.";
+    default:
+      return "Connexion impossible. Réessaie ou contacte le support.";
+  }
+}
+
+/* Crée le profil élève lors de la première connexion Google */
+async function assurerProfil(user) {
+  const ref = doc(db, "users", user.uid);
+  const snap = await getDoc(ref);
+  if (snap.exists()) return;
+
+  const prenom = (user.displayName || "").split(" ")[0] || "Trader";
+  await setDoc(ref, {
+    username: prenom,
+    name: prenom,
+    email: user.email,
+    uid: user.uid,
+    premium: false,
+    progression: 0,
+    modulesTermines: [],
+    createdAt: new Date()
+  });
+}
 
 /* =========================
    CONNEXION CLASSIQUE (EMAIL)
@@ -34,20 +74,15 @@ if (loginForm) {
     try {
       // 1. Tentative de connexion
       const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
+      await assurerProfil(userCredential.user);
 
       // 2. Redirection si tout est OK
-      alert("Connexion réussie 🔥 Bienvenue sur Nathan Trading Academy !");
       window.location.href = "dashboard.html";
 
     } catch (error) {
-  console.error(error);
-
-  alert(
-    "Code : " + error.code +
-    "\n\nMessage : " + error.message
-  );
-}
+      console.error(error.code, error.message);
+      alert(messageErreur(error));
+    }
   });
 }
 
@@ -83,9 +118,10 @@ if (resetPasswordBtn) {
 
     try {
       await sendPasswordResetEmail(auth, email);
-      alert("Un e-mail de réinitialisation vient de vous être envoyé.");
+      alert("Si un compte existe avec cette adresse, un e-mail de réinitialisation vient d'être envoyé.");
     } catch (error) {
-      alert(error.message);
+      console.error(error.code, error.message);
+      alert(error.code === "auth/invalid-email" ? "Adresse email invalide." : "Impossible d'envoyer l'e-mail pour le moment. Réessaie.");
     }
   });
 }
@@ -98,11 +134,12 @@ const googleLoginBtn = document.getElementById("google-login");
 if (googleLoginBtn) {
   googleLoginBtn.addEventListener("click", async () => {
     try {
-      await signInWithPopup(auth, provider);
+      const result = await signInWithPopup(auth, provider);
+      await assurerProfil(result.user);
       window.location.href = "dashboard.html";
     } catch (error) {
-      console.error(error);
-      alert("Erreur lors de la connexion Google : " + error.message);
+      console.error(error.code, error.message);
+      alert(messageErreur(error));
     }
   });
 }
