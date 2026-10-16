@@ -1350,3 +1350,148 @@ a {
         scroll-behavior: auto !important;
     }
 }
+
+
+/* ---------- PAGES LÉGALES / VÉRIFICATION / 404 ---------- */
+
+.legal {
+    width: min(820px, 92%);
+    margin: 0 auto;
+    padding: 64px 0 90px;
+}
+
+.legal h1 {
+    font-family: var(--font-title);
+    font-weight: 400;
+    font-size: clamp(38px, 6vw, 58px);
+    letter-spacing: 1px;
+    line-height: 1.05;
+    margin-bottom: 8px;
+}
+
+.legal .legal-date {
+    color: var(--muted);
+    font-size: 14px;
+    margin-bottom: 36px;
+}
+
+.legal h2 {
+    font-size: 19px;
+    font-weight: 700;
+    margin: 34px 0 10px;
+    color: var(--cyan);
+}
+
+.legal p,
+.legal li {
+    color: #c3d0d9;
+    line-height: 1.75;
+    margin-bottom: 10px;
+}
+
+.legal ul {
+    padding-left: 20px;
+}
+
+.legal a {
+    color: var(--cyan);
+}
+
+.simple-footer {
+    border-top: 1px solid var(--line);
+    background: var(--bg-2);
+    padding: 26px 0;
+    text-align: center;
+    font-size: 13px;
+    color: var(--muted);
+}
+
+.simple-footer a {
+    color: var(--muted);
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+.simple-footer a:hover {
+    color: var(--cyan);
+}
+
+.center-page {
+    min-height: calc(100vh - 70px);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 40px 16px;
+    text-align: center;
+}
+
+.center-card {
+    max-width: 520px;
+    width: 100%;
+}
+
+.center-card img {
+    width: 76px;
+    height: 76px;
+    border-radius: 50%;
+    margin: 0 auto 18px;
+}
+
+.center-card .code {
+    font-family: var(--font-title);
+    font-size: clamp(90px, 22vw, 150px);
+    line-height: 1;
+    color: var(--cyan);
+    text-shadow: 0 0 40px rgba(25, 227, 255, 0.3);
+}
+
+.center-card h1 {
+    font-family: var(--font-title);
+    font-weight: 400;
+    font-size: clamp(32px, 6vw, 44px);
+    letter-spacing: 1px;
+    margin-bottom: 10px;
+}
+
+.center-card p {
+    color: var(--muted);
+    line-height: 1.7;
+    margin-bottom: 26px;
+}
+
+.center-card .actions {
+    display: flex;
+    gap: 12px;
+    justify-content: center;
+    flex-wrap: wrap;
+}
+
+.verify-box {
+    background: var(--card);
+    border: 1px solid var(--line);
+    border-radius: var(--radius);
+    padding: 26px;
+    text-align: left;
+    margin-top: 6px;
+}
+
+.verify-result {
+    margin-top: 18px;
+    padding: 16px;
+    border-radius: 14px;
+    font-size: 15px;
+    line-height: 1.7;
+    display: none;
+}
+
+.verify-result.ok {
+    display: block;
+    background: rgba(46, 230, 166, 0.08);
+    border: 1px solid rgba(46, 230, 166, 0.35);
+}
+
+.verify-result.ko {
+    display: block;
+    background: rgba(255, 93, 93, 0.08);
+    border: 1px solid rgba(255, 93, 93, 0.35);
+}

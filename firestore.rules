@@ -110,6 +110,19 @@ service cloud.firestore {
       allow write: if estAdmin();
     }
 
+    // ---------- Certificats ----------
+    // Créé une seule fois par l'élève, uniquement s'il a terminé les 18 modules.
+    // Lisible par tous un par un (page de vérification), jamais listable.
+    // Le document ne contient pas d'email.
+    match /certificates/{certId} {
+      allow get: if true;
+      allow list: if estAdmin();
+      allow create: if estProprietaire(request.resource.data.uid)
+        && request.resource.data.id == certId
+        && get(/databases/$(database)/documents/users/$(request.auth.uid)).data.modulesTermines.size() >= 18;
+      allow update, delete: if estAdmin();
+    }
+
     // ---------- Tout le reste est fermé ----------
     match /{document=**} {
       allow read, write: if false;

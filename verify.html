@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="fr">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vérifier un certificat | Nathan Trading Academy</title>
+    <meta name="description" content="Vérifie l'authenticité d'un certificat Nathan Trading Academy avec son identifiant.">
+    <meta name="robots" content="index, follow">
+    <meta name="theme-color" content="#05080b">
+    <link rel="canonical" href="https://nathan-trading.com/verify.html">
+    <link rel="icon" type="image/png" href="/assets/image2.png">
+
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css">
+    <link rel="stylesheet" href="/site.css">
+
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-FGL81C37G2"></script>
+    <script>
+        window.dataLayer = window.dataLayer || [];
+        function gtag() { dataLayer.push(arguments); }
+        gtag('js', new Date());
+        gtag('config', 'G-FGL81C37G2');
+    </script>
+</head>
+
+<body>
+
+    <header class="nav">
+        <div class="container nav-inner">
+            <a href="/index.html" class="brand">
+                <img src="/assets/image2.png" alt="Logo Nathan Trading">
+                <span>NATHAN TRADING</span>
+            </a>
+            <div class="nav-actions">
+                <a href="/index.html" class="btn btn-ghost" style="display:inline-flex;"><i class="fa-solid fa-arrow-left"></i> Accueil</a>
+            </div>
+        </div>
+    </header>
+
+    <main class="center-page" style="align-items:flex-start;padding-top:70px;">
+        <div class="center-card" style="text-align:center;">
+            <h1>Vérifier un certificat</h1>
+            <p>Saisis l'identifiant inscrit sur le certificat (exemple : NTA-2026-1A2B3C4D).</p>
+            <form class="verify-box" id="verify-form">
+                <div class="field">
+                    <label for="cert-id">Identifiant du certificat</label>
+                    <input class="input" id="cert-id" type="text" placeholder="NTA-2026-XXXXXXXX" maxlength="30" autocomplete="off" required>
+                </div>
+                <button class="btn btn-primary btn-block" type="submit">Vérifier</button>
+                <div class="verify-result" id="verify-result" role="status"></div>
+            </form>
+        </div>
+    </main>
+
+    <footer class="simple-footer">
+        <div class="container">
+            <a href="/mentions-legales.html">Mentions légales</a>
+            <a href="/conditions-utilisation.html">Conditions d'utilisation</a>
+            <a href="/index.html">Accueil</a>
+            <p style="margin-top:12px;">© 2026 Nathan Trading Academy. Contenus à but éducatif, le trading comporte un risque de perte en capital.</p>
+        </div>
+    </footer>
+    <script type="module" src="/verify.js"></script>
+</body>
+
+</html>
