@@ -50,6 +50,7 @@
                         <input class="input" type="password" id="register-password" placeholder="6 caractères minimum" autocomplete="new-password" minlength="6" required>
                         <i class="fa-solid fa-eye" id="toggle-register-password" role="button" aria-label="Afficher le mot de passe"></i>
                     </div>
+                    <span class="form-hint" id="pw-strength" aria-live="polite"></span>
                 </div>
 
                 <div class="field">
@@ -60,7 +61,17 @@
                     </div>
                 </div>
 
+                <div class="form-msg" id="auth-msg" role="status" aria-live="polite"></div>
+
                 <button type="submit" class="btn btn-primary btn-block">Créer mon compte</button>
+
+                <div class="auth-divider">ou</div>
+
+                <button type="button" id="google-register" class="btn google-btn btn-block">
+                    <i class="fa-brands fa-google"></i> S'inscrire avec Google
+                </button>
+
+                <p class="form-hint" style="text-align:center;">En créant un compte, tu acceptes les <a href="conditions-utilisation.html" target="_blank" rel="noopener" style="color:var(--cyan);">conditions d'utilisation</a>.</p>
             </form>
 
             <p class="auth-switch">Déjà inscrit ? <a href="connexion.html">Se connecter</a></p>
